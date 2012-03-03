@@ -9,7 +9,7 @@ clean:
 build:
 	@$(MAKE) `find . -name '*.md' -print | sort | sed 's/\.md$$/\.html/'` || exit 1
 
-%.html: %.md
+%.html: %.md _template.html
 	@$(ECHO_N) "Building $@... "
 	@./build.rb $< >$@
 	@$(ECHO) "done"
