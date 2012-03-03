@@ -11,5 +11,5 @@ build:
 
 %.html: %.md
 	@$(ECHO_N) "Building $@... "
-	@./build $< >$@
+	@./build.rb $< >$@
 	@$(ECHO) "done"
