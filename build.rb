@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "rdiscount"
+require "redcarpet"
 
 if ARGV.length < 1
     $stderr.puts("Usage: ./build <markdown file>")
@@ -18,7 +18,9 @@ else
 end
 template.sub!("<!--TITLE-->", title)
 
-content = RDiscount.new(markdown.join("\n"), :smart).to_html
+parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :tables => true, :fenced_code_blocks => true)
+content = parser.render(markdown.join("\n"))
+content = Redcarpet::Render::SmartyPants.render(content)
 template.sub!("<!--CONTENT-->", content)
 
 $stdout.write(template)
