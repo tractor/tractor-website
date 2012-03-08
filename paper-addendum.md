@@ -1,3 +1,5 @@
+# Paper addendum
+
 The [main TractoR paper](http://www.jstatsoft.org/v44/i08/), published in the Journal of Statistical Software in 2011, was written prior to the release of TractoR 2.0. This page lists changes to the example code given in the paper, which need to be made for it to work under TractoR 2.x.
 
 ## Section 3: The MriImage class

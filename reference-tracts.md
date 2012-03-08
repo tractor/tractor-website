@@ -1,3 +1,5 @@
+# Reference tracts
+
 Reference tracts represent prior information about tract trajectories, which are used by neighbourhood tractography methods to select corresponding pathways in diffusion data sets. It should be noted that [[heuristic|HNT tutorial]] and [[probabilistic|PNT tutorial]] neighbourhood tractography use different forms of reference tract, although if you plan to [create a custom reference](#custom), the process is nearly identical for the two cases.
 
 ## Using standard reference tracts
@@ -6,8 +8,7 @@ Since version 1.0.0, TractoR has been supplied with a set of standard reference 
 
 Using these standard references is by far the easiest way to start using NT. TractoR "knows" where to find them, so you need only to specify the tract name when running the `hnt-eval` or `pnt-data` experiment scripts. Available tract names since TractoR version 1.0.0 are "genu" (the corpus callosum genu, or more specifically the forceps anterior), "cst_left" and "cst_right" (left and right corticospinal or pyramidal tracts), "cing_left" and "cing_right" (left and right cingula). TractoR version 1.2.0 added the "splenium" (corpus callosum splenium, forceps posterior), "atr_left" and "atr_right" (left and right anterior thalamic radiations), "arcuate_left" and "arcuate_right" (left and right arcuate fasciculi), "uncinate_left" and "uncinate_right" (left and right uncinate fasciculi). Additional standard references are planned to be added in future releases.
 
-<a name="custom" />
-## Creating custom reference tracts
+<h2 id="custom">Creating custom reference tracts</h2>
 
 If you wish to segment a tract for which there is not yet a standard reference tract, or if your data set is somehow unusual so that the standard reference tracts are inappropriate, you need to create a custom reference tract from one of your scans. Once created, the reference tract may be reused for later studies.
 

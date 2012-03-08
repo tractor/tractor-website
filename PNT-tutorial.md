@@ -1,3 +1,5 @@
+# PNT tutorial
+
 ## Overview
 
 This tutorial covers the use of TractoR to perform model-based tract segmentation as described in Ref. (1) below. Like the simpler [[heuristic approach|HNT tutorial]], probabilistic neighbourhood tractography (PNT) is based on the idea of using a reference tract as a topological guide to the tract required. The model-based approach is considerably more robust but takes longer to run. If you use this method in your studies please cite Ref. (1).
@@ -80,8 +82,7 @@ Running the commands
 
 will then create the test data set (in "testing.txt"), and the final results file ("results.Rdata"). The first command will again take longer than the second: this time quite a lot longer, because 7 x 7 x 7 = 343 candidate tracts need to be created and characterised (minus any culled by the FA threshold, which is set to 0.2 by default). Note that the `ModelName` given must match the model file created by `pnt-train`.
 
-<a name="visualisation" />
-## Visualising and interpreting results
+<h2 id="visualisation">Visualising and interpreting results</h2>
 
 The results can be visualised using the `pnt-viz` script, which is analogous to the `hnt-viz` script used by the [[HNT process|HNT tutorial]], and can be used in the same way. For example, we can use
 

@@ -1,3 +1,5 @@
+# HNT tutorial
+
 ## Overview
 
 This tutorial describes how to use TractoR to perform neighbourhood tractography using the heuristic method described in Ref. (1). Heuristic neighbourhood tractography (HNT) uses a reference tract as a guide to the topology of the white matter structure that needs to be segmented. The method works with the native output of the ProbTrack algorithm (2), which represents a tract as a field of connection probabilities.

@@ -1,3 +1,5 @@
+# References
+
 This page outlines the relevant papers which should be cited when using various parts of the functionality provided by TractoR.
 
 - `dpreproc` (stage 3, with `MaskingMethod:bet` only): Smith S. (2002). Fast robust automated brain extraction. _Human Brain Mapping_ **17**(3):143-155.

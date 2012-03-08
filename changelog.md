@@ -1,3 +1,5 @@
+# Changelog
+
 The significant user-visible changes in each release of TractoR are documented below.
 
 ## 2.0.9 (2012-03-02)

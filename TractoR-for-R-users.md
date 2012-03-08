@@ -1,3 +1,5 @@
+# TractoR for R users
+
 TractoR consists of a set of R packages, along with a scripting system which provides access to the underlying code for non-useRs and those who wish to perform only "standard" tasks. This page describes the general set-up of TractoR, and how it can be used as a general purpose library for working with magnetic resonance images. It also describes how the interface between the shell and R works, and how you can write your own experiment scripts for use with the `tractor` shell program.
 
 ## General set-up

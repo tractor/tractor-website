@@ -1,3 +1,5 @@
+# Getting started
+
 ## System requirements
 
 TractoR was developed for Unix-like systems. It has been developed and tested on Mac OS X and Linux operating systems, and should work on other Unix variants that meet [R's](http://www.r-project.org) requirements. Support for Windows/Cygwin is not guaranteed but things may work. A better bet on Windows may be to run Linux within a virtual machine environment such as [VirtualBox](http://www.virtualbox.org/) or [VMware](http://www.vmware.com).
