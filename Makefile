@@ -9,7 +9,12 @@ clean:
 build:
 	@$(MAKE) `find . -name '*.md' -print | sort | sed 's/\.md$$/\.html/'` || exit 1
 
-%.html: %.md _template.html
+upload: upload_timestamp
+
+%.html: %.md _template.html build.rb
 	@$(ECHO_N) "Building $@... "
 	@./build.rb $< >$@
 	@$(ECHO) "done"
+
+upload_timestamp: [^_]*.html *.css *.js *.png .htaccess
+	@scp $? `cat upload_target` && touch upload_timestamp
