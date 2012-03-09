@@ -3,7 +3,7 @@
 require "redcarpet"
 
 if ARGV.length < 1
-    $stderr.puts("Usage: ./build <markdown file>")
+    $stderr.puts("Usage: ./build.rb <markdown file>")
     exit
 end
 
