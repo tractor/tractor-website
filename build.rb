@@ -7,8 +7,8 @@ if ARGV.length < 1
     exit
 end
 
-template = File.new("_template.html").read
-markdown = File.new(ARGV[0]).readlines
+template = File.open("_template.html") { |file| file.read }
+markdown = File.open(ARGV[0]) { |file| file.readlines }
 
 title_array = markdown.select { |str| str =~ /^\#\s+\w+\s*\#*$/ }
 if title_array.empty?

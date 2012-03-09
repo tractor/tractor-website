@@ -11,9 +11,9 @@ Dir.mktmpdir do |tmpdir|
     ARGV.each do |filename|
         basename = File.basename(filename)
         if filename =~ /\.html$/
-            html = File.new(filename).read
+            html = File.open(filename) { |file| file.read }
             html.gsub!(/\"([\w\-]+)\.html([\"\#])/, '"\1\2')
-            File.new(tmpdir + "/" + basename, "w").write(html)
+            file = File.open(tmpdir + "/" + basename, "w") { |file| file.write(html) }
         else
             FileUtils.copy(filename, tmpdir)
         end            
