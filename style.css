@@ -36,17 +36,12 @@ body {
     margin-bottom: 10px;
 }
 
-#tab-container {
-    position: absolute;
-    left: 822px;
-    top: 100px;
-    padding: 0px;
-}
-
 #tabs {
     padding: 0px;
     margin-top: -3px;
     margin-bottom: 20px;
+    margin-left: -2px;
+    margin-right: 0px;
 }
 
 .tab {
@@ -61,7 +56,7 @@ body {
     -webkit-box-shadow: 2px 2px 2px 2px #444;
     -moz-box-shadow: 2px 2px 2px 2px #444;
     box-shadow: 2px 2px 2px 2px #444;
-    background-color: #42799a;
+    background-color: #64869a;
     color: #eee;
     padding: 5px 10px 5px 10px;
     font-size: 15px;
