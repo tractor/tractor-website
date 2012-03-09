@@ -4,9 +4,9 @@ TractoR version 2.0 introduced some significant changes, aimed broadly at genera
 
 The update has also provided an opportunity to use internally new features of the R language. These changes will not be seen by most users, but they do mean that a relatively recent version of R (v2.12.1 or later) is required before installing.
 
-Details on specific changes to [preprocessing](#preprocessing), [overriding defaults](#overriding-defaults) and [session status reporting](#session-status) are outlined below, plus [miscellaneous changes](#misc). [Parallel installation](#parallel-installation) of TractoR 1.x and 2.x is discussed at the end.
+Details on specific changes to [preprocessing](#preprocessing), [overriding defaults](#overriding-defaults) and [session status reporting](#session-status) are outlined below, plus [miscellaneous changes](#miscellaneous-changes). [Parallel installation](#parallel-installation) of TractoR 1.x and 2.x is discussed at the end.
 
-<h2 id="preprocessing">Preprocessing</h2>
+## Preprocessing
 
 The most visible changes for most users will be the changes to preprocessing. The old `preproc` script was becoming quite unwieldy, and tried to perform too many functions, only some of which were strictly preprocessing operations. It also used FSL tools for everything by default. The script still exists, although it has been renamed to `dpreproc` to reflect the fact that it is specific to preprocessing *diffusion* data; some of its defaults have changed; and some of its functions have been devolved to other (new) scripts. Hence, while you previously may have run simply
 
@@ -26,7 +26,7 @@ The second command gives you the opportunity to check interactively that your gr
 
 Most of these scripts have options that you can see using `tractor -o (script_name)` in the usual way.
 
-<h2 id="overriding-defaults">Overriding defaults</h2>
+## Overriding defaults
 
 The default options for several scripts have changed, as noted for `dpreproc` above. However, TractoR now provides a mechanism for overriding defaults on a per-user basis, so if you liked things the way they were, you can do something about it! The mechanism is to create a YAML file in `~/.tractor` which is named for the script in question, and placing new defaults there. For example, if you create a file called `~/.tractor/dpreproc.yaml` and put in it the line
 
@@ -34,7 +34,7 @@ The default options for several scripts have changed, as noted for `dpreproc` ab
 
 then BET will be used by default in `dpreproc`, as in TractoR 1.x.
 
-<h2 id="session-status">Session status</h2>
+## Session status
 
 The `status` script is now both more general and more informative. Example output as of TractoR v2.0.2 is below.
 
@@ -56,13 +56,13 @@ Note that this script is not diffusion-specific. If you simply want to know whic
 
     tractor dpreproc StatusOnly:true
 
-<h2 id="misc">Miscellaneous changes</h2>
+## Miscellaneous changes
 
 * The `mkbvecs` script is now called `gradread`.
 * Scripts that use a `Tracker` option now default to `tractor` (the internal tracker, which is usually faster but requires the tractor.native package). PNT scripts that have an `AsymmetricModel` option default to `TRUE`, while those with a `NumberOfSamples` option default to 1000, again for speed.
 * The default verbosity level is now 1, rather than 0. Users may therefore see much more output than before. The default can be switched back by setting up `~/.tractor/config` appropriately: see the man page for details.
 
-<h2 id="parallel-installation">Parallel installation</h2>
+## Parallel installation
 
 Parallel installation of versions 1.x and 2.x of TractoR is possible, although not totally straightforward. (This is partly because R itself does not allow multiple versions of a single package to be installed at once.) However, if you do need to do this, the following instructions should help. They assume that you are using the "bash" shell, and that you already have TractoR 1.x set up.
 

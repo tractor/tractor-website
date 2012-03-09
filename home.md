@@ -19,7 +19,7 @@ General queries or problems may be sent to the [users' mailing list](http://grou
 
 ![Diffusion principal directions](principal-directions.png)
 
-<h2 id="contents">Web site contents</h2>
+## Site contents
 
 - The [getting started](getting-started.html) page is the place to find out about downloading and installing TractoR. Details of the major user-visible changes can be found in the [changelog](changelog.html), and news on releases and TractoR-related publications appears below.
 - Users of TractoR 1.x may find the information on [upgrading to TractoR 2](upgrading-to-TractoR-2.html) helpful, and an [addendum](paper-addendum.html) to the [TractoR paper](http://www.jstatsoft.org/v44/i08/) for version 2 is also available.
@@ -29,7 +29,7 @@ General queries or problems may be sent to the [users' mailing list](http://grou
 - TractoR provides reference implementations of various [neighbourhood tractography](http://www.homepages.ucl.ac.uk/~sejjjd2/research/#neighbourhood-tractography) methods, both "heuristic" and "probabilistic", for segmenting specific white matter structures. An [HNT tutorial](HNT-tutorial.html) and a [PNT tutorial](PNT-tutorial.html) using TractoR are available, as well as information on the [reference tracts](reference-tracts.html) used by both methods.
 - Finally, there is a list of [references](references.html) for the methods available through TractoR.
 
-<h2 id="news">News</h2>
+## News
 
 **(2011-11-02)** A paper on the TractoR package, outlining its interfaces and the methods implemented in it, has just been published in the [Journal of Statistical Software](http://www.jstatsoft.org/v44/i08/). This will be key reference for the package in future.
 
@@ -67,8 +67,7 @@ General queries or problems may be sent to the [users' mailing list](http://grou
 
 ## References
 
-(1) J.D. Clayden, S. Muñoz Maniega, A.J. Storkey, M.D. King, M.E. Bastin & C.A. Clark (2011). TractoR: Magnetic resonance imaging and tractography with R. _Journal of Statistical Software_ **44**(8):1-18.
-
-(2) A. Evans, M. Kamber, D.L. Collins & D. MacDonald (1994). _An MRI-based probabilistic atlas of neuroanatomy_. In S. Shorvon, D. Fish, F. Andermann, G.M. Bydder & H. Stefan (eds), _Magnetic resonance scanning and epilepsy_, **NATO ASI Series A, Life Sciences**, vol. 264, pp. 263-274. Plenum Press.
+1. J.D. Clayden, S. Muñoz Maniega, A.J. Storkey, M.D. King, M.E. Bastin & C.A. Clark (2011). TractoR: Magnetic resonance imaging and tractography with R. _Journal of Statistical Software_ **44**(8):1-18.
+2. A. Evans, M. Kamber, D.L. Collins & D. MacDonald (1994). _An MRI-based probabilistic atlas of neuroanatomy_. In S. Shorvon, D. Fish, F. Andermann, G.M. Bydder & H. Stefan (eds), _Magnetic resonance scanning and epilepsy_, **NATO ASI Series A, Life Sciences**, vol. 264, pp. 263-274. Plenum Press.
 
 [![NITRC logo](nitrc.png)](http://www.nitrc.org/projects/tractor)

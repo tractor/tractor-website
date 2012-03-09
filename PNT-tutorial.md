@@ -34,7 +34,7 @@ With the design file created, we can run PNT using the commands
 
 The first of these will take a lot longer than the second to run, since the tracts have to be generated and important characteristics extracted. Using default settings, run time on a standard PC is around 1 hr per subject for `pnt-data`, although the code is easily parallelisable if you have many subjects (see the `pnt-data-sge` script for running on computer clusters, or the `-p` option to `tractor` for use on multicore desktops). The result will be a text file called "genu_data.txt". The second script typically takes about a minute to run, and generates model and results files.
 
-Results can be visualised and interpreted as described [below](#visualisation).
+Results can be visualised and interpreted as described [below](#visualising-and-interpreting-results).
 
 ## Manual training
 
@@ -82,7 +82,7 @@ Running the commands
 
 will then create the test data set (in "testing.txt"), and the final results file ("results.Rdata"). The first command will again take longer than the second: this time quite a lot longer, because 7 x 7 x 7 = 343 candidate tracts need to be created and characterised (minus any culled by the FA threshold, which is set to 0.2 by default). Note that the `ModelName` given must match the model file created by `pnt-train`.
 
-<h2 id="visualisation">Visualising and interpreting results</h2>
+## Visualising and interpreting results
 
 The results can be visualised using the `pnt-viz` script, which is analogous to the `hnt-viz` script used by the [HNT process](HNT-tutorial.html), and can be used in the same way. For example, we can use
 

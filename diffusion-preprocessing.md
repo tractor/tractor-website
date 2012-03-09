@@ -1,6 +1,6 @@
 # Diffusion preprocessing
 
-This page discusses the preprocessing steps required to prepare a diffusion-weighted dataset for analysis using TractoR, as well as subsequent operations that can be performed to [manipulate diffusion gradient directions](#gradients) and [fit models](#model-fitting) to the data.
+This page discusses the preprocessing steps required to prepare a diffusion-weighted dataset for analysis using TractoR, as well as subsequent operations that can be performed to [manipulate diffusion gradient directions](#checking-and-rotating-gradient-directions) and [fit models](#model-fitting) to the data.
 
 ## The pipeline
 
@@ -48,7 +48,7 @@ If you want to find out which stages have already been run, simply give
 
     tractor dpreproc StatusOnly:true
 
-<h2 id="gradients">Checking and rotating gradient directions</h2>
+## Checking and rotating gradient directions
 
 The directions of applied diffusion-weighting gradients are determined from the DICOM files if possible, during stage 1 of the `dpreproc` script. However, if `dpreproc` is not used, or the gradient directions cannot be found, it may be necessary to specify them manually. To do so, the directions should be put into a plain text file, arranged either one-per-column or one-per-row, normalised or unnormalised, and with or without zeroes for *b*=0 measurements. The `gradread` script can then be called, passing the session directory, gradients file and the big and little *b*-values:
 
@@ -66,7 +66,7 @@ Another step which is commonly performed is gradient rotation, to compensate for
 
 The `plotcorrections` script can be used to see how big the effect of this step will be: run `tractor -o plotcorrections` for more information.
 
-<h2 id="model-fitting">Model fitting</h2>
+## Model fitting
 
 Fitting diffusion tensors is a standard processing step for diffusion-weighted data, and results in the creation of a range of derivative images, including maps of fractional anisotropy and mean diffusivity. This fitting can be performed using
 
