@@ -77,4 +77,4 @@ A full list of the scripts provided with the distribution can be obtained by typ
 
 ## Next steps
 
-TractoR provides implementations of "neighbourhood tractography" methods for consistent white matter tract segmentation. Tutorials on the earlier (and simpler) [heuristic approach](https://github.com/jonclayden/tractor/wiki/HNT-tutorial) and the more complex but more robust [probabilistic approach](https://github.com/jonclayden/tractor/wiki/PNT-tutorial) to neighbourhood tractography are good places to start to gain familiarity with TractoR's way of doing things. A quick overview of TractoR's specific [conventions](https://github.com/jonclayden/tractor/wiki/Conventions) is also provided.
+TractoR provides implementations of "neighbourhood tractography" methods for consistent white matter tract segmentation. Tutorials on the earlier (and simpler) [heuristic approach](HNT-tutorial.html) and the more complex but more robust [probabilistic approach](PNT-tutorial.html) to neighbourhood tractography are good places to start to gain familiarity with TractoR's way of doing things. A quick overview of TractoR's specific [conventions](conventions.html) is also provided.

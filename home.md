@@ -11,7 +11,7 @@ The TractoR (Tractography with R) project includes R packages for reading, writi
 * Remove false positive tracts using a model of tract shape variability.
 * Create graphics to visualise image slices or maximum-intensity projections.
 
-If you use TractoR in your work, please cite Ref. (1) below. For details of research papers underlying the methods implemented in the package, please see the [references page](references.html).
+If you use TractoR in your work, please cite [Ref. 1](#references) below. For details of research papers underlying the methods implemented in the package, please see the [references page](references.html).
 
 **Please note that TractoR is research software and has not been approved for clinical use. The software is provided in the hope that it will be useful, but comes with no warranty whatsoever.**
 

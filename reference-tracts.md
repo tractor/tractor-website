@@ -21,7 +21,7 @@ Let's assume that we wish to create a reference tract representing the corpus ca
 
 Next we observe that the point (6,22,14) - in millimetre coordinates - appears to be within the genu in an MNI standard space brain volume. A suitable location such as this can be chosen using [FSL's data viewer](http://www.fmrib.ox.ac.uk/fsl/fslview/index.html). We see the location shown on a slice of the MNI white matter map below:
 
-![genu seed point location](https://github.com/jonclayden/tractor/wiki/genu-point.png)
+![genu seed point location](genu-point.png)
 
 We next need to choose a subject in which to generate our reference tract. In this tutorial we will assume that the session directory for this subject is based at the location /data/refsubject. Note that this session *must already* be [fully preprocessed](diffusion-preprocessing.html). We will seed throughout a region around the location corresponding to the point we found in MNI standard space, on the basis that at least one point in this region stands a good chance of generating a tract suitable for use as the reference. The command
 
