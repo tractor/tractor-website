@@ -17,4 +17,4 @@ upload: build upload_timestamp
 	@$(ECHO) "done"
 
 upload_timestamp: [^_]*.html *.css *.js *.png .htaccess
-	@scp $? `cat upload_target` && touch upload_timestamp
+	@./upload.rb $? && touch upload_timestamp
