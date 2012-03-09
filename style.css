@@ -95,9 +95,8 @@ h3 a:hover {
 h1 {
     font-size: 28px;
     font-weight: bold;
-    font-style: italic;
+    font-variant: small-caps;
     color: #873125;
-    letter-spacing: 1pt;
     width: 100%;
     border-bottom: 1px solid #ccc;
 }
