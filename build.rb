@@ -7,6 +7,25 @@ if ARGV.length < 1
     exit
 end
 
+class HTMLWithTweaks < Redcarpet::Render::HTML
+    def block_code (code, language)
+        code.gsub!(/\n\n+/, "\n")
+        "\n<pre><code>#{code}</code></pre>\n"
+    end
+    
+    def header (text, level)
+        if level > 1
+            id = text.gsub(/\s+/, "-")
+            id.gsub!(/[^\w\-]/, "")
+            id.downcase!
+            id.sub(/^[^a-z]+/, "")
+            "\n<h#{level} id=\"#{id}\">#{text}</h#{level}>\n"
+        else
+            "\n<h1>#{text}</h1>\n"
+        end
+    end
+end
+
 template = File.open("_template.html") { |file| file.read }
 markdown = File.open(ARGV[0]) { |file| file.readlines }
 
@@ -18,7 +37,7 @@ else
 end
 template.sub!("<!--TITLE-->", title)
 
-parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :tables => true, :fenced_code_blocks => true)
+parser = Redcarpet::Markdown.new(HTMLWithTweaks, :tables => true, :fenced_code_blocks => true)
 content = parser.render(markdown.join("\n"))
 content = Redcarpet::Render::SmartyPants.render(content)
 template.sub!("<!--CONTENT-->", content)
