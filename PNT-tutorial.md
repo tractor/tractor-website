@@ -2,13 +2,13 @@
 
 ## Overview
 
-This tutorial covers the use of TractoR to perform model-based tract segmentation as described in Ref. (1) below. Like the simpler [[heuristic approach|HNT tutorial]], probabilistic neighbourhood tractography (PNT) is based on the idea of using a reference tract as a topological guide to the tract required. The model-based approach is considerably more robust but takes longer to run. If you use this method in your studies please cite Ref. (1).
+This tutorial covers the use of TractoR to perform model-based tract segmentation as described in Ref. (1) below. Like the simpler [heuristic approach](HNT-tutorial.html), probabilistic neighbourhood tractography (PNT) is based on the idea of using a reference tract as a topological guide to the tract required. The model-based approach is considerably more robust but takes longer to run. If you use this method in your studies please cite Ref. (1).
 
 TractoR experiment scripts that may be used in a typical PNT-based study generally start with the prefix "pnt-", but there are other, more general purpose scripts which are often used, such as `mean` or `gmean`. Details of the relevant scripts are given in each section below.
 
 ## Reference tracts and matching models
 
-As with the heuristic approach to NT, the probabilistic approach requires some [[fully preprocessed|diffusion preprocessing]] diffusion MR data and a [[reference tract|reference tracts]] representing the pathway we wish to segment in those data.
+As with the heuristic approach to NT, the probabilistic approach requires some [fully preprocessed](diffusion-preprocessing.html) diffusion MR data and a [reference tract](reference-tracts.html) representing the pathway we wish to segment in those data.
 
 In addition, however, PNT makes use of a *matching model*, which must be "trained" from the data. The model captures information about the typical deviations that acceptable tract segmentations make from the reference tract. The easiest way to create the model is to use the `pnt-em` script, which uses a single data set and fits the model while simultaneously finding suitable tracts. This approach, which is described in Ref. (2) and was introduced in TractoR version 1.0.0, is now the recommended one for most purposes. It also requires less work from the user than the alternative, which is to split your data set into a training set and a testing set, and use `pnt-train` and `pnt-eval`, respectively, to first train the model and then use it for tract matching.
 
@@ -38,7 +38,7 @@ Results can be visualised and interpreted as described [below](#visualisation).
 
 ## Manual training
 
-To create a matching model manually, it is necessary to select a number of additional tracts which represent suitable segmentations of the tract of interest. These will be used to train the model. The training tracts can be generated using the same combination of the `mkroi` and `rtrack` scripts as a [[custom reference tract|reference tracts]], or they could even be selected using the HNT method. Either way, the data used for training should be checked by hand, and kept separate from the data that will be used for testing later.
+To create a matching model manually, it is necessary to select a number of additional tracts which represent suitable segmentations of the tract of interest. These will be used to train the model. The training tracts can be generated using the same combination of the `mkroi` and `rtrack` scripts as a [custom reference tract](reference-tracts.html), or they could even be selected using the HNT method. Either way, the data used for training should be checked by hand, and kept separate from the data that will be used for testing later.
 
 Once a number of training tracts have been identified and the corresponding test sessions and seed points are known, they can be put into a design file for use with the `pnt-train` script. The design file (say "training.yaml") will look something like the following:
 
@@ -84,7 +84,7 @@ will then create the test data set (in "testing.txt"), and the final results fil
 
 <h2 id="visualisation">Visualising and interpreting results</h2>
 
-The results can be visualised using the `pnt-viz` script, which is analogous to the `hnt-viz` script used by the [[HNT process|HNT tutorial]], and can be used in the same way. For example, we can use
+The results can be visualised using the `pnt-viz` script, which is analogous to the `hnt-viz` script used by the [HNT process](HNT-tutorial.html), and can be used in the same way. For example, we can use
 
     tractor -c design.yaml pnt-viz CreateVolumes:true
 

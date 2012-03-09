@@ -6,7 +6,7 @@ This page discusses the preprocessing steps required to prepare a diffusion-weig
 
 The preprocessing steps required to run neighbourhood tractography or other analysis on a diffusion-weighted data set using TractoR are the same as those required by the [FSL diffusion toolbox](http://www.fmrib.ox.ac.uk/fsl/fdt/index.html), FDT, for tractography. It is therefore quite possible to perform all of these steps independently of TractoR, and the user may decide to use the relevant FSL tools, or their equivalents from another package. However, reasons to use TractoR might include the following:
 
-* The [[session hierarchy|Conventions]] will be arranged as TractoR expects it, automatically. This saves the user from having to arrange the hierarchy herself. It also means that TractoR can give correct parameters to any external programs without further input from the user.
+* The [session hierarchy](conventions.html) will be arranged as TractoR expects it, automatically. This saves the user from having to arrange the hierarchy herself. It also means that TractoR can give correct parameters to any external programs without further input from the user.
 * The pipeline is run interactively but tries to minimise user input.
 * TractoR can establish which stage of the pipeline has been reached, and continue partly completed preprocessing pipelines where necessary.
 

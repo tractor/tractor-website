@@ -16,13 +16,13 @@ TractoR uses the `reportr` package for message reporting, in preference to the s
 
 Please see the [full documentation](http://cran.r-project.org/web/packages/tractor.base/tractor.base.pdf) (pdf) for more information on these topics.
 
-The `tractor.session` package creates and maintains [[session directories|Conventions]], and includes functions which interface with the [FSL](http://www.fmrib.ox.ac.uk/fsl) and [Camino](http://www.camino.org.uk) software packages. It also facilitates moving points and image between native and standard (MNI) spaces. The `tractor.nt` package provides implementations of [[heuristic|HNTTutorial]] and [[probabilistic|PNTTutorial]] neighbourhood tractography. The `tractor.native` package provides C implementations of functions such as fibre tracking which would be too slow using pure R. The `tractor.utils` package exists mainly to support the command-line interface (see below). At present none of these four more specialist packages are documented at the R level, i.e. function by function.
+The `tractor.session` package creates and maintains [session directories](conventions.html), and includes functions which interface with the [FSL](http://www.fmrib.ox.ac.uk/fsl) and [Camino](http://www.camino.org.uk) software packages. It also facilitates moving points and image between native and standard (MNI) spaces. The `tractor.nt` package provides implementations of [heuristic](HNT-tutorial.html) and [probabilistic](PNT-tutorial.html) neighbourhood tractography. The `tractor.native` package provides C implementations of functions such as fibre tracking which would be too slow using pure R. The `tractor.utils` package exists mainly to support the command-line interface (see below). At present none of these four more specialist packages are documented at the R level, i.e. function by function.
 
 ## From command line to R
 
 The `tractor` shell script is a convenience interface for performing common tasks using the TractoR packages. It is based around a set of R script files, one per task, each of which contains a `runExperiment()` function. The shell script may run R in a number of different ways, depending on whether interactivity is required by the script, and on the programs available on the system it is run on. Once R is started, it loads the `tractor.utils` package and calls the `bootstrapExperiment()` function to set up the required environment and execute the `runExperiment()` function for the requested script. The shell script also facilitates passing information between the command line and R, reporting errors and warnings, and maintaining a command history. 
 
-Further information on the usage and function of the `tractor` shell script can be found in its man page (type `man tractor` from the shell, assuming that [[your MANPATH is set correctly|Getting started]]).
+Further information on the usage and function of the `tractor` shell script can be found in its man page (type `man tractor` from the shell, assuming that [your MANPATH is set correctly](getting-started.html)).
 
 ## Writing your own TractoR scripts
 

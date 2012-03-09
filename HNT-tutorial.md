@@ -4,13 +4,13 @@
 
 This tutorial describes how to use TractoR to perform neighbourhood tractography using the heuristic method described in Ref. (1). Heuristic neighbourhood tractography (HNT) uses a reference tract as a guide to the topology of the white matter structure that needs to be segmented. The method works with the native output of the ProbTrack algorithm (2), which represents a tract as a field of connection probabilities.
 
-**Note**: The alternative [[probabilistic approach|PNT tutorial]] to neighbourhood tractography is generally recommended in preference to the heuristic approach described here, due to its greater flexibility and considerably improved robustness, although the heuristic method is quicker and simpler to run. If you do use this method in your studies please cite Ref. (1). Details of the underlying methods can be found there.
+**Note**: The alternative [probabilistic approach](PNT-tutorial.html) to neighbourhood tractography is generally recommended in preference to the heuristic approach described here, due to its greater flexibility and considerably improved robustness, although the heuristic method is quicker and simpler to run. If you do use this method in your studies please cite Ref. (1). Details of the underlying methods can be found there.
 
 TractoR experiment scripts that may be used in a typical HNT-based study are `hnt-eval` (to evaluate a series of tracts for similarity to the reference tract), `hnt-viz` (to visualise the best-matching tract from each session directory), `hnt-interpret` (to display the seed point or similarity score for the best-matching tract in each subject), and `mean` or `gmean` (to calculate the mean anisotropy along the best-matching tracts).
 
 ## Requirements
 
-The prerequisites for HNT are some [[fully preprocessed|Diffusion preprocessing]] diffusion MR data and a [[reference tract|Reference tracts]] representing the pathway we wish to segment in those data. The latter may be a custom reference tract, or one of the standard references provided with the software. TractoR is set up to process groups of subjects' data using very few commands.
+The prerequisites for HNT are some [fully preprocessed](diffusion-preprocessing.html) diffusion MR data and a [reference tract](reference-tracts.html) representing the pathway we wish to segment in those data. The latter may be a custom reference tract, or one of the standard references provided with the software. TractoR is set up to process groups of subjects' data using very few commands.
 
 ## Segmenting in novel data
 
@@ -20,7 +20,7 @@ Once a suitable reference tract is chosen and available, segmenting a similar tr
 
 Here we use a search neighbourhood of 7 x 7 x 7 voxels, as in Ref. (1). The larger the `SearchWidth`, the more likely a good match will be found, but the longer the process will take to complete. There is an anisotropy (FA) threshold of 0.2 imposed on the neighbourhood by default, so that seed points with FA lower than 0.2 will not be used to generate candidate tracts. The level of this threshold can be set with the `AnisotropyThreshold` option.
 
-Note that the preceding example uses a [[standard reference tract|Reference tracts]] (the genu), so TractoR knows where to find it. However, if a custom reference tract is used, it must be copied into the working directory before running `hnt-eval`. An error will be produced if no reference tract of the specified name can be found.
+Note that the preceding example uses a [standard reference tract](reference-tracts.html) (the genu), so TractoR knows where to find it. However, if a custom reference tract is used, it must be copied into the working directory before running `hnt-eval`. An error will be produced if no reference tract of the specified name can be found.
 
 The `hnt-eval` script will generate a results file, which can be used to generate an Analyze/NIfTI volume and/or PNG projection images of the best matching tract from the test subject, with `hnt-viz`:
 

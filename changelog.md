@@ -177,7 +177,7 @@ The significant user-visible changes in each release of TractoR are documented b
 
 ## 1.3.0 (2009-11-10)
 
-* Support for a new approach to rejecting false positive connections in probabilistic neighbourhood tractography has been added through the `pnt-prune` experiment script. This script can be run instead of `pnt-viz`, and uses the PNT modelling framework to substantially clean up tract segmentations. Details can be found on the [PNT tutorial page](PNTTutorial). Run "tractor -o pnt-prune" for options.
+* Support for a new approach to rejecting false positive connections in probabilistic neighbourhood tractography has been added through the `pnt-prune` experiment script. This script can be run instead of `pnt-viz`, and uses the PNT modelling framework to substantially clean up tract segmentations. Details can be found on the [PNT tutorial page](PNTTutorial.html)). Run "tractor -o pnt-prune" for options.
 * A set of tests have been added to the package, to ensure that installation went successfully and everything is working as expected. These can be run from the main TractoR directory with the command "make test".
 * A specific PNT model can now be specified directly for the `pnt-eval` and `pnt-interpret` scripts, allowing substantially greater flexibility.
 * The `pnt-ref` and `hnt-eval` scripts now support a NumberOfSamples option, to set the number of streamlines used by the underlying tractography algorithm.
