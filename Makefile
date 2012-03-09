@@ -4,10 +4,10 @@ ECHO_N=/bin/echo -n
 all: build
 
 clean:
-	@rm -f `find . -name '*.html' -print`
+	@rm -f [^_]*.html
 
 build:
-	@$(MAKE) `find . -name '*.md' -print | sort | sed 's/\.md$$/\.html/'` || exit 1
+	@$(MAKE) `ls -1 *.md | sort | sed 's/\.md$$/\.html/'` || exit 1
 
 upload: build upload_timestamp
 
