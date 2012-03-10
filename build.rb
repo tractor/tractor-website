@@ -8,11 +8,6 @@ if ARGV.length < 1
 end
 
 class HTMLWithTweaks < Redcarpet::Render::HTML
-    def block_code (code, language)
-        code.gsub!(/\n\n+/, "\n")
-        "\n<pre><code>#{code}</code></pre>\n"
-    end
-    
     def header (text, level)
         if level > 1
             id = text.gsub(/\s+/, "-")
@@ -37,8 +32,8 @@ else
 end
 template.sub!("<!--TITLE-->", title)
 
-parser = Redcarpet::Markdown.new(HTMLWithTweaks, :tables => true, :fenced_code_blocks => true)
-content = parser.render(markdown.join("\n"))
+parser = Redcarpet::Markdown.new(HTMLWithTweaks, :tables => true, :fenced_code_blocks => true, :no_intra_emphasis => true)
+content = parser.render(markdown.join)
 content = Redcarpet::Render::SmartyPants.render(content)
 template.sub!("<!--CONTENT-->", content)
 
