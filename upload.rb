@@ -3,9 +3,10 @@
 require "tmpdir"
 
 if ARGV.length < 1
-    $stderr.puts("Usage: ./upload.rb <files>")
-    exit
+    abort("Usage: ./upload.rb <files>")
 end
+
+status = true
 
 Dir.mktmpdir do |tmpdir|
     ARGV.each do |filename|
@@ -19,5 +20,7 @@ Dir.mktmpdir do |tmpdir|
         end            
     end
     
-    system("scp #{tmpdir}/* `cat upload_target`")
+    status = system("scp #{tmpdir}/* `cat upload_target`")
 end
+
+exit(status)

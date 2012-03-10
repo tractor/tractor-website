@@ -3,8 +3,7 @@
 require "redcarpet"
 
 if ARGV.length < 1
-    $stderr.puts("Usage: ./build.rb <markdown file>")
-    exit
+    abort("Usage: ./build.rb <markdown file>")
 end
 
 class HTMLWithTweaks < Redcarpet::Render::HTML
