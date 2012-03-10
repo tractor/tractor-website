@@ -10,7 +10,7 @@ TractoR experiment scripts that may be used in a typical HNT-based study are `hn
 
 ## Requirements
 
-The prerequisites for HNT are some [fully preprocessed](diffusion-preprocessing.html) diffusion MR data and a [reference tract](reference-tracts.html) representing the pathway we wish to segment in those data. The latter may be a custom reference tract, or one of the standard references provided with the software. TractoR is set up to process groups of subjects' data using very few commands.
+The prerequisites for HNT are some [fully preprocessed](diffusion-processing.html) diffusion MR data and a [reference tract](reference-tracts.html) representing the pathway we wish to segment in those data. The latter may be a custom reference tract, or one of the standard references provided with the software. TractoR is set up to process groups of subjects' data using very few commands.
 
 ## Segmenting in novel data
 

@@ -36,10 +36,24 @@ The reason for using a managed file hierarchy is to avoid the need to specify th
 
 Any or all of these default names can be overridden by placing a file called `map.yaml` in the `diffusion` subdirectory, using the format above. Note that the `%` symbol is used to indicate an index, so the first eigenvalue image will be called `dti_eigval1`, the second `dti_eigval2`, and so on. No image format suffix (e.g. `.nii`) should be given.
 
+Similarly, the names of the subdirectories within the main `tractor` directory can be specified in a top-level session map. This mechanism can be used to point to data outside the session directory as well, and this can be useful, for example, when processing a single data set in several different ways. For example, say we want to process the data from a single subject using `bedpost`, with both 2 and 3 fibre options. We could process the 2 fibres case, and then create a new session, say `/data/subject1_3fibres`, which points to the same diffusion data. The `/data/subject1_3fibres/tractor/map.yaml` file would then contain
+
+    diffusion: /data/subject1_2fibres/tractor/diffusion
+
+It should, however, be bourne in mind that this will make the session less portable. The full default map, as of TractoR v2.1.0, is
+
+    diffusion: diffusion
+    fdt: fdt
+    bedpost: fdt.bedpostX
+    probtrack: fdt.track
+    camino: camino
+
+Note that the `objects` subdirectory cannot be relocated.
+
 ## Point types
 
 Whenever a location within a brain volume needs to be specified, for example as a seed point for tractography, it is necessary to specify the meaning of the numerical value given. Locations may be specified in world coordinates, in mm, or as a voxel location. The latter case needs to be further disambiguated, since FSL uses the C convention of indexing voxels from zero, whereas TractoR uses the R (and Matlab) convention of indexing from one. The first voxel in the corner of a brain volume is therefore (1,1,1) in the R convention. Therefore experiment scripts, such as `track`, which take a point as an argument require the `PointType` parameter to be set to one of "fsl", "r" or "mm" to indicate the meaning of the point. So in the command
 
-    tractor -v1 track /data/subject1 34,23,17 PointType:fsl
+    tractor track /data/subject1 34,23,17 PointType:fsl
 
 the `track` script is run using "/data/subject1" as the relevant session directory and "34,23,17" as a seed point using the FSL convention. This would be appropriate if the seed point had been selected using the FSLview data viewer.

@@ -2,6 +2,28 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.1.0 (2012-03-09)
+
+* The internal tracking code has been substantially reworked, and can now be used in the `rtrack` and `mtrack` scripts. (Results should, however, be comparable with previous versions.) The `mtrack` script can now also be used to perform whole-brain tractography.
+* TractoR now properly handles temporal units in NIfTI files. The `dicomread` script will set the temporal resolution of a 4D image series to the repetition time (TR) stored in the DICOM metadata. (The voxel dimension for dimensions above three was previously fixed to 1, so this will result in some differences in output.)
+* A full set of HTML-based documentation is now included in the TractoR distribution, and can be found at `share/doc/home.html`.
+* HNT and PNT reference tracts for the ventral cingulum and inferior longitudinal fasciculus have been added.
+* A top-level session directory map can now be used to redefine the location of subdirectories within the TractoR hierarchy. This mechanism can also be used to allow sessions to share some data. All session maps are now also cached internally.
+* TractoR now tries harder to work with images stored in a rotated coordinate system (although warnings will be generated).
+* The number of clusters used by the k-means algorithm in `dpreproc` can now be set using the new `KMeansClusters` option. This option can be refined interactively, or the user can switch to using BET if required.
+* TractoR can now read only selected volumes from an image file. The `dpreproc` script takes advantage of this to reduce memory usage.
+* Stage 2 of `dpreproc` will now only visualise *b*=0 volumes, rather than all data.
+* The brain mask generated in stage 3 of `dpreproc` is now displayed semitransparently for ease of evaluation.
+* The `dicomsort` script can now sort a directory by subject as well as series. It also handles missing identifiers better.
+* The option to threshold seed points on metrics other than anisotropy in the `track` and `rtrack` scripts is deprecated (meaning that it will still work, but a warning will be generated).
+* The `tensorfit` script now handles negative data values more gracefully. An sum of squared errors (SSE) image is now created irrespective of the fitting method used.
+* The `imageinfo` script can now be used with a directory of DICOM files as well as an Analyze/NIfTI/MGH image file.
+* The `gmap` script gains an option to create a colour bar.
+* The `plotcorrections` script now allows `Mode:all` and can be run noninteractively. (Requested by Mark Bastin.)
+* The "fslview" viewer is now run quietly to suppress spurious warnings.
+* TractoR now uses the "quartz" R device by default on Mac OS X systems. This should result in smoother on-screen graphics.
+* TractoR run in debug mode will now print stack traces for warnings as well as errors.
+
 ## 2.0.9 (2012-03-02)
 
 * The `dicomsort` script now avoids copying files onto themselves.

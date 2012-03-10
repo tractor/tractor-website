@@ -8,7 +8,7 @@ TractoR experiment scripts that may be used in a typical PNT-based study general
 
 ## Reference tracts and matching models
 
-As with the heuristic approach to NT, the probabilistic approach requires some [fully preprocessed](diffusion-preprocessing.html) diffusion MR data and a [reference tract](reference-tracts.html) representing the pathway we wish to segment in those data.
+As with the heuristic approach to NT, the probabilistic approach requires some [fully preprocessed](diffusion-processing.html) diffusion MR data and a [reference tract](reference-tracts.html) representing the pathway we wish to segment in those data.
 
 In addition, however, PNT makes use of a *matching model*, which must be "trained" from the data. The model captures information about the typical deviations that acceptable tract segmentations make from the reference tract. The easiest way to create the model is to use the `pnt-em` script, which uses a single data set and fits the model while simultaneously finding suitable tracts. This approach, which is described in Ref. (2) and was introduced in TractoR version 1.0.0, is now the recommended one for most purposes. It also requires less work from the user than the alternative, which is to split your data set into a training set and a testing set, and use `pnt-train` and `pnt-eval`, respectively, to first train the model and then use it for tract matching.
 

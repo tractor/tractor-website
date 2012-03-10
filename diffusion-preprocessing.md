@@ -1,4 +1,4 @@
-# Diffusion preprocessing
+# Diffusion processing
 
 This page discusses the preprocessing steps required to prepare a diffusion-weighted dataset for analysis using TractoR, as well as subsequent operations that can be performed to [manipulate diffusion gradient directions](#checking-and-rotating-gradient-directions) and [fit models](#model-fitting) to the data.
 
@@ -19,9 +19,18 @@ Whichever method is used to perform them, the requisite steps are as follows.
 
 In addition to these steps, some kind of diffusion model fitting is a prerequisite for most subsequent analysis. Steps for performing such fits, and other common data manipulations, are laid out below.
 
+## Sorting DICOM files
+
+A single scan session often comprises a range of image acquisitions of different types, for example including structural and functional imaging as well as a diffusion-weighted sequence. It is therefore a common first step to sort the DICOM files corresponding to the diffusion scan out from everything else. Assuming for present purposes that data sets are stored as subdirectories of `/data`, and that each data set has its own `dicom` subdirectory containing all associated DICOM files, this sorting process can be achieved by typing something like
+
+    cd /data/subject1/dicom
+    tractor dicomsort
+
+This will result in various new subdirectories being created, labelled with their appropriate series number and description. It is up to the user to identify which series corresponds to the diffusion data.
+
 ## Using the dpreproc script
 
-Assuming for present purposes that data sets are stored as subdirectories of `/data`, running the preprocessing pipeline for a single session directory is a matter of typing something like
+With DICOM sorting already performed if necessary, running the preprocessing pipeline for a single session directory is a matter of typing something like
 
     cd /data/subject1
     tractor dpreproc
@@ -30,7 +39,7 @@ By default, TractoR will assume that all DICOM files it finds under the main ses
 
     tractor dpreproc DicomDirectory:dicom/dti
 
-(The `dicomsort` script can be used to sort a directory of DICOM files into series if required, thereby separating diffusion data from other scans.)
+Notice that the DICOM subdirectory given is relative to the session directory.
 
 The preprocessing can be completed noninteractively by setting the `Interactive` option to `false`:
 
@@ -102,7 +111,7 @@ To find out information about a particular session directory and the data stored
     DIFFUSION:
       Preprocessing complete        : TRUE
       Data dimensions               : 96 x 96 x 25 x 13 voxels
-      Voxel dimensions              : 2.5 x 2.5 x 5 x 1 mm
+      Voxel dimensions              : 2.5 x 2.5 x 5 mm x 1 s
       Diffusion b-values            : 0, 1000 s/mm^2
       Number of gradient directions : 1, 12
       Diffusion tensors fitted      : TRUE
