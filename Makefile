@@ -13,7 +13,7 @@ upload: build upload_timestamp
 
 %.html: %.md _template.html build.rb
 	@$(ECHO_N) "Building $@... "
-	@./build.rb $< >$@
+	@./build.rb $< >$@ || ( rm -f $@; exit 1 )
 	@$(ECHO) "done"
 
 upload_timestamp: [^_]*.html *.css *.js *.png .htaccess
