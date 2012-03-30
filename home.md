@@ -27,6 +27,7 @@ TractoR is developed primarily by [Jonathan Clayden](http://www.homepages.ucl.ac
 - Useful information about TractoR-specific conventions can be found on the aptly-named [conventions](conventions.html) page.
 - The [diffusion processing](diffusion-processing.html) page covers the processing of diffusion-weighted MR images using TractoR.
 - TractoR provides reference implementations of various [neighbourhood tractography](http://www.homepages.ucl.ac.uk/~sejjjd2/research/#neighbourhood-tractography) methods, both "heuristic" and "probabilistic", for segmenting specific white matter structures. An [HNT tutorial](HNT-tutorial.html) and a [PNT tutorial](PNT-tutorial.html) using TractoR are available, as well as information on the [reference tracts](reference-tracts.html) used by both methods.
+- There is a specific page about the [facilities in TractoR for handling DICOM files](TractoR-and-DICOM.html) and, importantly, their limitations.
 - Finally, there is a list of [references](references.html) for the methods available through TractoR.
 
 ## Reference
