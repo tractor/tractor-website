@@ -2,6 +2,12 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.1.2 (2012-05-03)
+
+* The `dpreproc` script now warns if the *diffusion subdirectory* already exists within the session, rather than just if the session's root directory exists.
+* Spurious errors, about images not having been created yet, should no longer occur when TractoR updates the structure of a session directory created with version 1.x.
+* An issue with installing the "tractor.native" package on some Linux systems has been addressed. The package's "configure" process has been somewhat simplified at the same time. (Reported by Mark Bastin.)
+
 ## 2.1.1 (2012-03-23)
 
 * A significant memory leak has been corrected in the new tracking code, which resulted in scripts which run lots of tractography (such as `pnt-data`) using very large amounts of memory.
