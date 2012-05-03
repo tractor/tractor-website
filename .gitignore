@@ -2,4 +2,6 @@
 /.htaccess
 /upload_target
 /upload_timestamp
+/docs_target
+/docs_timestamp
 
