@@ -23,6 +23,7 @@ end
 
 template = File.open("_template.html") { |file| file.read }
 markdown = File.open(ARGV[0]) { |file| file.readlines }
+latest = File.open("latest.txt") { |file| file.read }
 
 title_array = markdown.select { |str| str =~ /^\#\s+\w+\s*\#*$/ }
 if title_array.empty?
@@ -33,7 +34,7 @@ end
 template.sub!("<!--TITLE-->", title)
 
 parser = Redcarpet::Markdown.new(HTMLWithTweaks, :tables => true, :fenced_code_blocks => true, :no_intra_emphasis => true)
-content = parser.render(markdown.join)
+content = parser.render(markdown.join.gsub("<!--LATEST-->",latest.strip))
 content = Redcarpet::Render::SmartyPants.render(content)
 template.sub!("<!--CONTENT-->", content)
 
