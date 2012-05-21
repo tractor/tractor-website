@@ -25,8 +25,8 @@ archives:
 	@./build.rb $< >$@ || ( rm -f $@; exit 1 )
 	@$(ECHO) "done"
 
-upload_timestamp: [^_]*.html *.css *.js *.png .htaccess tractor.tar.gz tractor.zip latest.txt
+upload_timestamp: [^_]*.html *.css *.js *.png *.gif .htaccess tractor.tar.gz tractor.zip latest.txt
 	@./upload.rb $? && touch upload_timestamp
 
-docs_timestamp: [^_]*.html *.css *.js *.png
+docs_timestamp: [^_]*.html *.css *.js *.png *.gif
 	@cp -v $? "`cat docs_target`/" && touch docs_timestamp
