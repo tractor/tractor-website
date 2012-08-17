@@ -20,6 +20,11 @@ archives:
 	$(GIT) --git-dir="$$loc" archive --format=zip --prefix=tractor/ "$$tag" >tractor.zip; \
 	echo "$$tag" >latest.txt
 
+downloads.html: downloads.md _template.html build.rb latest.txt
+	@$(ECHO_N) "Building $@... "
+	@./build.rb $< >$@ || ( rm -f $@; exit 1 )
+	@$(ECHO) "done"
+
 %.html: %.md _template.html build.rb
 	@$(ECHO_N) "Building $@... "
 	@./build.rb $< >$@ || ( rm -f $@; exit 1 )
