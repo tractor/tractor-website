@@ -2,6 +2,24 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.2.0 (2012-08-17)
+
+* TractoR now has the ability to perform kernel-based image processing operations. The new `smooth` and `morph` scripts can be used to smooth an image, or to apply a mathematical morphology operation such as erosion or dilation.
+* The masking stage of the `dpreproc` script (with `MaskingMethod:kmeans` only) now uses a morphological closing operation to remove small "holes" in the segmentation.
+* The new `ptrack` script can be used to perform connectivity "profiling", generating a table of streamline counts connecting each voxel in a seed region to each of a set of target regions.
+* The `mtrack` script now supports the use of so-called "exclusion masks" (using the internal tracker only). Streamlines passing through any such exclusion region will be removed from the result.
+* The `track` and `mtrack` scripts now allow the set of streamlines that they generate to be stored in a binary file. This may be converted to the format used by [TrackVis](http://www.trackvis.org) for visualisation using the new `streamlines2trk` script.
+* The new `imagestats` script can be used to obtain a series of statistics about part or all of an image, such as volume, intensity range and mean intensity.
+* Experimental support for auto-updating a TractoR installation has been added, via the new `update` script. This attempts to check the project web site for new versions of the package. See `tractor -o update` for usage.
+* The newly-added `upgrade` script can be used to convert objects stored in ".Rdata" files from TractoR 1.x formats to their TractoR 2.x equivalents.
+* The code underlying the `dicomread` script has been substantially reworked to improve speed (in some cases substantially) and reliability in determining the orientation of the data. The script also gains an option to inhibit the untiling of DICOM files which appear to use the Siemens "mosaic" format.
+* The `view` script no longer requires the user to press Enter to quit, and does not spend time converting images to Analyze format when not necessary.
+* Substantial additions to the package's support for sparse images have been made, and the `values` script now takes advantage of these.
+* The `TRACTOR_HOME` environment variable is now guessed if it is not set, although routine reliance on this mechanism is not advised.
+* Support for scripts in `/etc/tractor` has been removed. These have been deprecated since TractoR 1.0.0.
+* Interrelationships between the various TractoR packages have now been more explicitly declared. This may avoid occasional problems when using them within R.
+* Marginally invalid quaternion parameters in NIfTI headers are now handled more gracefully.
+
 ## 2.1.2 (2012-05-03)
 
 * The `dpreproc` script now warns if the *diffusion subdirectory* already exists within the session, rather than just if the session's root directory exists.
