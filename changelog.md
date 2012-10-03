@@ -2,6 +2,10 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.2.1 (2012-08-29)
+
+* The `pnt-prune` script would sometimes misinterpret the median streamline which is used as a baseline, resulting in a far less tightly pruned final tract than expected for some data sets. This has now been corrected.
+
 ## 2.2.0 (2012-08-17)
 
 * TractoR now has the ability to perform kernel-based image processing operations. The new `smooth` and `morph` scripts can be used to smooth an image, or to apply a mathematical morphology operation such as erosion or dilation.
@@ -130,6 +134,11 @@ The significant user-visible changes in each release of TractoR are documented b
 * The "-r" flag to the main `tractor` program is deprecated.
 * The package installation process is now less verbose.
 * Many R-level changes and enhancements have been made, including tweaks to support changes upcoming in R 2.14.0, due in October.
+
+## 1.8.3 (2012-08-29)
+
+* The `pnt-prune` script would sometimes misinterpret the median streamline which is used as a baseline, resulting in a far less tightly pruned final tract than expected for some data sets. This has now been corrected. (Back-ported from version 2.2.1.)
+* A number of improvements have been made relating to TractoR's handling of very short tracts. (Partly back-ported from version 2.0.7.)
 
 ## 1.8.2 (2011-10-20)
 
