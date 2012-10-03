@@ -25,7 +25,7 @@ template = File.open("_template.html") { |file| file.read }
 markdown = File.open(ARGV[0]) { |file| file.readlines }
 latest = File.open("latest.txt") { |file| file.read }
 
-title_array = markdown.select { |str| str =~ /^\#\s+\w+\s*\#*$/ }
+title_array = markdown.select { |str| str =~ /^\#\s+\w+(\s+\w+)*\s*\#*$/ }
 if title_array.empty?
     title = ARGV[0].sub(/\.\w+$/, "")
 else
