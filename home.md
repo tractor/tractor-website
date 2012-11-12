@@ -23,7 +23,7 @@ TractoR is developed primarily by [Jonathan Clayden](http://www.homepages.ucl.ac
 
 - The [getting started](getting-started.html) page is the place to find out about downloading and installing TractoR. Details of the major user-visible changes in each release can be found in the [changelog](changelog.html).
 - Users of TractoR 1.x may find the information on [upgrading to TractoR 2](upgrading-to-TractoR-2.html) helpful, and an [addendum](paper-addendum.html) to the [TractoR paper](http://www.jstatsoft.org/v44/i08/) for version 2 is also available.
-- There is specific information on [TractoR for R users](TractoR-for-R-users.html).
+- There is specific information on [TractoR for R users](TractoR-for-R-users.html), and additional [detailed information](guidelines-for-contributors.html) for anyone actually contributing to the project.
 - Useful information about TractoR-specific conventions can be found on the aptly-named [conventions](conventions.html) page.
 - The [diffusion processing](diffusion-processing.html) page covers the processing of diffusion-weighted MR images using TractoR.
 - TractoR provides reference implementations of various [neighbourhood tractography](http://www.homepages.ucl.ac.uk/~sejjjd2/research/#neighbourhood-tractography) methods, both "heuristic" and "probabilistic", for segmenting specific white matter structures. An [HNT tutorial](HNT-tutorial.html) and a [PNT tutorial](PNT-tutorial.html) using TractoR are available, as well as information on the [reference tracts](reference-tracts.html) used by both methods.
