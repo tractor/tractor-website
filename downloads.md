@@ -13,3 +13,9 @@ Full source code is included in the download. TractoR is developed according to 
 - Major releases, e.g. from version 1.x.0 to 2.0.0, may include changes which are incompatible with older versions, including different default behaviour, or substantial modifications to the architecture of the package. These are relatively rare: the time between the release of versions 1.0.0 and 2.0.0 was two-and-a-half years.
 
 Earlier released versions of TractoR are available from the project's [GitHub pages](https://github.com/jonclayden/tractor/tags). The very latest version of the code is also available [through GitHub](https://github.com/jonclayden/tractor).
+
+Users who prefer to access the source repository using Git can clone the project using the command
+
+    git clone git://github.com/jonclayden/tractor.git
+
+Alternatively, the project can be forked on [GitHub](https://github.com/jonclayden/tractor).
