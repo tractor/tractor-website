@@ -15,10 +15,15 @@ upload: build upload_timestamp
 docs: build docs_timestamp
 
 archives:
-	@loc=`cat repo_loc`; tag=`$(GIT) --git-dir="$$loc" tag -l | grep '^v2' | sort | tail -n 1`; \
-	$(GIT) --git-dir="$$loc" archive --format=tar --prefix=tractor/ "$$tag" | gzip >tractor.tar.gz; \
-	$(GIT) --git-dir="$$loc" archive --format=zip --prefix=tractor/ "$$tag" >tractor.zip; \
-	echo "$$tag" >latest.txt
+	@wd=`pwd`; cd `cat repo_loc` || exit 1; \
+	tag=`$(GIT) tag -l | grep '^v2' | sort | tail -n 1`; \
+	branch=`$(GIT) rev-parse --abbrev-ref HEAD`; \
+	$(GIT) checkout -q $$tag; \
+	$(GIT) submodule update --init; \
+	git-archive-all --prefix=tractor/ tractor.tar.gz && mv tractor.tar.gz "$$wd/"; \
+	git-archive-all --prefix=tractor/ tractor.zip && mv tractor.zip "$$wd/"; \
+	$(GIT) checkout -q $$branch; \
+	echo "$$tag" >"$$wd/latest.txt"
 
 downloads.html: downloads.md _template.html build.rb latest.txt
 	@$(ECHO_N) "Building $@... "
