@@ -2,6 +2,21 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.3.0 (2013-02-04)
+
+* TractoR now includes a simple interactive image viewer, which is used by default unless the `TRACTOR_VIEWER` environment variable is set to `fslview` (for FSLview, as in earlier releases) or `freeview` (to use FreeSurfer's FreeView, for which a new interface has also been added). The new TractoR viewer remains work in progress, and FSLview is still favoured by scripts for showing 4D or vector-valued images.
+* The `dicomsort` script's `SortBySubjectFirst` option has been replaced by a more general `SortOn` option, which allows the files to be sorted by series, subject and/or date in any order. The script is also more careful to avoid deleting files which are not moved because they are already in the right place.
+* The `mtrack` script now allows the user to specify "termination" masks, which cause truncation of streamlines. It is possible to specify a single mask as both a waypoint and a termination mask. Likewise, `ptrack` gains a `TerminateAtTarget` option.
+* TractoR's internal tractography algorithm is now the default for `rtrack` and `mtrack`.
+* If the `gradrotate` script is applied to a session, the original (unrotated) gradient directions are first copied to the file `tractor/diffusion/directions-orig.txt`. This makes it much easier to tell whether rotation has been performed, and is used by the code to make sure that the gradients are not rotated twice.
+* The `gmap` script gains a `UseReferencePlanes` option: if it is "false" then the plane of the maximum in the image is used for visualisation. In addition, the script should no longer produce an error when the reference seed point is not in the centre of a voxel.
+* The `dirviz` script gains a `ScaleFactor` option to control the size of the PNG image produced.
+* The `pnt-data-sge` script now captures SGE/OGE job numbers more robustly, thereby avoiding spurious errors.
+* PNT reference tracts (including those provided with TractoR) should now have smaller file sizes.
+* Code which reads from DICOM files should no longer produce an error while checking if a very small file is a DICOM file or not, or when handling oblique images.
+* The PNT reference tract test has been tweaked to avoid spurious failures.
+* Using the FSL tracker with FSL versions containing more than three parts (e.g. 5.0.2.1) no longer fails.
+
 ## 2.2.1 (2012-08-29)
 
 * The `pnt-prune` script would sometimes misinterpret the median streamline which is used as a baseline, resulting in a far less tightly pruned final tract than expected for some data sets. This has now been corrected.

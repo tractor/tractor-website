@@ -31,7 +31,7 @@ Let's assume that we wish to create a reference tract representing the corpus ca
     mkdir /expts/hnt-genu
     cd /expts/hnt-genu
 
-Next we observe that the point (6,22,14) - in millimetre coordinates - appears to be within the genu in an MNI standard space brain volume. A suitable location such as this can be chosen using [FSL's data viewer](http://www.fmrib.ox.ac.uk/fsl/fslview/index.html). We see the location shown on a slice of the MNI white matter map below:
+Next we observe that the point (6,22,14) - in millimetre coordinates - appears to be within the genu in an MNI standard space brain volume. A suitable location such as this can be chosen using `tractor view` or [FSL's data viewer](http://www.fmrib.ox.ac.uk/fsl/fslview/index.html). We see the location shown on a slice of the MNI white matter map below:
 
 ![genu seed point location](genu-point.png)
 
