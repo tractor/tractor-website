@@ -1,6 +1,7 @@
 ECHO=/bin/echo
 ECHO_N=/bin/echo -n
 GIT=/usr/local/bin/git
+GIT_ARCHIVE=/usr/local/bin/git-archive-all
 
 all: build
 
@@ -20,8 +21,8 @@ archives:
 	branch=`$(GIT) rev-parse --abbrev-ref HEAD`; \
 	$(GIT) checkout -q $$tag; \
 	$(GIT) submodule update --init; \
-	git-archive-all --prefix=tractor/ tractor.tar.gz && mv tractor.tar.gz "$$wd/"; \
-	git-archive-all --prefix=tractor/ tractor.zip && mv tractor.zip "$$wd/"; \
+	$(GIT_ARCHIVE) --prefix=tractor/ tractor.tar.gz && mv tractor.tar.gz "$$wd/"; \
+	$(GIT_ARCHIVE) --prefix=tractor/ tractor.zip && mv tractor.zip "$$wd/"; \
 	$(GIT) checkout -q $$branch; \
 	echo "$$tag" >"$$wd/latest.txt"
 
