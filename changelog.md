@@ -2,6 +2,10 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.3.1 (2013-02-12)
+
+* The tests should no longer fail after a clean install of the package.
+
 ## 2.3.0 (2013-02-04)
 
 * TractoR now includes a simple interactive image viewer, which is used by default unless the `TRACTOR_VIEWER` environment variable is set to `fslview` (for FSLview, as in earlier releases) or `freeview` (to use FreeSurfer's FreeView, for which a new interface has also been added). The new TractoR viewer remains work in progress, and FSLview is still favoured by scripts for showing 4D or vector-valued images.
