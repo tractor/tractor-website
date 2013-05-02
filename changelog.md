@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.3.2 (2013-05-02)
+
+* The origin would sometimes be read incorrectly from MGH-format files. This has been corrected.
+* The "dti_SSE" image created by `tensorfit` could sometimes contain large numbers of `NA` values. This has been corrected.
+* Empty DICOM tags no longer cause spurious errors.
+* The debug-level message describing the orientation of an image being read should now always be accurate.
+
 ## 2.3.1 (2013-02-12)
 
 * The tests should no longer fail after a clean install of the package.
