@@ -2,6 +2,29 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.4.0 (2013-xx-xx)
+
+* A C/C++ compiler, such as `gcc`/`g++`, is now required to install TractoR. A suitable compiler can be installed using an appropriate package manager (`aptitude`, `yum`, etc.) on Linux, or with Xcode (from the Mac App Store) on OS X. R handles all the details of actually compiling code.
+* TractoR now offers tools for linear and nonlinear image registration, and the entire infrastructure for transforming images and points between different spaces has been totally reworked. A new family of scripts (`reg-linear`, `reg-nonlinear`, `reg-apply` and `reg-viz`) has been added for direct registration. Implicit registration, whereby points or images are transformed between spaces as part of another operation such as neighbourhood tractography, behaves as before by default, but the new NiftyReg back-end can be used by setting the `TRACTOR_REG_METHOD` environment variable to `niftyreg`. The new `tractor.reg` package supports all registration and transformation, and supporting packages `bitops`, `oro.nifti` and `RNiftyReg` have been added to the TractoR distribution.
+* The `dpreproc` script gains a new `EddyCorrectionMethod` option, which allows NiftyReg to be used for volume-to-volume coregistration.
+* TractoR now uses its own command-line front-end, rather than the standard R interface. This allows for greater flexibility, and removes the need for ugly hacks to get R to behave as required. The main user-visible effect of this change is that error and warning messages will now appear in colour, if supported by your terminal emulator.
+* A new `console` script has been added, which starts an interactive R session using TractoR's front-end, in a context where all TractoR-related R packages have been loaded.
+* The new `reshape` script can be used to reshape the data in an image.
+* The `Tracker` option is deprecated everywhere it occurs. Now that a compiler is required, the internal tracker should always be available.
+* The `tractor.native` package is now called `tractor.track`, to more specifically indicate its purpose.
+* Calls to scripts whose function is purely informative (`dicomtags`, `imageinfo`, `view`, etc.) are no longer recorded in the "tractor-history.log" file.
+* Further improvements have been made to DICOM processing. Transfer syntaxes, and slope and intercept values, are now respected; and image origins are now extracted from the metadata.
+* TractoR R packages can now be installed within the TractoR file hierarchy using `make install-local`. This can be convenient to avoid permissions issues, or when running multiple versions of TractoR in parallel.
+* The `platform` script now additionally reports the main R package library in use. This will differ between "local" and "nonlocal" installs.
+* The main `tractor` program gains a "-f" option, which can be used to profile the performance of a script. Information on the time spent in each function will be written to a file named "(script name).Rprof" in the working directory. This is intended for advanced users only.
+* The data type of an image file is no longer stored internally, and instead a suitable type is chosen when the image is written to a file. The `TypeCode` option in the `chfiletype` script is therefore defunct.
+* The `cal_max` and `cal_min` fields of a NIfTI image are now written using appropriate values.
+* Image data can now be stored without reordering to LAS internally, and writing non-LAS images is supported for NIfTI format (only).
+* There have been significant changes to `MriImage`, one of TractoR's key internal data structures, but this should only affect those who use TractoR packages from within R.
+* X11 should no longer be started as a side effect when a TractoR script is called on Mac OS X. This could cause a delay of several seconds.
+* Voxel locations are now rounded after being converted to R indexing, rather than before, in the `slice` script.
+* Handling of sparse images has been improved slightly.
+
 ## 2.3.2 (2013-05-02)
 
 * The origin would sometimes be read incorrectly from MGH-format files. This has been corrected.
