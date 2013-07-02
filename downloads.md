@@ -16,6 +16,6 @@ Earlier released versions of TractoR are available from the project's [GitHub pa
 
 Users who prefer to access the source repository using Git can clone the project using the command
 
-    git clone git://github.com/jonclayden/tractor.git
+    git clone --recursive git://github.com/jonclayden/tractor.git
 
 Alternatively, the project can be forked on [GitHub](https://github.com/jonclayden/tractor).
