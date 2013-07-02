@@ -141,9 +141,8 @@ Finally, a directory of DICOM files can be converted to an Analyze/NIfTI/MGH ima
     * * INFO: Data set contains 1 volume(s); 2 slice(s) per volume
          Image source : /usr/local/tractor/tests/data/dicom/9_fl3D_t1_sag
      Image dimensions : 2 x 224 x 256 voxels
-    Coordinate origin : (1,1,1)
      Voxel dimensions : 1 x 1 x 1 mm
-            Data type : unsigned integer, 16 bits/voxel
+    Coordinate origin : (19.25,95.05,134.78)
       Additional tags : 0
            Sparseness : 0.84% (dense storage)
     Experiment completed with 0 warning(s) and 0 error(s)

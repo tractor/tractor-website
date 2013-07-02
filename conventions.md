@@ -4,11 +4,11 @@ This page discusses certain conventions specific to TractoR.
 
 ## Sessions
 
-TractoR is designed to work with diffusion MRI data sets, each consisting of a series of magnetic resonance images, potentially including structural, diffusion-weighted and functional images. The package stores all images and other files within a managed file hierarchy called a session. The overall layout of a session directory is shown below.
+TractoR is designed to work with MRI data sets, each consisting of a series of magnetic resonance images, potentially including structural, diffusion-weighted and functional images. The package stores all images and other files within a managed file hierarchy called a session. The overall layout of a session directory is shown below.
 
     session......................top-level session directory
       /tractor...................main managed directory
-        /objects.................serialised R objects relating to this session directory
+        /transforms..............stored transformations between different spaces
         /diffusion...............diffusion-weighted images and their derivatives (e.g. diffusion tensor components)
         /fdt.....................images and other files used by FSL's diffusion toolbox
         /fdt.bedpostX............images and other files produced by FSL BEDPOSTX
@@ -40,15 +40,14 @@ Similarly, the names of the subdirectories within the main `tractor` directory c
 
     diffusion: /data/subject1_2fibres/tractor/diffusion
 
-It should, however, be bourne in mind that this will make the session less portable. The full default map, as of TractoR v2.1.0, is
+It should, however, be bourne in mind that this will make the session less portable. The full default map, as of TractoR v2.4.0, is
 
+    transforms: transforms
     diffusion: diffusion
     fdt: fdt
     bedpost: fdt.bedpostX
     probtrack: fdt.track
     camino: camino
-
-Note that the `objects` subdirectory cannot be relocated.
 
 ## Point types
 

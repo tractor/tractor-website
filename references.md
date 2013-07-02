@@ -2,13 +2,19 @@
 
 This page outlines the relevant papers which should be cited when using various parts of the functionality provided by TractoR.
 
-- `dpreproc` (stage 3, with `MaskingMethod:bet` only): Smith S. (2002). Fast robust automated brain extraction. _Human Brain Mapping_ **17**(3):143-155.
-- `bedpost`: Behrens T., Johansen-Berg H., Jbabdi S., Rushworth M. & Woolrich M. (2007). Probabilistic diffusion tractography with multiple fibre orientations: What can we gain? _NeuroImage_ **34**(1):144-155.
-- `track`, `mtrack`, `rtrack`: Behrens T., Johansen-Berg H., Jbabdi S., Rushworth M. & Woolrich M. (2007). Probabilistic diffusion tractography with multiple fibre orientations: What can we gain? _NeuroImage_ **34**(1):144-155.
-- `hnt-eval`, `hnt-interpret`, `hnt-ref`, `hnt-viz`: Clayden J., Bastin M. & Storkey A. (2006). Improved segmentation reproducibility in group tractography using a quantitative tract similarity measure. _NeuroImage_ **33**(2):482-492.
-- `pnt-ref`, `pnt-train`, `pnt-eval`: Clayden J., Storkey A. & Bastin M. (2007). A probabilistic model-based approach to consistent white matter tract segmentation. _IEEE Transactions on Medical Imaging_ **26**(11):1555–1561.
-- `pnt-em`: Clayden J., Storkey A., Muñoz Maniega S. & Bastin M. (2009). Reproducibility of tract segmentation between sessions using an unsupervised modelling-based approach. _NeuroImage_ **45**(2):377-385.
-- `pnt-prune`: Clayden J., King M. & Clark C. (2009). Shape modelling for tract selection. In Yang G.-Z., Hawkes D., Rueckert D., Noble A. & Taylor C. (eds), _Proceedings of the 12th International Conference on Medical Image Computing and Computer Assisted Intervention_ (MICCAI). _Lecture Notes in Computer Science_, vol. 5762, pp. 150-157. Springer-Verlag.
+Script name(s)                                      | Reference(s)
+--------------------------------------------------- | ------------------------------------------------
+`dpreproc` (stage 3, with `MaskingMethod:bet` only) | Smith S. (2002). Fast robust automated brain extraction. _Human Brain Mapping_ **17**(3):143-155.
+`bedpost`                                           | Behrens T., Johansen-Berg H., Jbabdi S., Rushworth M. & Woolrich M. (2007). Probabilistic diffusion tractography with multiple fibre orientations: What can we gain? _NeuroImage_ **34**(1):144-155.
+`track`, `mtrack`, `rtrack`                         | Behrens T., Johansen-Berg H., Jbabdi S., Rushworth M. & Woolrich M. (2007). Probabilistic diffusion tractography with multiple fibre orientations: What can we gain? _NeuroImage_ **34**(1):144-155.
+`hnt-eval`, `hnt-interpret`, `hnt-ref`, `hnt-viz`   | Clayden J., Bastin M. & Storkey A. (2006). Improved segmentation reproducibility in group tractography using a quantitative tract similarity measure. _NeuroImage_ **33**(2):482-492.
+`pnt-ref`, `pnt-train`, `pnt-eval`                  | Clayden J., Storkey A. & Bastin M. (2007). A probabilistic model-based approach to consistent white matter tract segmentation. _IEEE Transactions on Medical Imaging_ **26**(11):1555–1561.
+`pnt-em`                                            | Clayden J., Storkey A., Muñoz Maniega S. & Bastin M. (2009). Reproducibility of tract segmentation between sessions using an unsupervised modelling-based approach. _NeuroImage_ **45**(2):377-385.
+`pnt-prune`                                         | Clayden J., King M. & Clark C. (2009). Shape modelling for tract selection. In Yang G.-Z., Hawkes D., Rueckert D., Noble A. & Taylor C. (eds), _Proceedings of the 12th International Conference on Medical Image Computing and Computer Assisted Intervention_ (MICCAI). _Lecture Notes in Computer Science_, vol. 5762, pp. 150-157. Springer-Verlag.
+`reg-linear` (with `Method:fsl`)                    | Jenkinson M., Bannister P., Brady J. & Smith S. (2002). Improved optimisation for the robust and accurate linear registration and motion correction of brain images. _NeuroImage_ **17**(2):825-841.
+`reg-linear` (with `Method:niftyreg`)               | Ourselin S., Roche A., Subsol G., Pennec X. & Ayache N. (2000). Reconstructing a 3D structure from serial histological sections. _Image and Vision Computing_ **19**(1-2):25-31.
+                                                    | Ourselin S., Stefanescu R. & Pennec X. (2002). Robust registration of multi-modal images: towards real-time clinical applications. _Medical Image Computing and Computer-Assisted Intervention_. Vol. 2489 of _Lecture Notes in Computer Science_, pp. 140-147.
+`reg-nonlinear`                                     | Modat M., Ridgway G., Taylor Z., Lehmann M., Barnes J., Hawkes D., Fox N. & Ourselin S. (2010). Fast free-form deformation using graphics processing units. _Computer Methods and Programs in Biomedicine_ **98**(3):278-284.
 
 In addition to these specific references, please cite the general paper on TractoR:
 

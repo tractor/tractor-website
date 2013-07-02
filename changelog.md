@@ -2,7 +2,7 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
-## 2.4.0 (2013-xx-xx)
+## 2.4.0 (2013-07-02)
 
 * A C/C++ compiler, such as `gcc`/`g++`, is now required to install TractoR. A suitable compiler can be installed using an appropriate package manager (`aptitude`, `yum`, etc.) on Linux, or with Xcode (from the Mac App Store) on OS X. R handles all the details of actually compiling code.
 * TractoR now offers tools for linear and nonlinear image registration, and the entire infrastructure for transforming images and points between different spaces has been totally reworked. A new family of scripts (`reg-linear`, `reg-nonlinear`, `reg-apply` and `reg-viz`) has been added for direct registration. Implicit registration, whereby points or images are transformed between spaces as part of another operation such as neighbourhood tractography, behaves as before by default, but the new NiftyReg back-end can be used by setting the `TRACTOR_REG_METHOD` environment variable to `niftyreg`. The new `tractor.reg` package supports all registration and transformation, and supporting packages `bitops`, `oro.nifti` and `RNiftyReg` have been added to the TractoR distribution.

@@ -6,31 +6,27 @@ TractoR was developed for Unix-like systems. It has been developed and tested on
 
 In its basic form, TractoR is a set of packages written for the R language and environment. R (version 2.12.1 or later) is therefore an absolute prerequisite. R is an open-source package that is easy to install. Precompiled binaries are available from a number of [CRAN mirror sites](http://cran.r-project.org/mirrors.html), along with the source code.
 
-TractoR contains an algorithm for performing tractography, but not all functions can be used with this built-in tracker. It therefore additionally provides an interface to the tractography algorithm implemented as part of the [FSL package](http://www.fmrib.ox.ac.uk/fsl/), as well as various other related FSL tools such as BET for brain extraction, and FLIRT for registration. Installation of FSL (version 4.0 or later) is therefore important for portions of TractoR's functionality.
+A C/C++ compiler, such as `gcc`/`g++`, is also required. A suitable compiler can be installed using an appropriate package manager (`aptitude`, `yum`, etc.) on Linux, or with Xcode (from the Mac App Store) on OS X. R handles all the details of actually compiling code.
 
-Finally, TractoR makes use of the [ImageMagick](http://www.imagemagick.org) image processing suite for 2D visualisation. While TractoR will be more-or-less fully functional without ImageMagick, it is nevertheless recommended to install this software (unless it is preinstalled, which is not uncommon on Unix-like systems). Version 6.3.x is recommended.
+TractoR makes use of the [ImageMagick](http://www.imagemagick.org) image processing suite for 2D visualisation. While TractoR will be more-or-less fully functional without ImageMagick, it is nevertheless recommended to install this software (unless it is preinstalled, which is not uncommon on Unix-like systems).
 
-**Summary**: The best platform for TractoR is a Unix-like operating system with R, FSL and ImageMagick installed.
+Finally, TractoR's tractography is currently based on output from the BEDPOSTX tool in the [FSL package](http://www.fmrib.ox.ac.uk/fsl/). FSL is therefore required for performing tractography. TractoR also provides interfaces to other third-party medical imaging tools, such as FSL's BET (for brain extraction) and FLIRT (for linear registration), as well as image viewers such as FSLview and Freeview, but these are all optional.
 
 ## Installation
 
 After downloading the TractoR tarball, installing the R packages should just be a matter of typing the following into a terminal, adjusting the file name in the first line if necessary.
 
-    tar -xzf tractor-2.0.2.tar.gz
+    tar -xzf tractor.tar.gz
     cd tractor
     make install
 
-In most cases the installer will find R without any help, but if an error message reports "command not found" or similar, then please use `make install R=/path/to/R`, replacing `/path/to/R` with the actual path on your system. The install command could also fail if you do not have write access to the R library. This can be worked around by creating an R library directory in your home directory:
+In most cases the installer will find R without any help, but if an error message reports "command not found" or similar, then please use `make install R=/path/to/R`, replacing `/path/to/R` with the actual path on your system.
 
-    mkdir ~/Rlibrary
+The install command could also fail if you do not have write access to the R library. The easiest way around this is to run instead
 
-In this case you will need to add the line `export R_LIBS_USER=${HOME}/Rlibrary` to the `.bashrc` file in your home directory (create it if it doesn't exist). The install command should then run properly.
+    make install-local
 
-In order to take advantage of the parallel processing capabilities of TractoR version 1.5.0 and above, you will need to install the "multicore" package for R. This is provided with TractoR, but requires some C code to be compiled. Likewise, the "tractor.native" package, which provides the built-in tractography algorithm, also requires compilation. If you have a C compiler on your system, you should be able to install these packages with the command
-
-    make install-native
-
-If this fails, it is likely that you don't have a suitable compiler (e.g. gcc) installed. If you're running on Mac OS X, you can obtain a [precompiled binary version](http://cran.r-project.org/web/packages/multicore/index.html) of the "multicore" package, but no equivalent is currently provided for "tractor.native". Otherwise, you will need to install gcc or similar, or simply proceed without these optional packages.
+which will install the required R packages within TractoR's own file hierarchy. This can also be useful if you want to run multiple versions of TractoR in parallel.
 
 To check that the TractoR packages have been installed properly and TractoR scripts can be run successfully, you can run the set of tests included with TractoR 1.3.0 and later by typing
 
@@ -44,7 +40,7 @@ Unless you want to interact with TractoR exclusively through R (which is unlikel
     export PATH=${TRACTOR_HOME}/bin:$PATH
     export MANPATH=${TRACTOR_HOME}/man:$MANPATH
 
-(If you have unpacked the tarball somewhere than /usr/local/tractor, you will need to alter the first line accordingly.) In order to test that the environment is set up correctly, try typing
+(If you have unpacked the tarball somewhere than `/usr/local/tractor`, you will need to alter the first line accordingly.) In order to test that the environment is set up correctly, try typing
 
     tractor list
 
@@ -73,7 +69,7 @@ If instead you get an error from the shell saying that it couldn't find the `tra
 
 The `tractor` command line interface program is a wrapper which obviates the need to interact with R directly in order to use TractoR. Many common tasks, including neighbourhood tractography (see "Next steps" below), can be performed in this way through short R scripts which are stored within the TractoR home directory.
 
-A full list of the scripts provided with the distribution can be obtained by typing `tractor list`, as shown above. Further information on a particular script, including a list of options that it supports, can be obtrained using `tractor -o (script_name)`. For more details on the usage of the `tractor` program, please see its man page.
+A full list of the scripts provided with the distribution can be obtained by typing `tractor list`, as shown above. Further information on a particular script, including a list of options that it supports, can be obtained using `tractor -o (script name)`. For more details on the usage of the `tractor` program, please see its man page.
 
 ## Next steps
 

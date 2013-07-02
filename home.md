@@ -4,8 +4,8 @@
 
 The TractoR (Tractography with R) project includes R packages for reading, writing and visualising magnetic resonance images stored in Analyze, NIfTI and DICOM file formats (DICOM support is read only). It also contains functions specifically designed for working with diffusion MRI and tractography, including a standard implementation of the neighbourhood tractography approach to white matter tract segmentation. A shell script is also provided to run experiments with TractoR without interacting with R. Using TractoR you can easily
 
-* Convert DICOM files from your MR scanner to Analyze/NIfTI format.
-* Perform linear and nonlinear image registration (see [registration](registration.html)).
+* Convert [DICOM files](TractoR-and-DICOM.html) from your MR scanner to Analyze/NIfTI format.
+* Perform linear and nonlinear [image registration](registration.html).
 * Preprocess diffusion MR data and calculate tensor metrics including fractional anisotropy (FA), mean diffusivity (MD), and principal directions (see [diffusion processing](diffusion-processing.html)).
 * Run probabilistic tractography using single seed points or one or more masks.
 * Segment specific tracts in groups automatically using neighbourhood tractography (see [PNT tutorial](PNT-tutorial.html) and [HNT tutorial](HNT-tutorial.html)).
