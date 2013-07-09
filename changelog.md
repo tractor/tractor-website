@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.4.1 (2013-07-09)
+
+* The native tracker is now used in scripts which do not have an explicit `Tracker` option, such as `hnt-ref`, `hnt-eval` and `pnt-viz`. This brings them into line with other scripts, and was the intention for TractoR 2.4 and above.
+* The new TractoR interface is now compiled in a more portable way, and should build successfully on a more diverse range of platforms. A couple of small memory allocation problems have also been corrected.
+* The linear registration test has been made less stringent.
+* The wording of an error message in the `reshape` script has been clarified.
+
 ## 2.4.0 (2013-07-02)
 
 * A C/C++ compiler, such as `gcc`/`g++`, is now required to install TractoR. A suitable compiler can be installed using an appropriate package manager (`aptitude`, `yum`, etc.) on Linux, or with Xcode (from the Mac App Store) on OS X. R handles all the details of actually compiling code.
