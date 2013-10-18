@@ -2,6 +2,14 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.4.2 (2013-10-18)
+
+* The binary front-end program should no longer misinterpret script arguments beginning with a dash (`-`). Previously it would try to interpret these as its own arguments, most likely leading to an error.
+* The DICOM reading code is now more flexible with regard to the orientation of Siemens mosaic images. Credit goes to [Doug Greve](http://www.nmr.mgh.harvard.edu/~greve/dicom-unpack), among others, for information on the some of the subtleties, both in this release and in 2.4.0.
+* The `streamlines2trk` script should no longer produce a "could not find function" error.
+* The installation instructions have been updated to reflect the recent system requirement for a C/C++ compiler.
+* There have been minor tweaks to the R documentation for the `tractor.base` package.
+
 ## 2.4.1 (2013-07-09)
 
 * The native tracker is now used in scripts which do not have an explicit `Tracker` option, such as `hnt-ref`, `hnt-eval` and `pnt-viz`. This brings them into line with other scripts, and was the intention for TractoR 2.4 and above.
