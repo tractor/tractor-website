@@ -8,7 +8,7 @@ if ARGV.length < 1
 end
 
 class HTMLWithTweaks < Redcarpet::Render::HTML
-    def header (text, level)
+    def header (text, level, anchor)
         if level > 1
             id = text.gsub(/\s+/, "-")
             id.gsub!(/[^\w\-]/, "")
