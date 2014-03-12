@@ -2,6 +2,28 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.5.0
+
+* TractoR now has facilities for working with graph representations of brain connectivity, including a reference implementation of the Principal Networks approach to graph decomposition. A set of new scripts has been added to support this, including `graph-build`, `graph-reweight`, `graph-decompose`, `graph-props`, `graph-viz` and `graph2csv`. Please see the new [connectivity graphs tutorial](connectivity-graphs.html) for further information.
+* In support of the new graph capabilities, TractoR can now work with structural (particularly T1-weighted) images, as well as diffusion data. It can also work with anatomical parcellations of the brain, and transform them between spaces. A wrapper script for Freesurfer's `recon-all` tool is also provided. New TractoR scripts relevant to structural data are `import`, `parcellate` and `freesurf`. Please see the new page on [working with structural data](structural.html) for more information.
+* Transformation strategies between different imaging spaces are now configurable, with defaults given by the `$TRACTOR_HOME/etc/session/transforms/strategy.yaml` file.
+* The new `xtrack` script can be used for tracking between parcellated regions, specified by name or type.
+* The `trim` script has been added for removing volumes from multivolume data sets.
+* The new `apply` script can be used to apply an arbitrary R expression to the contents of one or more images.
+* The `path` script has been added for identifying the path to an image within a managed session hierarchy.
+* The `split` script can be used to split a serialised list of objects into its components.
+* The `dpreproc` script now accepts `EddyCorrectionMethod:none` for data sets which are already well aligned and have minimal eddy current induced distortion.
+* The `mtrack` script now allows seed points to be subjected to random jitter, to move them off the regular grid.
+* The `tensorfit` script with `Method:ls` (the default) is now more statistically efficient in the presence of invalid or missing data.
+* TractoR's internal image viewer now fixes the black and white point across a whole image for consistency.
+* R's raster plotting functionality is now used when plotting images, for speed.
+* Textual output and messages should now use the full width of the terminal screen more effectively.
+* Running `make install` from the main TractoR installation directory is now equivalent to `make install-local` after the latter has been run once. In other words, the initial preference for a local install is maintained even if the `-local` suffix is missed in future invocations.
+* The output format for `tractor -o` has been tweaked, and their is now support for examples.
+* It should now be possible to coregister files stored in Freesurfer's MGH format with FSL-FLIRT.
+* The first and last messages printed by the main `tractor` script are now output to the standard error stream.
+* Checksums for each file in the distribution are now included and can be checked using `make check-md5`. This is mainly intended for checking whether local modifications have been made.
+
 ## 2.4.2 (2013-10-18)
 
 * The binary front-end program should no longer misinterpret script arguments beginning with a dash (`-`). Previously it would try to interpret these as its own arguments, most likely leading to an error.

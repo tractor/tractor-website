@@ -1,6 +1,10 @@
 # References
 
-This page outlines the relevant papers which should be cited when using various parts of the functionality provided by TractoR.
+If you use TractoR in your work, please cite the following paper, which describes the package in general:
+
+> J.D. Clayden, S. Muñoz Maniega, A.J. Storkey, M.D. King, M.E. Bastin & C.A. Clark (2011). [TractoR: Magnetic resonance imaging and tractography with R](http://www.jstatsoft.org/v44/i08/). _Journal of Statistical Software_ **44**(8):1-18.
+
+Additionally, the table below outlines the relevant papers which should be cited when using various parts of the functionality provided by TractoR.
 
 Script name(s)                                      | Reference(s)
 --------------------------------------------------- | ------------------------------------------------
@@ -15,7 +19,6 @@ Script name(s)                                      | Reference(s)
 `reg-linear` (with `Method:niftyreg`)               | Ourselin S., Roche A., Subsol G., Pennec X. & Ayache N. (2000). Reconstructing a 3D structure from serial histological sections. _Image and Vision Computing_ **19**(1-2):25-31.
                                                     | Ourselin S., Stefanescu R. & Pennec X. (2002). Robust registration of multi-modal images: towards real-time clinical applications. _Medical Image Computing and Computer-Assisted Intervention_. Vol. 2489 of _Lecture Notes in Computer Science_, pp. 140-147.
 `reg-nonlinear`                                     | Modat M., Ridgway G., Taylor Z., Lehmann M., Barnes J., Hawkes D., Fox N. & Ourselin S. (2010). Fast free-form deformation using graphics processing units. _Computer Methods and Programs in Biomedicine_ **98**(3):278-284.
-
-In addition to these specific references, please cite the general paper on TractoR:
-
-J.D. Clayden, S. Muñoz Maniega, A.J. Storkey, M.D. King, M.E. Bastin & C.A. Clark (2011). [TractoR: Magnetic resonance imaging and tractography with R](http://www.jstatsoft.org/v44/i08/). _Journal of Statistical Software_ **44**(8):1-18.
+`freesurf`                                          | Please see <http://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferMethodsCitation>.
+`graph-decompose` (with `Method:principal-networks`)| Clayden J., Dayan M. & Clark C. (2013). Principal networks. _PLoS ONE_ **8**(4):e60997.
+`graph-decompose` (with `Method:modularity`)        | Newman M. (2006). Modularity and community structure in networks. _Proceedings of the National Academy of Sciences of the United States of America_ **103**:8577-8582.
