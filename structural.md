@@ -19,7 +19,7 @@ Anatomical parcellation of a structural image is a prerequisite for some kinds o
 For example, to run FSL-FLIRT on the reference T1 image for a session and import the parcellation created by it, you might run
 
     cd /data/subject1
-    run_first_all -i `tractor -q path . refT1 Place:structural` -o first
+    run_first_all -i `tractor -q path . refT1` -o first
     tractor parcellate . first_all_fast_firstseg Types:first
 
 Note that TractoR does not provide a wrapper script for FIRST, but the `path` script can be used to get the path to the relevant input file for the FIRST command line tool, `run_first_all`. The TractoR `parcellate` script then needs to be told that the parcellation was performed by FIRST, and since there is a standard parcellation lookup table for this type of parcellation, it will use it automatically.

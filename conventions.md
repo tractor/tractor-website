@@ -14,6 +14,8 @@ TractoR is designed to work with MRI data sets, each consisting of a series of m
         /fdt.bedpostX............images and other files produced by FSL BEDPOSTX
         /fdt.track...............FSL tractography output
         /camino..................images and other files used by the Camino toolkit
+        /structural..............structural (e.g. T1-weighted) images
+        /freesurfer..............output from the Freesurfer pipeline
       [other subdirectories].....unmanaged files, such as DICOM-format files
 
 TractoR maintains this structure and expects to find the files it uses in these places. This is arranged by the package itself if the session hierarchy is set up using TractoR preprocessing scripts, but if the preprocessing steps are carried out independently then the hierarchy must be arranged in this way manually.
@@ -36,11 +38,18 @@ The reason for using a managed file hierarchy is to avoid the need to specify th
 
 Any or all of these default names can be overridden by placing a file called `map.yaml` in the `diffusion` subdirectory, using the format above. Note that the `%` symbol is used to indicate an index, so the first eigenvalue image will be called `dti_eigval1`, the second `dti_eigval2`, and so on. No image format suffix (e.g. `.nii`) should be given.
 
+The `path` script (added in TractoR v2.5.0) can be used to obtain the actual full path to the image of a particular type. For example,
+
+<pre>
+<code>$ </code><kbd>tractor -q path /data/subject1 FA</kbd>
+<code>/data/subject1/tractor/diffusion/dti_FA</code>
+</pre>
+
 Similarly, the names of the subdirectories within the main `tractor` directory can be specified in a top-level session map. This mechanism can be used to point to data outside the session directory as well, and this can be useful, for example, when processing a single data set in several different ways. For example, say we want to process the data from a single subject using `bedpost`, with both 2 and 3 fibre options. We could process the 2 fibres case, and then create a new session, say `/data/subject1_3fibres`, which points to the same diffusion data. The `/data/subject1_3fibres/tractor/map.yaml` file would then contain
 
     diffusion: /data/subject1_2fibres/tractor/diffusion
 
-It should, however, be bourne in mind that this will make the session less portable. The full default map, as of TractoR v2.4.0, is
+It should, however, be bourne in mind that this will make the session less portable. The full default map, as of TractoR v2.5.0, is
 
     transforms: transforms
     diffusion: diffusion
@@ -48,6 +57,8 @@ It should, however, be bourne in mind that this will make the session less porta
     bedpost: fdt.bedpostX
     probtrack: fdt.track
     camino: camino
+    structural: structural
+    freesurfer: freesurfer
 
 ## Point types
 

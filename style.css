@@ -166,6 +166,11 @@ code {
     padding: 0 0.2em;
 }
 
+kbd {
+    font-family: "inconsolata", "courier new", courier;
+    font-weight: bold;
+}
+
 pre code {
     padding: 0px;
 }
