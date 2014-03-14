@@ -83,15 +83,17 @@ Now, the standard `TRACTOR_HOME` variable cannot be set up as usual, because it 
 
 where `/usr/local/tractor2` is the directory containing the TractoR 2.x installation. You can then run `tractor2` instead of `tractor` from the command line when you want to use the new version:
 
-    $ tractor2 -z platform
-    Starting TractoR environment...
-                   Machine : x86_64
-                   OS name : Darwin
-                OS release : 11.1.0
-    TractoR home directory : /usr/local/tractor2
-           TractoR version : 2.0.2
-                 R version : 2.13.0
-          R build platform : x86_64-apple-darwin9.8.0
-               FSL version : 4.1.8
-       ImageMagick version : 6.7.1-1
-    Experiment completed with 0 warning(s) and 0 error(s)
+<pre>
+<code>$ </code><kbd>tractor2 -z platform</kbd>
+<code>Starting TractoR environment...
+               Machine : x86_64
+               OS name : Darwin
+            OS release : 11.1.0
+TractoR home directory : /usr/local/tractor2
+       TractoR version : 2.0.2
+             R version : 2.13.0
+      R build platform : x86_64-apple-darwin9.8.0
+           FSL version : 4.1.8
+   ImageMagick version : 6.7.1-1
+Experiment completed with 0 warning(s) and 0 error(s)</code>
+</pre>
