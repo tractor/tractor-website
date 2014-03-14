@@ -40,17 +40,27 @@ However additional graph-theoretical metrics can be calculated and displayed usi
 
     tractor graph-props graph.Rdata
 
+Please note that the latter script requires the optional `igraph` package to be installed.
+
 ## Graph visualisation
 
 The `graph-viz` script can be used to visualise graphs, either as an association matrix or in traditional topological form.
 
+    tractor graph-viz GraphName:graph MatrixView:true WeightLimits:0,0.1
+
+![Graph shown as association matrix](graph-matrix.png)
+
+    tractor graph-viz GraphName:graph MatrixView:false UseLocations:true ShowBrain:true WeightLimits:0,0.1
+
+![Graph shown topologically on brain](graph-brain.png)
+
 ## Graph decomposition
 
-For many applications you may be interested subnetworks within the overall brain graph, rather than the entire graph as a whole. You could determine these subnetworks by hand, but TractoR also provides some data-driven approaches to factoring or partitioning a graph into parts. The techniques currently offered are principal network analysis and a modularity maximisation partitioning algorithm. Both of these are accessible through the `graph-decompose` script. For example,
+For many applications you may be interested subnetworks within the overall brain graph, rather than the entire graph as a whole. You could determine these subnetworks by hand, but TractoR also provides some data-driven approaches to factoring or partitioning a graph into parts. The techniques currently offered are [principal network analysis](http://dx.doi.org/10.1371/journal.pone.0060997) and a [modularity maximisation](http://dx.doi.org/10.1073/pnas.0601602103) partitioning algorithm. Both of these are accessible through the `graph-decompose` script. For example,
 
     tractor graph-decompose GraphName:graph Method:principal-networks EdgeWeightThreshold:0.2
 
-The principal networks approach uses a matrix factoring approach akin to principal component analysis, while modularity maximisation tries to separate the graph. These and other approaches to graph decomposition, their strengths and weaknesses, are discussed in the principal networks paper. Either way, the result is a file called "graph_decomposed.Rdata", which contains a series of smaller graphs. This file can be split into its parts using the `split` script, viz.
+The principal networks approach uses a matrix factoring approach akin to principal component analysis, while modularity maximisation tries to separate the graph. These and other approaches to graph decomposition, their strengths and weaknesses, are discussed in the [principal networks paper](http://dx.doi.org/10.1371/journal.pone.0060997). Either way, the result is a file called "graph_decomposed.Rdata", which contains a series of smaller graphs. This file can be split into its parts using the `split` script, viz.
 
     tractor split graph_decomposed.Rdata
 

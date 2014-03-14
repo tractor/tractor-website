@@ -6,7 +6,7 @@ TractoR was developed for Unix-like systems. It has been developed and tested on
 
 In its basic form, TractoR is a set of packages written for the R language and environment. R (version 2.12.1 or later) is therefore an absolute prerequisite. R is an open-source package that is easy to install. Precompiled binaries are available from a number of [CRAN mirror sites](http://cran.r-project.org/mirrors.html), along with the source code.
 
-A C/C++ compiler, such as `gcc`/`g++`, is also required. A suitable compiler can be installed using an appropriate package manager (`aptitude`, `yum`, etc.) on Linux, or with Xcode (from the Mac App Store) on OS X. R handles all the details of actually compiling code.
+A C/C++ compiler, such as `gcc`/`g++`, is also required. A suitable compiler can be installed using an appropriate package manager (`aptitude`, `yum`, etc.) on Linux, or with Xcode (from the Mac App Store) on OS X. R handles all the details of actually compiling code. A Fortran compiler is also required to build the `igraph` package, but this is currently optional.
 
 TractoR makes use of the [ImageMagick](http://www.imagemagick.org) image processing suite for 2D visualisation. While TractoR will be more-or-less fully functional without ImageMagick, it is nevertheless recommended to install this software (unless it is preinstalled, which is not uncommon on Unix-like systems).
 
@@ -26,7 +26,7 @@ The install command could also fail if you do not have write access to the R lib
 
     make install-local
 
-which will install the required R packages within TractoR's own file hierarchy. This can also be useful if you want to run multiple versions of TractoR in parallel.
+which will install the required R packages within TractoR's own file hierarchy. This can also be useful if you want to run multiple versions of TractoR in parallel, or if you want to keep TractoR's versions of the various R packages separate to others which you may have installed.
 
 To check that the TractoR packages have been installed properly and TractoR scripts can be run successfully, you can run the set of tests included with TractoR 1.3.0 and later by typing
 

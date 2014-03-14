@@ -10,6 +10,8 @@ The TractoR (Tractography with R) project includes R packages for reading, writi
 * Run probabilistic tractography using single seed points or one or more masks.
 * Segment specific tracts in groups automatically using neighbourhood tractography (see [PNT tutorial](PNT-tutorial.html) and [HNT tutorial](HNT-tutorial.html)).
 * Remove false positive tracts using a model of tract shape variability.
+* Import and manipulate anatomical parcellations of [structural data](structural.html).
+* Create, manipulate, visualise and decompose abstract [graphs representing brain connectivity](connectivity-graphs.html).
 * Create graphics to visualise image slices or maximum-intensity projections.
 
 If you use TractoR in your work, please cite [the reference below](#reference). For details of research papers underlying the methods implemented in the package, please see the [references page](references.html). If you would like to hear about new releases and other TractoR-related news, we would suggest joining the [users' mailing list](https://www.jiscmail.ac.uk/cgi-bin/webadmin?A0=TRACTOR). General queries or problems may also be raised there, while bugs and other specific issues may be reported using the [GitHub issue tracker](https://github.com/jonclayden/tractor/issues). Please describe any problem as fully as possible.
@@ -27,8 +29,9 @@ TractoR is developed primarily by [Jonathan Clayden](http://www.homepages.ucl.ac
 - There is specific information on [TractoR for R users](TractoR-for-R-users.html), and additional [detailed information](guidelines-for-contributors.html) for anyone actually contributing to the project.
 - Useful information about TractoR-specific conventions can be found on the aptly-named [conventions](conventions.html) page.
 - A specific page covers TractoR's [image registration](registration.html) capabilities.
-- The [diffusion processing](diffusion-processing.html) page covers the processing of diffusion-weighted MR images using TractoR.
+- The [diffusion processing](diffusion-processing.html) page covers the processing of diffusion-weighted MR images using TractoR, and there is also a specific page on [working with structural data](structural.html).
 - TractoR provides reference implementations of various [neighbourhood tractography](http://www.homepages.ucl.ac.uk/~sejjjd2/research/#neighbourhood-tractography) methods, both "heuristic" and "probabilistic", for segmenting specific white matter structures. An [HNT tutorial](HNT-tutorial.html) and a [PNT tutorial](PNT-tutorial.html) using TractoR are available, as well as information on the [reference tracts](reference-tracts.html) used by both methods.
+- Various tools exists for creating and working with [connectivity graphs](connectivity-graphs.html), including a reference implementation of the "principal networks" method.
 - There is a specific page about the [facilities in TractoR for handling DICOM files](TractoR-and-DICOM.html) and, importantly, their limitations.
 - Finally, there is a list of [references](references.html) for the methods available through TractoR.
 
