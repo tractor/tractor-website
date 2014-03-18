@@ -105,7 +105,7 @@ Once the standard preprocessing pipeline has been completed, you can create file
 To find out information about a particular session directory and the data stored within it, you can use the `status` script, which produces output like the following:
 
     GENERAL:
-      Session directory        : /usr/local/tractor/tests/data/session-12dir
+      Session directory        : /usr/local/tractor/tests/data/session
       Working directory exists : TRUE
     
     DIFFUSION:

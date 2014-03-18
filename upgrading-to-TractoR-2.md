@@ -39,7 +39,7 @@ then BET will be used by default in `dpreproc`, as in TractoR 1.x.
 The `status` script is now both more general and more informative. Example output as of TractoR v2.0.2 is below.
 
     GENERAL:
-      Session directory        : /usr/local/tractor/tests/data/session-12dir
+      Session directory        : /usr/local/tractor/tests/data/session
       Working directory exists : TRUE
     
     DIFFUSION:

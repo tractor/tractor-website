@@ -2,10 +2,11 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
-## 2.5.0
+## 2.5.0 (2014-03-18)
 
 * TractoR now has facilities for working with graph representations of brain connectivity, including a reference implementation of the Principal Networks approach to graph decomposition. A set of new scripts has been added to support this, including `graph-build`, `graph-reweight`, `graph-decompose`, `graph-props`, `graph-viz` and `graph2csv`. Please see the new [connectivity graphs tutorial](connectivity-graphs.html) for further information.
 * In support of the new graph capabilities, TractoR can now work with structural (particularly T1-weighted) images, as well as diffusion data. It can also work with anatomical parcellations of the brain, and transform them between spaces. A wrapper script for Freesurfer's `recon-all` tool is also provided. New TractoR scripts relevant to structural data are `import`, `parcellate` and `freesurf`. Please see the new page on [working with structural data](structural.html) for more information.
+* A new test data set, which includes structural data, has been introduced to replace the previous test data.
 * Transformation strategies between different imaging spaces are now configurable, with defaults given by the `$TRACTOR_HOME/etc/session/transforms/strategy.yaml` file.
 * The new `xtrack` script can be used for tracking between parcellated regions, specified by name or type.
 * The `trim` script has been added for removing volumes from multivolume data sets.
@@ -15,6 +16,8 @@ The significant user-visible changes in each release of TractoR are documented b
 * The `dpreproc` script now accepts `EddyCorrectionMethod:none` for data sets which are already well aligned and have minimal eddy current induced distortion.
 * The `mtrack` script now allows seed points to be subjected to random jitter, to move them off the regular grid.
 * The `tensorfit` script with `Method:ls` (the default) is now more statistically efficient in the presence of invalid or missing data.
+* The `imagestats` script now handles missing values in images gracefully.
+* The `dicomsort` script gains an option to use series time rather than series number as the identifier. This can be more reliable if DICOM files were acquired from multiple scan sessions.
 * TractoR's internal image viewer now fixes the black and white point across a whole image for consistency.
 * R's raster plotting functionality is now used when plotting images, for speed.
 * Textual output and messages should now use the full width of the terminal screen more effectively.
