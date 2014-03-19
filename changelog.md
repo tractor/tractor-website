@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.5.1 (2014-03-19)
+
+* A mistake in the install script, `tractor_Rinstall`, has been corrected.
+* R's facilities for checking MD5 sums are now used in preference to system ones, for portability.
+* The graph decomposition test has been made less stringent.
+* Author and copyright information has been updated.
+
 ## 2.5.0 (2014-03-18)
 
 * TractoR now has facilities for working with graph representations of brain connectivity, including a reference implementation of the Principal Networks approach to graph decomposition. A set of new scripts has been added to support this, including `graph-build`, `graph-reweight`, `graph-decompose`, `graph-props`, `graph-viz` and `graph2csv`. Please see the new [connectivity graphs tutorial](connectivity-graphs.html) for further information.
