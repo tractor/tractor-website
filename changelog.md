@@ -2,6 +2,11 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.5.2 (2014-05-20)
+
+* The `graph-build` script now accepts a comma-separated list of target regions, bringing it in line with `xtrack` and intended behaviour.
+* Running `make check-md5` should no longer produce an error if no `tmp` directory exists.
+
 ## 2.5.1 (2014-03-19)
 
 * A mistake in the install script, `tractor_Rinstall`, has been corrected.
