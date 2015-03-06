@@ -2,6 +2,21 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.6.0 (2015-03-05)
+
+* TractoR now has support for handling functional (BOLD) data, including functional connectivity analysis. However, fMRI preprocessing must currently be performed using other tools.
+* The `graph-build` script gains the ability to create functional connectivity graphs. Regionwise time courses may be obtained by simple averaging or principal components analysis, and connectivity is quantified in terms of correlation, partial correlation, covariance or precision. An optional shrinkage approach is available to regularise these measures when the number of time points is limited.
+* Streamlines can now be ignored before they are stored if they do not reach targets of interest. This is used by the `xtrack` and `ptrack` scripts, and will also be used by `mtrack` if `TruncateUnterminated:true` is given. Streamline files can be much smaller, and memory usage less, as a result.
+* Further DICOM improvements. A missing "pixel data" tag (0x7fe0, 0x0010) will no longer result in a DICOM file being treated as invalid. Slice gaps are now included in the through-plane voxel dimension. And the code tries to guess when a "mosaic" DICOM file contains the per-slice rather than per-volume TR (as some do), and correct to the latter.
+* The new `graph-extract` script can be used to extract a subgraph containing some of the vertices from a larger graph.
+* TractoR is now more cautious about overwriting existing directories, and in particular, a directory mapped outside the session directory should never be deleted.
+* The `graph-props` script gains an `IgnoreSign` option.
+* Registration strategy files can now specify the use of FSL or NiftyReg for affine registration.
+* Switching the `EddyCorrectionMethod` in `dpreproc` will now appropriately overwrite the result of a previous correction.
+* Self-connection weights are no longer included in the default weight limits when plotting graphs with `graph-viz` and `MatrixView:false`. They are often large relative to other connections, but are not visible in these plots.
+* A test for reading NIfTI-2 format files has been added (the code already passed it).
+* Indexing into sparse arrays is now more reliable.
+
 ## 2.5.2 (2014-05-20)
 
 * The `graph-build` script now accepts a comma-separated list of target regions, bringing it in line with `xtrack` and intended behaviour.

@@ -30,6 +30,28 @@ will use the number of streamlines as the weight of the connection. Vertex attri
 
 will average the two vertex attributes for each edge, and then use the number of streamlines divided by the average voxel count in the two target regions as the weight.
 
+## Creating a graph (BOLD fMRI)
+
+Resting-state fMRI data may be used to establish functional connectivity, or the degree of temporal coincidence between spatially separated cortical areas. Although TractoR does not currently provide scripts for preprocessing functional data ([SPM](http://www.fil.ion.ucl.ac.uk/spm/) and [FSL-FEAT](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FEAT) are two well-known software tools that could be used for this purpose), but it does allow already preprocessed data to be imported and used to create functional connectivity graphs.
+
+To get the data into a session directory, the `import` script can be used:
+
+    tractor import /data/subject1 fmri.nii.gz ImageWeighting:functional
+
+Creating a functional connectivity graph then requires three stages, namely
+
+1. propagating a cortical parcellation from structural to functional space;
+2. identifying a representative signal trace for each parcellated region of interest; and
+3. calculating covariance measures between each pair of regional traces.
+
+The `graph-build` script can be used to perform these tasks. Stage 1, the transformation, is performed implicitly. Stage 2 is controlled by the `RegionTimeSeries` option, which may be "mean" for the mean of the voxelwise time series, or "pc" for the first principal component, which will capture more of the variance within the region but is less standard. At the third stage, several measures of association are calculated, but if the number of time points is modest it can be useful to employ a "shrinkage" approach that TractoR offers (via the [`corpcor` R package](http://strimmerlab.org/software/corpcor/)), which regularises the estimates. For example,
+
+    tractor graph-build /data/subject1 Type:functional UseShrinkage:true GraphName:functional_graph
+
+The resulting binary graph than then be weighted by correlation, say, by using the command
+
+    tractor graph-reweight correlation GraphName:functional_graph
+
 ## Graph properties
 
 The basic properties of a graph object can be obtained using the generic `peek` script, viz.

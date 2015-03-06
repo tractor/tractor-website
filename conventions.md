@@ -16,6 +16,7 @@ TractoR is designed to work with MRI data sets, each consisting of a series of m
         /camino..................images and other files used by the Camino toolkit
         /structural..............structural (e.g. T1-weighted) images
         /freesurfer..............output from the Freesurfer pipeline
+        /functional..............functional (generally T2*-weighted BOLD) images
       [other subdirectories].....unmanaged files, such as DICOM-format files
 
 TractoR maintains this structure and expects to find the files it uses in these places. This is arranged by the package itself if the session hierarchy is set up using TractoR preprocessing scripts, but if the preprocessing steps are carried out independently then the hierarchy must be arranged in this way manually.
@@ -49,7 +50,7 @@ Similarly, the names of the subdirectories within the main `tractor` directory c
 
     diffusion: /data/subject1_2fibres/tractor/diffusion
 
-It should, however, be bourne in mind that this will make the session less portable. The full default map, as of TractoR v2.5.0, is
+It should, however, be bourne in mind that this will make the session less portable. The full default map, as of TractoR v2.6.0, is
 
     transforms: transforms
     diffusion: diffusion
@@ -59,6 +60,7 @@ It should, however, be bourne in mind that this will make the session less porta
     camino: camino
     structural: structural
     freesurfer: freesurfer
+    functional: functional
 
 ## Point types
 
