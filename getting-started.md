@@ -6,7 +6,7 @@ TractoR was developed for Unix-like systems. It has been developed and tested on
 
 In its basic form, TractoR is a set of packages written for the R language and environment. R (version 3.0.0 or later) is therefore an absolute prerequisite. R is an open-source package that is easy to install. Precompiled binaries are available from a number of [CRAN mirror sites](http://cran.r-project.org/mirrors.html), along with the source code.
 
-A C/C++ compiler, such as `gcc`/`g++`, is also required. A suitable compiler can be installed using an appropriate package manager (`aptitude`, `yum`, etc.) on Linux, or with Xcode (from the Mac App Store) on OS X. R handles all the details of actually compiling code. A Fortran compiler is also required to build the `igraph` package, but this is currently optional.
+A C/C++ compiler, such as `gcc`/`g++`, is also required. A suitable compiler can be installed using an appropriate package manager (`aptitude`, `yum`, etc.) on Linux, or with [Xcode](https://developer.apple.com/xcode/downloads/) (from the Mac App Store) on OS X. A Fortran compiler, such as `gfortran`, is also required to build some of the packages provided with TractoR, although this is currently optional. (Mac OS X users can find binary builds of `gfortran` [through CRAN](http://cran.r-project.org/bin/macosx/tools/).) R handles all the details of actually compiling code.
 
 TractoR makes use of the [ImageMagick](http://www.imagemagick.org) image processing suite for 2D visualisation. While TractoR will be more-or-less fully functional without ImageMagick, it is nevertheless recommended to install this software (unless it is preinstalled, which is not uncommon on Unix-like systems).
 

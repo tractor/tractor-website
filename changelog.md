@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.6.1 (2015-03-10)
+
+* Spurious errors should no longer be produced when overwriting a session subdirectory.
+* Zero-length streamlines are now usually retained. Discarding these could violate the assumptions of other code, and would sometimes lead to a test failure.
+* Failure to install optional packages `RcppArmadillo` and `mmand`, which generally require a Fortran compiler to build, no longer leads to outright failure to install TractoR. (More information on Fortran requirements has also been added to the documentation.)
+* The TractoR distribution version is now printed alongside the `tractor` program version when `tractor -h` is run. This has been a recurring source of confusion.
+
 ## 2.6.0 (2015-03-06)
 
 * TractoR now requires R version 3.0.0 (released April 2013) or later.
