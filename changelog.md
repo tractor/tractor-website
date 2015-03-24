@@ -2,6 +2,11 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.6.2 (2015-03-24)
+
+* NIfTI format files which are endian-swapped, relative to the platform being used to read them, will now be handled correctly. Previously these would lead to a rather cryptic error.
+* The `graph-build` script (with `Type:functional`) will now ignore voxels with totally flat time courses, rather than producing an error. These could arise as a result of masking during preprocessing.
+
 ## 2.6.1 (2015-03-10)
 
 * Spurious errors should no longer be produced when overwriting a session subdirectory.
