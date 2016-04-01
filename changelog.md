@@ -2,6 +2,28 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.0.0 (2016)
+
+* The package's requirements and dependencies have been simplified somewhat. A FORTRAN compiler should no longer be required to install R packages, and ImageMagick is no longer needed to create images.
+* The tractography systems have been completely overhauled to make them much more efficient, especially when working with large numbers of streamlines, as in connectomics. A pipeline approach is now taken to limit memory requirements, and more work is done in compiled code for speed. The interface has also been consolidated, with the old `track`, `rtrack`, `mtrack`, `ptrack` and `xtrack` scripts being replaced by a single, flexible `track` script, which also offers some new features such as random seeding and length thresholding. All support for tractography using FSL `probtrackx` has been removed.
+* The [TrackVis file format](http://www.trackvis.org/docs/?subsect=fileformat) is now used as TractoR's native format for streamlines, which allows paths to be easily visualised. Consequently, the `streamlines2trk` script has been removed.
+* A new top-level command, `plough`, allows a TractoR script to be called multiple times using different sets of arguments or configuration variables, optionally parallelising across cores or using a grid engine. This is a universal alternative to piecemeal vectorisation in a handful of specialised scripts such as `gmean` and `pnt-data-sge`. The latter two scripts have therefore been removed, while many others have been simplified by working on only one session or image at a time.
+* It is now possible to refer to standard images within a session directory using a shorthand that incorporates the `@` symbol, as in `/data/subject1@FA` for the FA map from session directory `subject1`, or `/data/subject2@functional/data` for the functional data series from `subject2`. Scripts such as `mean` and `mkroi` have been substantially generalised, without becoming more verbose, by taking advantage of this mechanism.
+* Noninteractive visualisation of images, including overlays, is now handled by the `slice` script, which can create visualisations in one or more planes, including multiple views within the same image. This much-improved script subsumes the functionality of the old `proj` and `contact` scripts, which have been removed.
+* The `mkroi` script can now generate ROIs of different shapes, and with different widths in each dimension.
+* The [LEMON C++ library](https://lemon.cs.elte.hu) is now used rather than the rather complex "igraph" R package, for calculating graph metrics.
+* Configuration variables are now matched in a case-insensitive manner, and variables which are supplied on the command line but not used are reported in a warning.
+* TractoR can now read and parse Siemens ASCII headers from DICOM files.
+* An improved method is now used for placing knot points along tracts in `pnt-data`. Therefore, the results of this script are not completely consistent with TractoR 2.x.
+* Diffusion directions read from DICOM files are now flipped along the Y-axis by default.
+* Seed points for tractography are now jittered within the voxel by default.
+* Run times are now reported for tests.
+* Voxels containing less than the required seven nonpositive values are now handled gracefully by `tensorfit`. In addition, an image called `dti_bad` is created, which maps the numbers of bad data points across the image volume.
+* Image origins are now always three-dimensional.
+* Camino-specific scripts `fsl2camino`, `camino2fsl` and `caminofiles` have been removed. They were poorly maintained, and largely redundant following Camino's support for NIfTI images.
+* The "-r" flag to the main `tractor` program is defunct.
+* Extensive low-level and upstream package improvements.
+
 ## 2.6.2 (2015-03-24)
 
 * NIfTI format files which are endian-swapped, relative to the platform being used to read them, will now be handled correctly. Previously these would lead to a rather cryptic error.
