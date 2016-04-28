@@ -4,7 +4,7 @@ The significant user-visible changes in each release of TractoR are documented b
 
 ## 3.0.0 (2016)
 
-* The package's requirements and dependencies have been simplified somewhat. A FORTRAN compiler should no longer be required to install R packages, and ImageMagick is no longer needed to create images.
+* The package's requirements and dependencies have been simplified somewhat. A Fortran compiler should no longer be required to install R packages, and ImageMagick is no longer needed to create images.
 * The tractography systems have been completely overhauled to make them much more efficient, especially when working with large numbers of streamlines, as in connectomics. A pipeline approach is now taken to limit memory requirements, and more work is done in compiled code for speed. The interface has also been consolidated, with the old `track`, `rtrack`, `mtrack`, `ptrack` and `xtrack` scripts being replaced by a single, flexible `track` script, which also offers some new features such as random seeding and length thresholding. All support for tractography using FSL `probtrackx` has been removed.
 * The [TrackVis file format](http://www.trackvis.org/docs/?subsect=fileformat) is now used as TractoR's native format for streamlines, which allows paths to be easily visualised. Consequently, the `streamlines2trk` script has been removed.
 * A new top-level command, `plough`, allows a TractoR script to be called multiple times using different sets of arguments or configuration variables, optionally parallelising across cores or using a grid engine. This is a universal alternative to piecemeal vectorisation in a handful of specialised scripts such as `gmean` and `pnt-data-sge`. The latter two scripts have therefore been removed, while many others have been simplified by working on only one session or image at a time.
@@ -22,9 +22,10 @@ The significant user-visible changes in each release of TractoR are documented b
 * Graphs can now be read from CSV files in all scripts, although .Rdata files contain more complete information.
 * The `reg-apply` script can now apply composite and half transforms to images.
 * The `apply` script gains a "Combine" mode which allows multiple images to be merged after applying the function to each in turn. This script, along with `transform`, can now do the job of `gmap`, which was very specialised and has been removed.
+* The `plotcorrections` script now plots all modes on the same device, and allows correction values to be written to a CSV file. The sense of its decomposition is now a little different, so results will differ from those in TractoR 2.x.
 * The `dicomsort` script now sorts by series UID by default.
 * Configuration variables are now matched in a case-insensitive manner, and variables which are supplied on the command line but not used are reported in a warning.
-* TractoR can now read and parse Siemens ASCII headers from DICOM files.
+* TractoR can now read and parse Siemens ASCII headers from DICOM files, and these can be shown using the `dicomtags` script.
 * An improved method is now used for placing knot points along tracts in `pnt-data`. The output also contains the session path rather than an ID number, rendering the `identify` script unnecessary. Therefore, the results of this script are not completely consistent with TractoR 2.x. Old output files can be converted to the new format, but it is better not to mix output from the two versions in one study.
 * Default session maps are now explicitly stored within the `etc/session` subdirectory, and these may be used as templates for more specialised maps.
 * Diffusion directions read from DICOM files are now flipped along the Y-axis by default.
@@ -35,7 +36,7 @@ The significant user-visible changes in each release of TractoR are documented b
 * The "-r" flag to the main `tractor` program is defunct.
 * Extensive low-level and upstream package improvements.
 
-## 2.6.3 (2016)
+## 2.6.3 (2016-04-27)
 
 * An error in the calculation of clustering coefficients has been corrected.
 * Graphs containing only negative weights would previously be shown with an inverted colour scale. This has been corrected.
