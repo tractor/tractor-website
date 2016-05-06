@@ -10,17 +10,21 @@ The significant user-visible changes in each release of TractoR are documented b
 * A new top-level command, `plough`, allows a TractoR script to be called multiple times using different sets of arguments or configuration variables, optionally parallelising across cores or using a grid engine. This is a universal alternative to piecemeal vectorisation in a handful of specialised scripts such as `gmean` and `pnt-data-sge`. The latter two scripts have therefore been removed, while many others have been simplified by working on only one session or image at a time.
 * TractoR can now work with "multishell" diffusion-weighted data, and tries to choose appropriate parameters when preprocessing and fitting such data. The `dpreproc` script also provides an interface to FSL's [`topup`](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/TOPUP) and [`eddy`](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/EDDY/) tools for correcting susceptibility and eddy current induced distortions, respectively.
 * It is now possible to refer to standard images within a session directory using a shorthand that incorporates the `@` symbol, as in `/data/subject1@FA` for the FA map from session directory `subject1`, or `/data/subject2@functional/data` for the functional data series from `subject2`. Scripts such as `mean` and `mkroi` have been substantially generalised, without becoming more verbose, by taking advantage of this mechanism.
+* The MNI space reference brain has been updated to a newer, higher resolution and much sharper image, based on nonlinear coregistration of 152 individuals.
 * Noninteractive visualisation of images, including overlays, is now handled by the `slice` script, which can create visualisations in one or more planes, including multiple views within the same image. This much-improved script subsumes the functionality of the old `proj` and `contact` scripts, which have been removed.
-* [Probabilistic neighbourhood tractography](PNT-tutorial.html) is now much faster, often by 90% or more, and is in fact now appreciably faster than the older [heuristic neighbourhood tractography](HNT-tutorial.html) (although it typically involves more steps).
+* [Probabilistic neighbourhood tractography](PNT-tutorial.html) is now much faster, often by 90% or more, and is in fact now appreciably faster than the older and much less robust [heuristic neighbourhood tractography](HNT-tutorial.html) (although it typically involves more steps).
+* Transformation information between images and spaces is now stored as a series of text matrices and NIfTI images within a directory with an .xfmb extension (for transform bundle), rather than a flat .Rdata file. This was necessary due to upstream changes in NiftyReg, but it also has the advantage of greater transparency. The new `reg-info` script can be used to obtain information about these directories.
+* The accuracy of a registration can be visualised using the new `reg-check` script.
+* The new `transform` script can be used to transform an image or point between named spaces as they relate to a particular session.
 * The new `components` script can be used to find connected components in images.
 * NIfTI files can be reduced in size, at the cost of some loss of precision, using the new `compress` script.
-* The new `transform` script can be used to transform an image or point between named spaces as they relate to a particular session.
 * The `mkroi` script can now generate ROIs of different shapes, and with different widths in each dimension.
 * The [LEMON C++ library](https://lemon.cs.elte.hu) is now used rather than the rather complex "igraph" R package, for calculating graph metrics.
 * The "MaskingMethod" option to `dpreproc` once again defaults to using FSL-BET, but will fall back to k-means if the `bet` executable is not found. The k-means method itself has been improved by first finding the largest connected component, which tends to result in the removal of more non-brain tissue.
 * TractoR's image viewer now shows parcellation labels when a lookup table file (.lut) is found.
 * Graphs can now be read from CSV files in all scripts, although .Rdata files contain more complete information.
 * The `reg-apply` script can now apply composite and half transforms to images.
+* Registration can now be initialised from a FLIRT transformation matrix file.
 * The `apply` script gains a "Combine" mode which allows multiple images to be merged after applying the function to each in turn. This script, along with `transform`, can now do the job of `gmap`, which was very specialised and has been removed.
 * The `plotcorrections` script now plots all modes on the same device, and allows correction values to be written to a CSV file. The sense of its decomposition is now a little different, so results will differ from those in TractoR 2.x.
 * The `dicomsort` script now sorts by series UID by default.
@@ -31,10 +35,11 @@ The significant user-visible changes in each release of TractoR are documented b
 * Diffusion directions read from DICOM files are now flipped along the Y-axis by default.
 * Seed points for tractography are now jittered within the voxel by default.
 * Voxels containing less than the required seven strictly positive values are now handled gracefully by `tensorfit`. In addition, an image called `dti_bad` is created, which maps the numbers of bad data points across the image volume.
+* NiftyReg is now the default linear registration method.
 * Image origins are now always three-dimensional.
 * Camino-specific scripts `fsl2camino`, `camino2fsl` and `caminofiles` have been removed. They were poorly maintained, and largely redundant following Camino's support for NIfTI images.
 * The "-r" flag to the main `tractor` program is defunct.
-* Extensive low-level and upstream package improvements.
+* Extensive low-level and upstream package improvements have been incorporated.
 
 ## 2.6.3 (2016-04-27)
 
