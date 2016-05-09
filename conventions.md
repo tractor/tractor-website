@@ -12,8 +12,6 @@ TractoR is designed to work with MRI data sets, each consisting of a series of m
         /diffusion...............diffusion-weighted images and their derivatives (e.g. diffusion tensor components)
         /fdt.....................images and other files used by FSL's diffusion toolbox
         /fdt.bedpostX............images and other files produced by FSL BEDPOSTX
-        /fdt.track...............FSL tractography output
-        /camino..................images and other files used by the Camino toolkit
         /structural..............structural (e.g. T1-weighted) images
         /freesurfer..............output from the Freesurfer pipeline
         /functional..............functional (generally T2*-weighted BOLD) images
@@ -21,7 +19,7 @@ TractoR is designed to work with MRI data sets, each consisting of a series of m
 
 TractoR maintains this structure and expects to find the files it uses in these places. This is arranged by the package itself if the session hierarchy is set up using TractoR preprocessing scripts, but if the preprocessing steps are carried out independently then the hierarchy must be arranged in this way manually.
 
-The reason for using a managed file hierarchy is to avoid the need to specify the locations of several standard image files when using TractoR's core functionality. By establishing standard locations for all such files, only the top-level session directory needs to be specified, since everything else can be found by the code. TractoR therefore favours [convention over configuration](http://en.wikipedia.org/wiki/Convention_over_configuration), but if the names of specific images within a managed directory are not in keeping with the default, there is a mechanism for telling TractoR about this, through so-called "session maps". For example, the default map for the `diffusion` subdirectory, as of TractoR v2.0.2, is
+The reason for using a managed file hierarchy is to avoid the need to specify the locations of several standard image files when using TractoR's core functionality. By establishing standard locations for all such files, only the top-level session directory needs to be specified, since everything else can be found by the code. TractoR therefore favours [convention over configuration](http://en.wikipedia.org/wiki/Convention_over_configuration), but if the names of specific images within a managed directory are not in keeping with the default, there is a mechanism for telling TractoR about this, through so-called "session maps". For example, the default map for the `diffusion` subdirectory, as of TractoR v3.0.0, is
 
     rawdata: rawdata
     data: data
@@ -36,8 +34,9 @@ The reason for using a managed file hierarchy is to avoid the need to specify th
     axialdiff: dti_eigval1
     radialdiff: dti_radial
     sse: dti_SSE
+    parcellation: parcellation
 
-Any or all of these default names can be overridden by placing a file called `map.yaml` in the `diffusion` subdirectory, using the format above. Note that the `%` symbol is used to indicate an index, so the first eigenvalue image will be called `dti_eigval1`, the second `dti_eigval2`, and so on. No image format suffix (e.g. `.nii`) should be given.
+This map is stored at `$TRACTOR_HOME/etc/session/diffusion/map.yaml`, and any or all of the default names can be overridden by placing a file called `map.yaml` in the `diffusion` subdirectory of a given session, using the format above. Note that the `%` symbol is used to indicate an index, so the first eigenvalue image will be called `dti_eigval1`, the second `dti_eigval2`, and so on. No image format suffix (e.g. `.nii`) should be given.
 
 The `path` script (added in TractoR v2.5.0) can be used to obtain the actual full path to the image of a particular type. For example,
 
@@ -50,22 +49,24 @@ Similarly, the names of the subdirectories within the main `tractor` directory c
 
     diffusion: /data/subject1_2fibres/tractor/diffusion
 
-It should, however, be bourne in mind that this will make the session less portable. The full default map, as of TractoR v2.6.0, is
+It should, however, be borne in mind that this will make the session less portable. The full default map can be found at `$TRACTOR_HOME/etc/session/map.yaml`.
 
-    transforms: transforms
-    diffusion: diffusion
-    fdt: fdt
-    bedpost: fdt.bedpostX
-    probtrack: fdt.track
-    camino: camino
-    structural: structural
-    freesurfer: freesurfer
-    functional: functional
+## File types
 
-## Point types
+TractoR's preferred file format for images is the [NIfTI-1](http://nifti.nimh.nih.gov/nifti-1) format, although NIfTI-2, the legacy Analyze format and Freesurfer's [MGH/MGZ](https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/MghFormat) format are also supported. Compression with gzip is fully supported, and recommended to save disk space, although it does incur a modest computational overhead. Reading from DICOM files [is supported](TractoR-and-DICOM.html), but due to the complexity of the format, support is by no means comprehensive.
 
-Whenever a location within a brain volume needs to be specified, for example as a seed point for tractography, it is necessary to specify the meaning of the numerical value given. Locations may be specified in world coordinates, in mm, or as a voxel location. The latter case needs to be further disambiguated, since FSL uses the C convention of indexing voxels from zero, whereas TractoR uses the R (and Matlab) convention of indexing from one. The first voxel in the corner of a brain volume is therefore (1,1,1) in the R convention. Therefore experiment scripts, such as `track`, which take a point as an argument require the `PointType` parameter to be set to one of "fsl", "r" or "mm" to indicate the meaning of the point. So in the command
+Tractography streamlines are stored in [TrackVis **.trk** format](http://www.trackvis.org/docs/?subsect=fileformat), which makes it easy to visualise them using the popular TrackVis program. However, TractoR additionally uses an auxiliary file format, with a **.trkl** extension, which stores information about "labels", named regions that individual streamlines pass through. The beginning of this file is formatted as follows.
 
-    tractor track /data/subject1 34,23,17 PointType:fsl
+    struct trkl_header {
+        char    magic_number[8];        // The string "TRKLABEL" (hex 54 52 4b 4c 41 42 45 4c)
+        int32_t version;                // Version number; currently 1
+        int32_t n_streamlines;          // Number of streamlines; should match the .trk file
+        int32_t n_labels;               // Number of labels stored
+        char    unused[12];             // Padding bytes, currently unused
+    };
 
-the `track` script is run using "/data/subject1" as the relevant session directory and "34,23,17" as a seed point using the FSL convention. This would be appropriate if the seed point had been selected using the FSLview data viewer.
+There then follows a dictionary of names, consisting of a (32-bit signed) integer index value and then a zero-terminated string containing the name, for each label in turn. Indices do not have to be sequential, nor in any particular order. Finally, the mapping from streamlines to labels is given. For each streamline, in the same order as the .trk file, the number of labels associated with it is written as a (32-bit signed) integer, followed by the appropriate number of (32-bit signed) integers giving the indices of each of those labels.
+
+Transformations, containing information on how to move images and points between different spaces, are encapsulated in folders with an **.xfmb** extension. In each case these contain the "source" and "target" images for the transformation (which may be symbolic links), a file "method.txt" identifying the registration method used, and forward and reverse transform files for each registration performed. The latter are plain-text affine matrices with a **.mat** extension for linear transforms, and compressed NIfTI-1 images for nonlinear transforms.
+
+Other files generated by TractoR typically have an **.Rdata** extension. This is a R-native binary format which captures the data fields in an R reference object. Information on such files, and the object they contain, can be obtained using the `peek` script. The object can be recovered from within R using the `deserialiseReferenceObject` function.
