@@ -12,7 +12,7 @@ The transformation may either be linear or nonlinear. Linear transformations are
 
 Here, a global rotation can be observed from the oblique grid, but additionally, some areas are expanded by the transformation (red) while others are contracted (blue).
 
-In TractoR, images are stored in Analyze/NIfTI/MGH files, while transformations are stored within a [special directory with an ".xfmb" suffix](#conventions.html#file-types). Information about the latter can be obtained using the `reg-info` script. Transformation directories contain metadata about the source and target files, as well as the actual linear and/or nonlinear transformation information. TractoR's image registration scripts create, modify and use the contents of these directories as a matter of course.
+In TractoR, images are stored in Analyze/NIfTI/MGH files, while transformations are stored within a [special directory with an ".xfmb" suffix](conventions.html#file-types). Information about the latter can be obtained using the `reg-info` script. Transformation directories contain metadata about the source and target files, as well as the actual linear and/or nonlinear transformation information. TractoR's image registration scripts create, modify and use the contents of these directories as a matter of course.
 
 ## Linear registration
 

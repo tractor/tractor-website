@@ -4,7 +4,7 @@ Reference tracts represent prior information about tract trajectories, which are
 
 ## Using standard reference tracts
 
-Since version 1.0.0, TractoR has been supplied with a set of standard reference tracts for both heuristic and probabilistic neighbourhood tractography (NT). These reference tracts are based on a white matter tract atlas kindly made available by Dr Susumu Mori's lab at Johns Hopkins University. Further information about the atlas can be found at <http://cmrm.med.jhmi.edu/> and in Ref. (1) below. If you use these reference tracts in your work, please cite Ref. (2) below.
+Since version 1.0.0, TractoR has been supplied with a set of standard reference tracts for both heuristic and probabilistic neighbourhood tractography (NT). These reference tracts are based on a white matter tract atlas kindly made available by Dr Susumu Mori's lab at Johns Hopkins University. Further information about the atlas can be found at <http://cmrm.med.jhmi.edu/> and in [Ref. (1)](#references) below. If you use these reference tracts in your work, please cite [Ref. (2)](#references) below.
 
 Using these standard references is by far the easiest way to start using NT. TractoR "knows" where to find them, so you need only to specify the tract name when running the `hnt-eval` or `pnt-data` experiment scripts. Available tract names as of TractoR 2.1.0 are:
 
@@ -24,36 +24,44 @@ Tract name(s)                     | Structure
 
 If you wish to segment a tract for which there is not yet a standard reference tract, or if your data set is somehow unusual so that the standard reference tracts are inappropriate, you need to create a custom reference tract from one of your scans. Once created, the reference tract may be reused for later studies.
 
-TractoR scripts which are likely to be useful for creating a custom reference tract include `mkroi` (to create a region of interest), `rtrack` (to generate a series of tract images, from which to choose a reference tract), and `hnt-ref` or `pnt-ref` (to create reference tracts for use with HNT or PNT, respectively).
+TractoR scripts which are likely to be useful for creating a custom reference tract include `mkroi` (to create a region of interest), `track` (to generate a series of tract images, from which to choose a reference tract), and `hnt-ref` or `pnt-ref` (to create reference tracts for use with HNT or PNT, respectively).
 
 Let's assume that we wish to create a reference tract representing the corpus callosum genu. We begin by creating a directory for this experiment, and changing to this directory. For example,
 
     mkdir /expts/hnt-genu
     cd /expts/hnt-genu
 
-Next we observe that the point (6,22,14) - in millimetre coordinates - appears to be within the genu in an MNI standard space brain volume. A suitable location such as this can be chosen using `tractor view` or [FSL's data viewer](http://www.fmrib.ox.ac.uk/fsl/fslview/index.html). We see the location shown on a slice of the MNI white matter map below:
+Next we observe that the point (99,163,78) appears to be within the genu in an MNI standard space brain volume. A suitable location such as this can be chosen using `tractor view` or [FSL's data viewer](http://www.fmrib.ox.ac.uk/fsl/fslview/index.html). We see the location shown below:
 
 ![genu seed point location](genu-point.png)
 
-We next need to choose a subject in which to generate our reference tract. In this tutorial we will assume that the session directory for this subject is based at the location /data/refsubject. Note that this session *must already* be [fully preprocessed](diffusion-processing.html). We will seed throughout a region around the location corresponding to the point we found in MNI standard space, on the basis that at least one point in this region stands a good chance of generating a tract suitable for use as the reference. The command
+We next need to choose a subject in which to generate our reference tract. In this tutorial we will assume that the session directory for this subject is based at the location /data/refsubject. Note that this session *must already* be [fully preprocessed](diffusion-processing.html). We will seed throughout a region around the location corresponding to the point we found in MNI standard space, on the basis that at least one point in this region stands a good chance of generating a tract suitable for use as the reference. First, we need to transform the MNI point into this subject's diffusion space:
 
-    tractor mkroi /data/refsubject 6,22,14 CentreInMNISpace:true PointType:mm ROIName:genu_region
+    tractor transform /data/refsubject 99,163,78 PointType:R SourceSpace:MNI TargetSpace:diffusion Nearest:true
 
-generates a region of interest (called "genu_region.nii.gz" or similar), and then
+Let's say that produces the native space seed point (49,59,33). The command
 
-    tractor rtrack /data/refsubject SeedMaskFile:genu_region CreateImages:true
+    tractor mkroi /data/refsubject 49,59,33 Width:5 ROIName:genu_region
 
-will generate a (large) number of images representing tracts generated by seeding at each voxel in the ROI. (If this fails to create images, please ensure you have [ImageMagick installed](getting-started.html).) By default, the width of the ROI is 7 voxels in each dimension, although this can be changed with the Width option to `mkroi`. (Note that, in general, you can always see what options are supported by a particular experiment script by giving the command `tractor -o` followed by the script name.) Voxels with very low anisotropy (say, FA less than 0.2) may be excluded, on the basis that they are unlikely to generate useful tracts, using the `AnisotropyThreshold` option to `rtrack`:
+generates a region of interest (called "genu_region.nii.gz") of width 5 voxels in each dimension, and then
 
-    tractor rtrack /data/refsubject SeedMaskFile:genu_region CreateImages:true AnisotropyThreshold:0.2
+    tractor track /data/refsubject genu_region Streamlines:1000x Strategy:voxelwise
 
-The resulting tract image file names contain the seed point that generated them, *using [the R convention](conventions.html)*. This process, or any other, can be used and repeated until a seed point has been found that produces an acceptable segmentation of the genu for use as a reference tract. The important characteristics are shape and length, so particular care should be taken to ensure that these are appropriate in the reference tract.
+will generate a (large) number of images representing tracts generated by seeding at each voxel in the ROI. Voxels with very low anisotropy (say, FA less than 0.2) may be excluded, on the basis that they are unlikely to generate useful tracts, using the `AnisotropyThreshold` option to `track`:
+
+    tractor track /data/refsubject genu_region Streamlines:1000x Strategy:voxelwise AnisotropyThreshold:0.2
+
+The resulting tract image file names contain the seed point that generated them, *using the R convention, starting at 1*. PNG graphics files may be produced from some or all of these images using the `slice` script. For example,
+
+    tractor slice /data/refsubject@FA tract_47_60_32 X:47 Y:60 Z:32 GraphicName:tract_47_60_32
+
+This process, or any other, can be used and repeated until a seed point has been found that produces an acceptable segmentation of the genu for use as a reference tract. The important characteristics are shape and length, so particular care should be taken to ensure that these are appropriate in the reference tract.
 
 Given a chosen seed point, the reference tract can be generated in the appropriate form using the `hnt-ref` or `pnt-ref` scripts, depending on whether you are planning to use heuristic or probabilistic NT. For example,
 
-    tractor hnt-ref /data/refsubject 40,38,22 PointType:R TractName:genu
+    tractor hnt-ref /data/refsubject 47,60,32 TractName:genu
 
-(The seed point in this example is arbitrary.) This will create a file called genu_ref.Rdata, which contains information about the reference tract for use in the testing phase. The syntax for `pnt-ref` is identical; only the script name needs to be changed.
+This will create a file called genu_ref.Rdata, which contains information about the reference tract for use in the testing phase. The syntax for `pnt-ref` is identical; only the script name needs to be changed.
 
 ## References
 

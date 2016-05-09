@@ -4,7 +4,7 @@ This page discusses the preprocessing steps required to prepare a diffusion-weig
 
 ## The pipeline
 
-The preprocessing steps required to run neighbourhood tractography or other analysis on a diffusion-weighted data set using TractoR are the same as those required by the [FSL diffusion toolbox](http://www.fmrib.ox.ac.uk/fsl/fdt/index.html), FDT, for tractography. It is therefore quite possible to perform all of these steps independently of TractoR, and the user may decide to use the relevant FSL tools, or their equivalents from another package. However, reasons to use TractoR might include the following:
+The preprocessing steps required to run neighbourhood tractography or other analysis on a diffusion-weighted data set using TractoR are broadly the same as those required by the [FSL diffusion toolbox](http://www.fmrib.ox.ac.uk/fsl/fdt/index.html) (FDT) for tractography. It is therefore quite possible to perform all of these steps independently of TractoR, and the user may decide to use the relevant FSL tools, or their equivalents from another package. However, reasons to use TractoR might include the following:
 
 * The [session hierarchy](conventions.html) will be arranged as TractoR expects it, automatically. This saves the user from having to arrange the hierarchy herself. It also means that TractoR can give correct parameters to any external programs without further input from the user.
 * The pipeline is run interactively but tries to minimise user input.
@@ -12,8 +12,8 @@ The preprocessing steps required to run neighbourhood tractography or other anal
 
 Whichever method is used to perform them, the requisite steps are as follows.
 
-1. Convert DICOM files from an MR scanner into a 4D data set file in Analyze or NIfTI format. TractoR can perform this conversion for a number of types of DICOM files, but users may prefer to use their own site tools for this step. (Please bear in mind that TractoR's DICOM support has [some limitations](TractoR-and-DICOM.html).) The result is an image called `rawdata` (with appropriate suffix depending on the file type) in the `diffusion` subdirectory of the TractoR session hierarchy. The file `directions.txt`, which describes the diffusion weighting applied to the images, will also be created if possible. **If the relevant information is not available, this latter file must be created manually**--if this is the case then TractoR will produce a warning.
-2. Identify an image volume with little or no diffusion weighting, to be used as an anatomical reference. By default this file will be called `refb0` and stored in the `diffusion` subdirectory.
+1. Convert DICOM files from an MR scanner into a 4D data set file in Analyze or NIfTI format. TractoR can perform this conversion for a number of types of DICOM files, but users may prefer to use their own site tools for this step. (Please bear in mind that TractoR's DICOM support has [some limitations](TractoR-and-DICOM.html).) The result is an image called `rawdata` (with appropriate suffix depending on the file type) in the `diffusion` subdirectory of the TractoR session hierarchy. The file `directions.txt`, which describes the diffusion weighting applied to the images, will also be created if possible. **If the relevant information is not available, this latter file must be created manually**—if this is the case then TractoR will produce a warning.
+2. Optionally correct for susceptibility-induced distortions with FSL [`topup`](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/TOPUP), then identify an image volume with little or no diffusion weighting, to be used as an anatomical reference. By default this file will be called `refb0` and stored in the `diffusion` subdirectory.
 3. Create a mask which covers only that part of the `refb0` volume which is within the brain. Skull and other nonbrain tissue is left outside this mask. The image file `mask` is created in the `diffusion` subdirectory, as well as a masked version of the anatomical reference image, called `maskedb0`.
 4. Correct for eddy current-induced distortion effects in the data, using the anatomical reference volume as a registration target. This step currently uses the FSL tool `eddy_correct`, and produces a file called `data` in the `diffusion` subdirectory.
 
@@ -37,11 +37,11 @@ With DICOM sorting already performed if necessary, running the preprocessing pip
 
 By default, TractoR will assume that all DICOM files it finds under the main session directory, `/data/subject1`, relate to your DTI acquisition. If in fact your diffusion DICOM files are stored in some subdirectory, perhaps `/data/subject1/dicom/dti`, you should tell TractoR this by instead using
 
-    tractor dpreproc DicomDirectory:dicom/dti
+    tractor dpreproc DicomDirectories:dicom/dti
 
-Notice that the DICOM subdirectory given is relative to the session directory.
+Notice that the DICOM subdirectory given is relative to the session directory. More than one directory can be specified if multiple acquisition series are relevant.
 
-The preprocessing can be completed noninteractively by setting the `Interactive` option to `false`:
+The preprocessing can be completed noninteractively by setting the "Interactive" option to `false`:
 
     tractor dpreproc Interactive:false
 
@@ -51,7 +51,7 @@ The preprocessing can be completed noninteractively by setting the `Interactive`
 
 or to start from the beginning again even if some stages have already been done, use
 
-    tractor dpreproc SkipCompletedStages:false
+    tractor dpreproc Force:true
 
 If you want to find out which stages have already been run, simply give
 
@@ -83,22 +83,15 @@ Fitting diffusion tensors is a standard processing step for diffusion-weighted d
 
 There are three alternative approaches to fitting the tensors available, but standard least-squares fitting is the default: see `tractor -o tensorfit` for details. The [Camino toolkit](http://www.camino.org.uk) offers many more methods.
 
-The tractography that TractoR and FSL use is probabilistic, however, and does not use the diffusion tensor. Instead, the FSL BEDPOSTX algorithm (Ref. 1) is used to fit a "ball-and-sticks" model and generate samples for probabilistic tractography. This typically takes several hours. The command for running this is
+The tractography that TractoR and FSL use is probabilistic, however, and does not use the diffusion tensor. Instead, the FSL [BEDPOSTX algorithm](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#BEDPOSTX) is used to fit a "ball-and-sticks" model and generate samples for probabilistic tractography. This typically takes several hours. The command for running this is
 
     tractor bedpost
 
-The underlying FSL `bedpostx` program takes a parameter which determines the maximum number of fibre populations which may be represented for each voxel. The larger this value, the longer `bedpostx` will take to run, but if set to 1 then no crossing fibre information will be available. The default value is 2, and this can be changed (to 1 or 3) using the `NumberOfFibres` option:
+The underlying FSL `bedpostx` program takes a parameter which determines the maximum number of fibre populations which may be represented for each voxel. The larger this value, the longer `bedpostx` will take to run, but if set to 1 then no crossing fibre information will be available. The default value is 3, and this can be changed using the `NumberOfFibres` option:
 
-    tractor bedpost NumberOfFibres:1
+    tractor bedpost NumberOfFibres:2
 
 It is important to note that the number of fibres fitted is *a property of the session*, and so once set it cannot be changed without processing the data again. If you wish to try different values of this option on a single data set, you will need to duplicate the session hierarchy, since these would be considered two distinct preprocessing pipelines, producing two different data sets.
-
-## Creating files for use with Camino
-
-Once the standard preprocessing pipeline has been completed, you can create files for use with the [Camino diffusion MRI toolkit](http://www.camino.org.uk), including a representation of the data in Camino format and a scheme file, using a command like the following. These files are created in the "camino" subdirectory of the session hierarchy.
-
-    cd /data/subject1
-    tractor caminofiles
 
 ## The status script
 
@@ -110,14 +103,10 @@ To find out information about a particular session directory and the data stored
     
     DIFFUSION:
       Preprocessing complete        : TRUE
-      Data dimensions               : 96 x 96 x 25 x 13 voxels
-      Voxel dimensions              : 2.5 x 2.5 x 5 mm x 1 s
+      Data dimensions               : 96 x 96 x 60 x 12 voxels
+      Voxel dimensions              : 2.5 x 2.5 x 2.5 mm x 1 s
+      Number of shells              : 1
       Diffusion b-values            : 0, 1000 s/mm^2
-      Number of gradient directions : 1, 12
+      Number of gradient directions : 2, 10
       Diffusion tensors fitted      : TRUE
-      FSL BEDPOST run               : TRUE (1 fibre(s) per voxel)
-      Camino files created          : FALSE
-
-## References
-
-1. T.E.J. Behrens et al., *Neuroimage* **34**(1):144-155, 2007.
+      Fibre orientation model       : FSL-BEDPOSTX (1 fibre per voxel)

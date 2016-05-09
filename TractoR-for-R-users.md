@@ -6,7 +6,7 @@ TractoR consists of a set of R packages, along with a scripting system which pro
 
 The `tractor.base` package is the most general-purpose of the TractoR packages, and the only one to be currently [on CRAN](http://cran.r-project.org/web/packages/tractor.base/index.html). It provides functions for reading, writing and manipulating MR images, along with various general-purpose functions which are used by the other packages.
 
-The key class in the base package is `MriImage`, which is a reference class representing an MR image, including metadata such as the source file, image dimensions and so on. Functions are provided for reading such images from Analyze/NIfTI files (`readImageFile`), from DICOM files (`readDicomDirectory`); and for creating them from other `MriImage` objects via operations such as thresholding or masking (see `?newMriImageWithData`). The class inherits from `SerialisableObject`, a simple extension of the base reference class which adds a method for serialising the fields of the object to a list. If only the underlying array of image data values is required, it can be extracted from an `MriImage` object, say `image`, with
+The key class in the base package is `MriImage`, which is a reference class representing an MR image, including metadata such as the source file, image dimensions and so on. Functions are provided for reading such images from Analyze/NIfTI files (`readImageFile`), from DICOM files (`readDicomDirectory`); and for creating them from other `MriImage` objects via operations such as thresholding or masking (see `?asMriImage`). The class inherits from `SerialisableObject`, a simple extension of the base reference class which adds a method for serialising the fields of the object to a list. If only the underlying array of image data values is required, it can be extracted from an `MriImage` object, say `image`, with
 
     image$getData()
 
@@ -26,43 +26,40 @@ Further information on the usage and function of the `tractor` shell script can 
 
 ## Writing your own TractoR scripts
 
-A reasonably simple TractoR script is shown below, by way of illustration. This is in fact the script called `mean`, which averages the value of some metric within the nonzero region of an image. It exhibits many of the common characteristics of these scripts. The lines are numbered here for ease of reference, but in a real script these should not be included.
+A reasonably simple TractoR script is shown below, by way of illustration. This is in fact the script called `mean`, which averages the value of some metric within the nonzero region of a mask image. It exhibits many of the common characteristics of these scripts. The lines are numbered here for ease of reference, but in a real script these should not be included.
 
-    01 #@args image file, [session directory]
-    02 #@desc Calculate the mean or weighted mean value of a metric within the nonzero region of a brain volume (usually tractography output). The specified image can be used as a binary mask (the default) or as a set of weights (with AveragingMode:weighted). In the latter case any weight threshold given is ignored.
-    03 
-    04 suppressPackageStartupMessages(require(tractor.session))
-    05 
-    06 runExperiment <- function ()
-    07 {
-    08     requireArguments("image file")
-    09     image <- newMriImageFromFile(Arguments[1])
-    10     
-    11     if (nArguments() > 1)
-    12         session <- newSessionFromDirectory(Arguments[2])
-    13     else
-    14         session <- NULL
-    15     
-    16     metric <- getConfigVariable("Metric", NULL, "character", validValues=c("weight","FA","MD","axialdiff","radialdiff"))
-    17     mode <- getConfigVariable("AveragingMode", "binary", validValues=c("binary","weighted"))
-    18     threshold <- getConfigVariable("WeightThreshold", 0.01)
-    19     thresholdMode <- getConfigVariable("ThresholdRelativeTo", "nothing", validValues=c("nothing","maximum","minimum"))
-    20     
-    21     if (thresholdMode == "maximum")
-    22         threshold <- threshold * max(image, na.rm=TRUE)
-    23     else if (thresholdMode == "minimum")
-    24         threshold <- threshold * min(image, na.rm=TRUE)
-    25     
-    26     images <- createWeightingAndMetricImages(image, session, type=tolower(metric), mode=mode, threshold=threshold)
-    27     finalImage <- newMriImageWithBinaryFunction(images$metric, images$weight, "*")
-    28     metric <- sum(finalImage$getData()) / sum(images$weight$getData())
-    29     
-    30     cat(paste(metric, "\n", sep=""))
-    31 }
+    01  #@args metric image, [mask image]
+    02  #@desc Calculate the mean or weighted mean value of a metric within the nonzero region of a brain volume. The specified mask image can be used as a binary mask (the default) or as a set of weights (with AveragingMode:weighted). In the latter case any weight threshold given is ignored. If the mask is missing then the metric image is itself the mask.
+    03  
+    04  runExperiment <- function ()
+    05  {
+    06      requireArguments("metric image")
+    07      metricImage <- readImageFile(Arguments[1])
+    08      
+    09      if (nArguments() > 1)
+    10          maskImage <- readImageFile(Arguments[2])
+    11      else
+    12          maskImage <- metricImage$copy()
+    13      
+    14      mode <- getConfigVariable("AveragingMode", "binary", validValues=c("binary","weighted"))
+    15      threshold <- getConfigVariable("ThresholdLevel", 0.01)
+    16      thresholdMode <- getConfigVariable("ThresholdRelativeTo", "nothing", validValues=c("nothing","maximum","minimum"))
+    17      
+    18      if (thresholdMode == "maximum")
+    19          threshold <- threshold * max(maskImage, na.rm=TRUE)
+    20      else if (thresholdMode == "minimum")
+    21          threshold <- threshold * min(maskImage, na.rm=TRUE)
+    22      
+    23      if (mode == "binary")
+    24          maskImage$threshold(threshold)$binarise()
+    25      
+    26      metric <- sum(metricImage * maskImage, na.rm=TRUE) / sum(maskImage, na.rm=TRUE)
+    27      cat(paste(metric, "\n", sep=""))
+    28  }
 
-The only mandatory part of a script file is the definition of a `runExperiment()` function, with no arguments, as on line 6. The R code which forms the functional body of the script must be put exclusively within this function. No other functions will be run. Moreover, with the exception of statements to load required packages (as on line 4 above), no R code should be positioned outside of the `runExperiment()` function. Calls to `library()` or `require()` for all required packages except `tractor.utils`, `utils`, `graphics`, `grDevices` and `stats` should be included in this way.
+The only mandatory part of a script file is the definition of a `runExperiment()` function, with no arguments, as on line 4. The R code which forms the functional body of the script must be put exclusively within this function. No other functions will be run. Moreover, with the exception of statements to load required packages, no R code should be positioned outside of the `runExperiment()` function. Calls to `library()` or `require()` for all required packages except `tractor.utils`, `utils`, `graphics`, `grDevices` and `stats` should be included in this way.
 
-Scripts may take any number of unnamed arguments and/or named configuration parameters. Unnamed arguments are put into the character vector `Arguments` (see lines 9 and 12 above), and must be coerced to numeric or another mode if required. The `nArguments()` function returns the number of arguments that the user passed (see line 11), where a new argument is counted as having started after any whitespace. The `requireArguments()` function can be used to list the names of mandatory arguments, and will produce an error if too few arguments were passed by the user (line 8). Named parameters are recovered using the `getConfigVariable()` function, which gives the name of the parameter as its first argument (by convention, these always start with an upper case letter), a default value as the second, and optionally, the expected storage mode of the variable (i.e. "character", "integer", etc.). The returned value will be of this mode, and an error will be produced if the value given cannot be coerced to the specified mode. Likewise, the `validValues` argument can be provided if the parameter can only take certain specific values (as in lines 16, 17 and 19). Script authors should call `getConfigVariable()` with `errorIfMissing=TRUE` if the parameter is mandatory.
+Scripts may take any number of unnamed arguments and/or named configuration parameters. Unnamed arguments are put into the character vector `Arguments` (see lines 7 and 10 above), and must be coerced to numeric or another mode if required. The `nArguments()` function returns the number of arguments that the user passed (see line 9), where a new argument is counted as having started after any whitespace. The `requireArguments()` function can be used to list the names of mandatory arguments, and will produce an error if too few arguments were passed by the user (line 6). Named parameters are recovered using the `getConfigVariable()` function, which gives the name of the parameter as its first argument (by convention, these always start with an upper case letter), a default value as the second, and optionally, the expected storage mode of the variable (i.e. "character", "integer", etc.). The returned value will be of this mode, and an error will be produced if the value given cannot be coerced to the specified mode. Likewise, the `validValues` argument can be provided if the parameter can only take certain specific values (as in lines 14 and 16). Script authors should call `getConfigVariable()` with `errorIfMissing=TRUE` if the parameter is mandatory.
 
 TractoR scripts are self-documenting, and a number of special comments are used to provide this documentation. The `#@args` comment specifies unnamed arguments which the script accepts, with optional arguments in square brackets (line 1), and lines starting `#@desc` describe the function of the script (line 2). Note that there should be only one line of arguments, but there can be many lines of description. If the script is purely informative and doesn't need to be included within the history log file, you should include a line containing just
 
