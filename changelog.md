@@ -2,7 +2,7 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
-## 3.0.0 (2016)
+## 3.0.0 (2016-05-09)
 
 * The package's requirements and dependencies have been simplified somewhat. A Fortran compiler should no longer be required to install R packages, and ImageMagick is no longer needed to create images.
 * The tractography systems have been completely overhauled to make them much more efficient, especially when working with large numbers of streamlines, as in connectomics. A pipeline approach is now taken to limit memory requirements, and more work is done in compiled code for speed. The interface has also been consolidated, with the old `track`, `rtrack`, `mtrack`, `ptrack` and `xtrack` scripts being replaced by a single, flexible `track` script, which also offers some new features such as random seeding and length thresholding. All support for tractography using FSL `probtrackx` has been removed.
