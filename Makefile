@@ -17,7 +17,7 @@ docs: build docs_timestamp
 
 archives:
 	@wd=`pwd`; cd `cat repo_loc` || exit 1; \
-	tag=`$(GIT) tag -l | grep '^v2' | sort | tail -n 1`; \
+	tag=`$(GIT) tag -l | grep '^v3' | sort | tail -n 1`; \
 	branch=`$(GIT) rev-parse --abbrev-ref HEAD`; \
 	$(GIT) checkout -q $$tag; \
 	$(GIT) submodule update --init; \
