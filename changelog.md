@@ -2,6 +2,14 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.0.1 (2016-05-18)
+
+* The `dicomsort` script's ability to sort by series number or time has been reinstated, although sorting by UID remains the default.
+* An updated version of the TractoR paper is now provided [online](http://www.tractor-mri.org.uk/paper/) and within the `share/doc/paper` subdirectory of the package. There is also a more extensive `README.md` file, and an updated `INSTALL.md` file.
+* Building the `tractor` executable should no longer fail just because the `bin/exec` subdirectory does not exist.
+* When running `make install` with the `TRACTOR_HOME` environment variable pointing to a different TractoR installation, the packages would previously be installed there in error. This has been corrected.
+* Creating transformations on a different filesystem to the system's temporary directory should no longer fail.
+
 ## 3.0.0 (2016-05-09)
 
 * The package's requirements and dependencies have been simplified somewhat. A Fortran compiler should no longer be required to install R packages, and ImageMagick is no longer needed to create images.

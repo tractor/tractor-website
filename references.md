@@ -2,7 +2,7 @@
 
 If you use TractoR in your work, please cite the following paper, which describes the package in general:
 
-> J.D. Clayden, S. Muñoz Maniega, A.J. Storkey, M.D. King, M.E. Bastin & C.A. Clark (2011). [TractoR: Magnetic resonance imaging and tractography with R](http://www.jstatsoft.org/v44/i08/). _Journal of Statistical Software_ **44**(8):1-18.
+> J.D. Clayden, S. Muñoz Maniega, A.J. Storkey, M.D. King, M.E. Bastin & C.A. Clark (2011). [TractoR: Magnetic resonance imaging and tractography with R](paper/index.html). _Journal of Statistical Software_ **44**(8):1-18.
 
 Additionally, the table below outlines the relevant papers which should be cited when using various parts of the functionality provided by TractoR.
 

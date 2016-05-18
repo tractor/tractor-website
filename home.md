@@ -27,6 +27,7 @@ TractoR is developed primarily by [Jonathan D. Clayden](http://www.homepages.ucl
 
 - The [getting started](getting-started.html) page is the place to find out about downloading and installing TractoR. Details of the major user-visible changes in each release can be found in the [changelog](changelog.html).
 - Users of TractoR 2.x may find the information on [upgrading to TractoR 3](upgrading-to-TractoR-3.html) helpful.
+- An [updated version](paper/index.html) of the original TractoR paper is available for reference.
 - There is specific information on [TractoR for R users](TractoR-for-R-users.html), and additional [detailed information](guidelines-for-contributors.html) for anyone actually contributing to the project.
 - Useful information about TractoR-specific conventions can be found on the aptly-named [conventions](conventions.html) page.
 - A specific page covers TractoR's [image registration](registration.html) capabilities.
@@ -38,6 +39,6 @@ TractoR is developed primarily by [Jonathan D. Clayden](http://www.homepages.ucl
 
 ## Reference
 
-J.D. Clayden, S. Muñoz Maniega, A.J. Storkey, M.D. King, M.E. Bastin & C.A. Clark (2011). [TractoR: Magnetic resonance imaging and tractography with R](http://www.jstatsoft.org/v44/i08/). _Journal of Statistical Software_ **44**(8):1-18.
+J.D. Clayden, S. Muñoz Maniega, A.J. Storkey, M.D. King, M.E. Bastin & C.A. Clark (2011). [TractoR: Magnetic resonance imaging and tractography with R](paper/index.html). _Journal of Statistical Software_ **44**(8):1-18.
 
 [![NITRC logo](nitrc.png)](http://www.nitrc.org/projects/tractor)
