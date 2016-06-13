@@ -2,6 +2,11 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.0.2 (2016-06-13)
+
+* Guessing of phase-reversed volumes in `dpreproc` is now more robust. Reported volumes are also numbered relative to the whole series, not just the *b*=0 volumes, for consistency with the "ReversePEVolumes" option.
+* Remapping subdirectories within a session could lead to problems finding images. This has been corrected.
+
 ## 3.0.1 (2016-05-18)
 
 * The `dicomsort` script's ability to sort by series number or time has been reinstated, although sorting by UID remains the default.
