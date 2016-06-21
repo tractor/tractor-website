@@ -2,6 +2,14 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.0.3 (2016-06-21)
+
+* The `dicomread` script now respects echo number when reconstructing images, thereby improving results from multiecho sequences.
+* Tractography pipelines (notably within `track`) can now be interrupted, using the standard Ctrl-C command. This can be useful to cancel a long-running operation.
+* The `track` and `graph-build` scripts are now consistent in their treatment of the "TargetRegions" option, allowing greater flexibility. Previously, `graph-build` would only accept parcellation labels; now, named image files may also be used.
+* A mistake relating to internal indexing in sparse arrays has been corrected. This could previously have led to errors or incorrect results in `track` when target or seed regions overlapped, and possibly other scripts.
+* Attempting to `peek` at graph objects could fail under certain circumstances. This has been corrected.
+
 ## 3.0.2 (2016-06-13)
 
 * Guessing of phase-reversed volumes in `dpreproc` is now more robust. Reported volumes are also numbered relative to the whole series, not just the *b*=0 volumes, for consistency with the "ReversePEVolumes" option.
