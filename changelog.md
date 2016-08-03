@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.0.5 (2016-08-03)
+
+* The `compress` script previously interpreted all of its arguments as parts of a single file name. This has been corrected.
+* The mean clustering coefficient reported by `graph-props` now properly respects the "DisconnectedVertices" option.
+* Encountering an empty transform directory (with an .xfmb extension) should no longer lead to an error.
+* A spurious error, arising when indexing into sparse images under certain conditions, has been fixed.
+
 ## 3.0.4 (2016-07-01)
 
 * The new `TRACTOR_NOSYMLINKS` environment variable may be set to `true` to turn symlinking operations into copies. This uses more disk space, but is required on certain file systems, notably on some network mounts.
