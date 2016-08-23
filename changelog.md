@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.0.6 (2016-08-23)
+
+* Sulcus labels are allocated to some grey matter voxels by FreeSurfer, so they have been reinstated into the Destrieux parcellation lookup table.
+* TractoR's own image viewer (the `view` script) could sometimes use incorrect colours when some regions were missing from a parcellation. This has been fixed.
+* The `dpreproc` script no longer produces errors when encountering DICOM files with no ASCII header.
+* Merging multiple related DICOM series into one image could sometimes fail. This has been corrected.
+
 ## 3.0.5 (2016-08-03)
 
 * The `compress` script previously interpreted all of its arguments as parts of a single file name. This has been corrected.
