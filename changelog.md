@@ -2,6 +2,12 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.0.7 (2016-11-07)
+
+* The 3.0.x series of releases introduced a bug in the implementation of principal networks (accessed via `graph-decompose`), which could result in nonsense output. This has now been corrected.
+* Session map keys are now fully case-insensitive, as intended.
+* The speed of the `dicomsort` script should now be a little better.
+
 ## 3.0.6 (2016-08-23)
 
 * Sulcus labels are allocated to some grey matter voxels by FreeSurfer, so they have been reinstated into the Destrieux parcellation lookup table.
