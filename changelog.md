@@ -2,6 +2,18 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 2.6.4 (2016-11-07)
+
+* The `pnt-data-sge` script will no longer specify the wrong number of array jobs to SGE when the `SessionNumbers` option is used.
+* Some minor issues with the `RNiftyReg` package have been patched.
+
+## 2.6.3 (2016-04-27)
+
+* An error in the calculation of clustering coefficients has been corrected.
+* Graphs containing only negative weights would previously be shown with an inverted colour scale. This has been corrected.
+* A subtle difference between TrackVis's voxel grid and TractoR's is now corrected for in the `streamlines2trk` script.
+* Run times are now reported for tests.
+
 ## 2.6.2 (2015-03-24)
 
 * NIfTI format files which are endian-swapped, relative to the platform being used to read them, will now be handled correctly. Previously these would lead to a rather cryptic error.
