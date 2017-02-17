@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.0.8 (2017-02-17)
+
+* Support has been added for containerised builds of TractoR using [Docker](https://hub.docker.com/r/jonclayden/tractor/).
+* Tractography operations could produce "bad allocation" errors on some platforms. This should now be fixed.
+* Tests requiring FSL will now be skipped if FSL doesn't seem to be installed, rather than producing an error.
+* The `plough` self-test should no longer fail with an error about a missing executable if the `TRACTOR_HOME` environment variable is not set.
+
 ## 3.0.7 (2016-11-07)
 
 * The 3.0.x series of releases introduced a bug in the implementation of principal networks (accessed via `graph-decompose`), which could result in nonsense output. This has now been corrected.
