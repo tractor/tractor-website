@@ -1,7 +1,3 @@
-# Home
-
-<img class="graphic" src="logo.png" alt="TractoR logo" />
-
 The TractoR (Tractography with R) project includes R packages for reading, writing and visualising magnetic resonance images stored in Analyze, NIfTI and DICOM file formats (DICOM support is read only). It also contains functions specifically designed for working with diffusion MRI and tractography, including a standard implementation of the neighbourhood tractography approach to white matter tract segmentation. A shell script is also provided to run experiments with TractoR without interacting with R. Using TractoR you can easily
 
 * Convert [DICOM files](TractoR-and-DICOM.html) from your MR scanner to Analyze/NIfTI format.
@@ -20,8 +16,6 @@ If you use TractoR in your work, please cite [the reference below](#reference). 
 TractoR is developed primarily by [Jonathan D. Clayden](http://www.homepages.ucl.ac.uk/~sejjjd2/) and colleagues at [University College London](http://www.ucl.ac.uk), with contributions and collaborations from other groups.
 
 **Please note that TractoR is research software and has not been approved for clinical use. The software is provided in the hope that it will be useful, but comes with no warranty whatsoever.**
-
-![Diffusion principal directions](principal-directions.png)
 
 ## Site contents
 
