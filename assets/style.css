@@ -79,6 +79,12 @@ div#main {
     padding-bottom: 30px;
 }
 
+@media (max-width: 767px) {
+    nav, div#banner, div#main {
+        width: 100%;
+    }
+}
+
 pre, code, kbd {
     font-family: 'Source Code Pro', monospace;
     font-size: 10pt;
