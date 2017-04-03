@@ -11,7 +11,7 @@ clean:
 build:
 	@$(MAKE) `ls -1 *.md | sort | sed 's/\.md$$/\.html/'` || exit 1
 
-upload: build upload_paper upload_timestamp
+upload: build upload_timestamp
 
 docs: build docs_paper docs_timestamp
 
@@ -36,10 +36,7 @@ downloads.html: downloads.md _template.html build.rb latest.txt
 	@./build.rb $< >$@ || ( rm -f $@; exit 1 )
 	@$(ECHO) "done"
 
-upload_paper: paper/index.html
-	@scp paper/index.html "`cat upload_target`/paper/"
-
-upload_timestamp: [^_]*.html *.css *.js *.png *.gif .htaccess tractor.tar.gz tractor.zip latest.txt
+upload_timestamp: [^_]*.html *.png .htaccess tractor.tar.gz tractor.zip latest.txt paper/* assets/*
 	@./upload.rb $? && touch upload_timestamp
 
 docs_paper: paper/index.html
