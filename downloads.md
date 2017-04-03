@@ -1,7 +1,7 @@
 # Downloads
 
 <div id="download-box">
-  <p class="first">The latest version of TractoR is <span id="version"><!--LATEST--></span>.</p>
+  <p>The latest version of TractoR is <span id="version"><!--LATEST--></span>.</p>
   <img src="download.png" alt="Download icon" />
   <p>Download <a href="#" onClick="_gaq.push(['_trackEvent', 'Downloads', 'Downloaded', 'tarball']); window.location.href='http://www.tractor-mri.org.uk/tractor.tar.gz'">tractor.tar.gz</a> or <a href="#" onClick="_gaq.push(['_trackEvent', 'Downloads', 'Downloaded', 'zipball']); window.location.href='http://www.tractor-mri.org.uk/tractor.zip'">tractor.zip</a>.</p>
 </div>

@@ -134,3 +134,12 @@ td {
     text-align: left;
     vertical-align: top;
 }
+
+div#download-box {
+    background-color: #f5f2f0;
+    padding: 10px 20px;
+}
+
+span#version {
+    font-weight: bold;
+}
