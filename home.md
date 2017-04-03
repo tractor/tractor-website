@@ -33,6 +33,6 @@ TractoR is developed primarily by [Jonathan D. Clayden](http://www.homepages.ucl
 
 ## Reference
 
-J.D. Clayden, S. Muñoz Maniega, A.J. Storkey, M.D. King, M.E. Bastin & C.A. Clark (2011). [TractoR: Magnetic resonance imaging and tractography with R](paper/index.html). _Journal of Statistical Software_ **44**(8):1-18.
+J.D. Clayden, S. Muñoz Maniega, A.J. Storkey, M.D. King, M.E. Bastin & C.A. Clark (2011). [TractoR: Magnetic resonance imaging and tractography with R](paper/index.html). _Journal of Statistical Software_ **44**(8):1–18.
 
 [![NITRC logo](nitrc.png)](http://www.nitrc.org/projects/tractor)

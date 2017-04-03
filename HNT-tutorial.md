@@ -40,9 +40,11 @@ where "genu.1" is the tract volume created by `hnt-viz` for our test session.
 
 Since the various HNT scripts have a number of options in common, which are typically repeated from one to the other, it is often convenient to store these options in a file, rather than specifying them on the command line. Moreover, since any given script will simply ignore any options which it does not use, the entire experiment's parameters can be stored in a single configuration file, or design file. For example, if we place into a file called "design.yaml" the following
 
-    TractName: genu
-    SearchWidth: 7
-    ResultsName: genu_results
+```yaml
+TractName: genu
+SearchWidth: 7
+ResultsName: genu_results
+```
 
 then our calls to the HNT scripts can be simpler and less repetitive. We can now use
 
@@ -54,12 +56,14 @@ to do the same job that our earlier `hnt-eval` command did, but with less comman
 
 Another advantage of using a design file is that it allows us to easily process multiple data sets, potentially in parallel, in one command. Thus, our design can be broadened to find matching tracts in a group of subjects:
 
-    Session: [ /data/testsubject1,
-               /data/testsubject2,
-               /data/testsubject3 ]
-    TractName: genu
-    SearchWidth: 7
-    ResultsName: genu_results
+```yaml
+Session: [ /data/testsubject1,
+           /data/testsubject2,
+           /data/testsubject3 ]
+TractName: genu
+SearchWidth: 7
+ResultsName: genu_results
+```
 
 Note that the list of test sessions is enclosed by square brackets and separated by commas (and optionally whitespace, which may include newlines as in this example). Now, we need to switch to using the `plough` program from the command line, which is designed to call a TractoR script with different sets of arguments. The commands above become
 

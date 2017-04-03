@@ -18,11 +18,13 @@ Whether `pnt-train` and `pnt-eval` or `pnt-em` are used to produce results, the 
 
 Using a so-called "unsupervised" approach, the matching model can be trained and applied iteratively using a single data set. The `pnt-em` experiment script is available to perform this function. We begin by creating a [design file](HNT-tutorial.html#using-a-design-file), which tells TractoR where to find our data, and sets the tract of interest. For this tutorial we assume the data are in subdirectories of /data. The design file, "design.yaml", will therefore look something like this:
 
-    TractName: genu
-    Session: [ /data/subject1, /data/subject2 ]
-    SearchWidth: 7
-    DatasetName: genu_data
-    ResultsName: genu_results
+```yaml
+TractName: genu
+Session: [ /data/subject1, /data/subject2 ]
+SearchWidth: 7
+DatasetName: genu_data
+ResultsName: genu_results
+```
 
 Note that we use only two subjects to keep the example short, but in practice more will be required to train the model correctly (see also the next section).
 
@@ -41,10 +43,12 @@ To create a matching model manually, it is necessary to select a number of addit
 
 Once a number of training tracts have been identified and the corresponding test sessions and seed points are known, they can be put into a design file for use with the `pnt-train` script. The design file (say "training.yaml") will look something like the following:
 
-    TractName: genu
-    Session: [ /data/trainingsubject1, /data/trainingsubject2 ]
-    Seed: [ "41,38,23", "39,41,22" ]
-    DatasetName: training
+```yaml
+TractName: genu
+Session: [ /data/trainingsubject1, /data/trainingsubject2 ]
+Seed: [ "41,38,23", "39,41,22" ]
+DatasetName: training
+```
 
 This design will involve seeding at voxel location 41,38,23 in the session rooted at /data/trainingsubject1, and at 39,41,22 in /data/trainingsubject2.
 
@@ -63,10 +67,12 @@ With the reference tract and model in place, we can move on to segmenting the ge
 
 Using the model for segmentation of the tract of interest in another subject requires a pair of commands, following a similar pattern to the ones used for training. Our aim is now to generate a series of candidate tracts in the diffusion space of the test subject, calculate the shape characteristics of each tract, and evaluate a likelihood for each under the model. We first need to create another design file, design.yaml. Its contents will be something like the following:
 
-    TractName: genu
-    SearchWidth: 7
-    DatasetName: testing
-    ResultsName: genu_results
+```yaml
+TractName: genu
+SearchWidth: 7
+DatasetName: testing
+ResultsName: genu_results
+```
 
 Note that in this case no seed points are specified. (To do so is possible, but there is rarely any need to, since a centre point can be established automatically by registering the test brain to the reference brain and transforming the reference tract seed point accordingly.) The "SearchWidth" is the width of the search neighbourhood, in voxels, along each dimension. In this case we use a 7 x 7 x 7 voxel region.
 

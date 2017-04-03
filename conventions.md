@@ -23,33 +23,35 @@ TractoR maintains this structure and expects to find the files it uses in these 
 
 The reason for using a managed file hierarchy is to avoid the need to specify the locations of several standard image files when using TractoR's core functionality. By establishing standard locations for all such files, only the top-level session directory needs to be specified, since everything else can be found by the code. TractoR therefore favours [convention over configuration](http://en.wikipedia.org/wiki/Convention_over_configuration), but if the names of specific images within a managed directory are not in keeping with the default, there is a mechanism for telling TractoR about this, through so-called "session maps". For example, the default map for the `diffusion` subdirectory, as of TractoR v3.0.0, is
 
-    rawdata: rawdata
-    data: data
-    refb0: refb0
-    mask: mask
-    maskedb0: maskedb0
-    s0: dti_S0
-    fa: dti_FA
-    md: dti_MD
-    eigenvalue: dti_eigval%
-    eigenvector: dti_eigvec%
-    axialdiff: dti_eigval1
-    radialdiff: dti_radial
-    sse: dti_SSE
-    parcellation: parcellation
+```yaml
+rawdata: rawdata
+data: data
+refb0: refb0
+mask: mask
+maskedb0: maskedb0
+s0: dti_S0
+fa: dti_FA
+md: dti_MD
+eigenvalue: dti_eigval%
+eigenvector: dti_eigvec%
+axialdiff: dti_eigval1
+radialdiff: dti_radial
+sse: dti_SSE
+parcellation: parcellation
+```
 
 This map is stored at `$TRACTOR_HOME/etc/session/diffusion/map.yaml`, and any or all of the default names can be overridden by placing a file called `map.yaml` in the `diffusion` subdirectory of a given session, using the format above. Note that the `%` symbol is used to indicate an index, so the first eigenvalue image will be called `dti_eigval1`, the second `dti_eigval2`, and so on. No image format suffix (e.g. `.nii`) should be given.
 
 The `path` script (added in TractoR v2.5.0) can be used to obtain the actual full path to the image of a particular type. For example,
 
-<pre>
-<code>$ </code><kbd>tractor -q path /data/subject1 FA</kbd>
-<code>/data/subject1/tractor/diffusion/dti_FA</code>
-</pre>
+    tractor -q path /data/subject1 FA</kbd>
+    # /data/subject1/tractor/diffusion/dti_FA
 
 Similarly, the names of the subdirectories within the main `tractor` directory can be specified in a top-level session map. This mechanism can be used to point to data outside the session directory as well, and this can be useful, for example, when processing a single data set in several different ways. For example, say we want to process the data from a single subject using `bedpost`, with both 2 and 3 fibre options. We could process the 2 fibres case, and then create a new session, say `/data/subject1_3fibres`, which points to the same diffusion data. The `/data/subject1_3fibres/tractor/map.yaml` file would then contain
 
-    diffusion: /data/subject1_2fibres/tractor/diffusion
+```yaml
+diffusion: /data/subject1_2fibres/tractor/diffusion
+```
 
 It should, however, be borne in mind that this will make the session less portable. The full default map can be found at `$TRACTOR_HOME/etc/session/map.yaml`.
 
@@ -72,13 +74,15 @@ TractoR's preferred file format for images is the [NIfTI-1](http://nifti.nimh.ni
 
 Tractography streamlines are stored in [TrackVis **.trk** format](http://www.trackvis.org/docs/?subsect=fileformat), which makes it easy to visualise them using the popular TrackVis program. However, TractoR additionally uses an auxiliary file format, with a **.trkl** extension, which stores information about "labels", named regions that individual streamlines pass through. The beginning of this file is formatted as follows.
 
-    struct trkl_header {
-        char    magic_number[8];        // The string "TRKLABEL" (hex 54 52 4b 4c 41 42 45 4c)
-        int32_t version;                // Version number; currently 1
-        int32_t n_streamlines;          // Number of streamlines; should match the .trk file
-        int32_t n_labels;               // Number of labels stored
-        char    unused[12];             // Padding bytes, currently unused
-    };
+```c
+struct trkl_header {
+    char    magic_number[8];        // The string "TRKLABEL" (hex 54 52 4b 4c 41 42 45 4c)
+    int32_t version;                // Version number; currently 1
+    int32_t n_streamlines;          // Number of streamlines; should match the .trk file
+    int32_t n_labels;               // Number of labels stored
+    char    unused[12];             // Padding bytes, currently unused
+};
+```
 
 There then follows a dictionary of names, consisting of a (32-bit signed) integer index value and then a zero-terminated string containing the name, for each label in turn. Indices do not have to be sequential, nor in any particular order. Finally, the mapping from streamlines to labels is given. For each streamline, in the same order as the .trk file, the number of labels associated with it is written as a (32-bit signed) integer, followed by the appropriate number of (32-bit signed) integers giving the indices of each of those labels.
 

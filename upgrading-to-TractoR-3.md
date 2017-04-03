@@ -58,10 +58,12 @@ In TractoR 3.0, support for both multicore and grid engine parallelisation is fu
 
 The `pnt-data` script serves as a good illustrative example. In typical previous use one might create a design file, let's say "design.yaml", with contents like
 
-    TractName: genu
-    SessionList: [ /data/subject1, /data/subject2 ]
-    SearchWidth: 7
-    DatasetName: genu_data
+```yaml
+TractName: genu
+SessionList: [ /data/subject1, /data/subject2 ]
+SearchWidth: 7
+DatasetName: genu_data
+```
 
 The "SessionList" variable, expected by `pnt-data` in TractoR 2.x, tells the script where to find several datasets, which it would work through sequentially, in parallel across cores, or using a grid engine, using one of the commands
 
@@ -79,9 +81,11 @@ There are a few things to note here. Firstly, `pnt-data` now takes a session dir
 
 Using `plough` not only opens up parallelisation to all the package's scripts, but it also allows for some more complex commands. Let's say we want to run `pnt-data` for multiple tracts and sessions, all at once. We update our design file first:
 
-    TractName: [ genu, splenium ]
-    Session: [ /data/subject1, /data/subject2 ]
-    SearchWidth: 7
+```yaml
+TractName: [ genu, splenium ]
+Session: [ /data/subject1, /data/subject2 ]
+SearchWidth: 7
+```
 
 Now, we can construct a more complex call to `plough`, such as
 
@@ -127,17 +131,15 @@ Finally, we need to create an alias for TractoR 3, which sets the `TRACTOR_HOME`
 
 to the ".bashrc" file in your home directory. (Note that this is a hidden file and may not be visible from a file browser.) You can then run `tractor3` instead of `tractor` from the command line when you want to use the new version:
 
-<pre>
-<code>$ </code><kbd>tractor3 platform</kbd>
-<code>Starting TractoR environment...
-               Machine : x86_64
-               OS name : Darwin
-            OS release : 15.4.0
-TractoR home directory : /usr/local/tractor3
-       TractoR version : 3.0.0
-             R version : 3.3.0
-      R build platform : x86_64-apple-darwin15.4.0
-     R package library : /usr/local/tractor3/lib/R
-           FSL version : 5.0.9
-Experiment completed with 0 warning(s) and 0 error(s)</code>
-</pre>
+    tractor3 platform
+    # Starting TractoR environment...
+    #                Machine : x86_64
+    #                OS name : Darwin
+    #             OS release : 15.4.0
+    # TractoR home directory : /usr/local/tractor3
+    #        TractoR version : 3.0.0
+    #              R version : 3.3.0
+    #       R build platform : x86_64-apple-darwin15.4.0
+    #      R package library : /usr/local/tractor3/lib/R
+    #            FSL version : 5.0.9
+    # Experiment completed with 0 warning(s) and 0 error(s)
