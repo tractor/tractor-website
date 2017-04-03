@@ -13,7 +13,7 @@ The TractoR (Tractography with R) project includes R packages for reading, writi
 
 If you use TractoR in your work, please cite [the reference below](#reference). For details of research papers underlying the methods implemented in the package, please see the [references page](references.html). If you would like to hear about new releases and other TractoR-related news, we would suggest joining the [users' mailing list](https://www.jiscmail.ac.uk/cgi-bin/webadmin?A0=TRACTOR). General queries or problems may also be raised there, while bugs and other specific issues may be reported using the [GitHub issue tracker](https://github.com/jonclayden/tractor/issues). Please describe any problem as fully as possible.
 
-TractoR is developed primarily by [Jonathan D. Clayden](http://www.homepages.ucl.ac.uk/~sejjjd2/) and colleagues at [University College London](http://www.ucl.ac.uk), with contributions and collaborations from other groups.
+TractoR is developed primarily by [Jon Clayden](http://www.homepages.ucl.ac.uk/~sejjjd2/) and colleagues at [University College London](http://www.ucl.ac.uk), with contributions and collaborations from other groups.
 
 **Please note that TractoR is research software and has not been approved for clinical use. The software is provided in the hope that it will be useful, but comes with no warranty whatsoever.**
 
