@@ -21,6 +21,7 @@ class HTMLWithTweaks < Redcarpet::Render::HTML
     end
     
     def block_code (code, language)
+        language = "bash" if language.nil? or language.empty?
         if (code.count("\n") > 1)
             "\n<pre><code class=\"language-#{language} line-numbers\">#{code}</code></pre>\n"
         else
