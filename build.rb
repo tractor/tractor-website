@@ -19,6 +19,14 @@ class HTMLWithTweaks < Redcarpet::Render::HTML
             "\n<h1>#{text}</h1>\n"
         end
     end
+    
+    def block_code (code, language)
+        if (code.count("\n") > 1)
+            "\n<pre><code class=\"language-#{language} line-numbers\">#{code}</code></pre>\n"
+        else
+            "\n<pre><code class=\"language-#{language}\">#{code}</code></pre>\n"
+        end
+    end
 end
 
 template = File.open("_template.html") { |file| file.read }
