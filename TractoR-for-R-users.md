@@ -8,7 +8,9 @@ The `tractor.base` package is the most general-purpose of the TractoR packages, 
 
 The key class in the base package is `MriImage`, which is a reference class representing an MR image, including metadata such as the source file, image dimensions and so on. Functions are provided for reading such images from Analyze/NIfTI files (`readImageFile`), from DICOM files (`readDicomDirectory`); and for creating them from other `MriImage` objects via operations such as thresholding or masking (see `?asMriImage`). The class inherits from `SerialisableObject`, a simple extension of the base reference class which adds a method for serialising the fields of the object to a list. If only the underlying array of image data values is required, it can be extracted from an `MriImage` object, say `image`, with
 
-    image$getData()
+```r
+image$getData()
+```
 
 The result is a standard numeric array with appropriate dimensions. The group generic functions `Math`, `Ops` and `Summary` are defined for the `MriImage` class (although the `Summary` group generic currently works only for a single image argument, so `max(image1,image2)` won't work). Standard array element extraction and replacement also work, with extraction returning an array and replacement a new `MriImage` object (`?MriImage` for details).
 
@@ -28,34 +30,36 @@ Further information on the usage and function of the `tractor` shell script can 
 
 A reasonably simple TractoR script is shown below, by way of illustration. This is in fact the script called `mean`, which averages the value of some metric within the nonzero region of a mask image. It exhibits many of the common characteristics of these scripts. The lines are numbered here for ease of reference, but in a real script these should not be included.
 
-    01  #@args metric image, [mask image]
-    02  #@desc Calculate the mean or weighted mean value of a metric within the nonzero region of a brain volume. The specified mask image can be used as a binary mask (the default) or as a set of weights (with AveragingMode:weighted). In the latter case any weight threshold given is ignored. If the mask is missing then the metric image is itself the mask.
-    03  
-    04  runExperiment <- function ()
-    05  {
-    06      requireArguments("metric image")
-    07      metricImage <- readImageFile(Arguments[1])
-    08      
-    09      if (nArguments() > 1)
-    10          maskImage <- readImageFile(Arguments[2])
-    11      else
-    12          maskImage <- metricImage$copy()
-    13      
-    14      mode <- getConfigVariable("AveragingMode", "binary", validValues=c("binary","weighted"))
-    15      threshold <- getConfigVariable("ThresholdLevel", 0.01)
-    16      thresholdMode <- getConfigVariable("ThresholdRelativeTo", "nothing", validValues=c("nothing","maximum","minimum"))
-    17      
-    18      if (thresholdMode == "maximum")
-    19          threshold <- threshold * max(maskImage, na.rm=TRUE)
-    20      else if (thresholdMode == "minimum")
-    21          threshold <- threshold * min(maskImage, na.rm=TRUE)
-    22      
-    23      if (mode == "binary")
-    24          maskImage$threshold(threshold)$binarise()
-    25      
-    26      metric <- sum(metricImage * maskImage, na.rm=TRUE) / sum(maskImage, na.rm=TRUE)
-    27      cat(paste(metric, "\n", sep=""))
-    28  }
+```r
+#@args metric image, [mask image]
+#@desc Calculate the mean or weighted mean value of a metric within the nonzero region of a brain volume. The specified mask image can be used as a binary mask (the default) or as a set of weights (with AveragingMode:weighted). In the latter case any weight threshold given is ignored. If the mask is missing then the metric image is itself the mask.
+
+runExperiment <- function ()
+{
+    requireArguments("metric image")
+    metricImage <- readImageFile(Arguments[1])
+    
+    if (nArguments() > 1)
+        maskImage <- readImageFile(Arguments[2])
+    else
+        maskImage <- metricImage$copy()
+    
+    mode <- getConfigVariable("AveragingMode", "binary", validValues=c("binary","weighted"))
+    threshold <- getConfigVariable("ThresholdLevel", 0.01)
+    thresholdMode <- getConfigVariable("ThresholdRelativeTo", "nothing", validValues=c("nothing","maximum","minimum"))
+    
+    if (thresholdMode == "maximum")
+        threshold <- threshold * max(maskImage, na.rm=TRUE)
+    else if (thresholdMode == "minimum")
+        threshold <- threshold * min(maskImage, na.rm=TRUE)
+    
+    if (mode == "binary")
+        maskImage$threshold(threshold)$binarise()
+    
+    metric <- sum(metricImage * maskImage, na.rm=TRUE) / sum(maskImage, na.rm=TRUE)
+    cat(paste(metric, "\n", sep=""))
+}
+```
 
 The only mandatory part of a script file is the definition of a `runExperiment()` function, with no arguments, as on line 4. The R code which forms the functional body of the script must be put exclusively within this function. No other functions will be run. Moreover, with the exception of statements to load required packages, no R code should be positioned outside of the `runExperiment()` function. Calls to `library()` or `require()` for all required packages except `tractor.utils`, `utils`, `graphics`, `grDevices` and `stats` should be included in this way.
 
@@ -63,6 +67,8 @@ Scripts may take any number of unnamed arguments and/or named configuration para
 
 TractoR scripts are self-documenting, and a number of special comments are used to provide this documentation. The `#@args` comment specifies unnamed arguments which the script accepts, with optional arguments in square brackets (line 1), and lines starting `#@desc` describe the function of the script (line 2). Note that there should be only one line of arguments, but there can be many lines of description. If the script is purely informative and doesn't need to be included within the history log file, you should include a line containing just
 
-    #@nohistory TRUE
+```r
+#@nohistory TRUE
+```
 
 so that the `tractor` shell script will handle it properly. The shell script will also look for calls to `getConfigVariable()`, so that it can report the named parameters supported by the script.
