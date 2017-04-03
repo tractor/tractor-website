@@ -83,6 +83,17 @@ div#main {
     nav, div#banner, div#main {
         width: 100%;
     }
+    
+    div#main {
+        box-sizing: border-box;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    img#logo {
+        width: 95%;
+        height: auto;
+    }
 }
 
 pre, code, kbd {
