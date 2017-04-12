@@ -3,7 +3,7 @@
 <div id="download-box">
   <p>The latest version of TractoR is <span id="version"><!--LATEST--></span>.</p>
   <img src="download.png" alt="Download icon" />
-  <p>Download <a href="#" onClick="_gaq.push(['_trackEvent', 'Downloads', 'Downloaded', 'tarball']); window.location.href='http://www.tractor-mri.org.uk/tractor.tar.gz'">tractor.tar.gz</a> or <a href="#" onClick="_gaq.push(['_trackEvent', 'Downloads', 'Downloaded', 'zipball']); window.location.href='http://www.tractor-mri.org.uk/tractor.zip'">tractor.zip</a>.</p>
+  <p>Download <a href="#" onClick="ga('send','event','Downloads','Downloaded','tarball'); window.location.href='http://www.tractor-mri.org.uk/tractor.tar.gz'">tractor.tar.gz</a> or <a href="#" onClick="ga('send','event','Downloads','Downloaded','zipball'); window.location.href='http://www.tractor-mri.org.uk/tractor.zip'">tractor.zip</a>.</p>
 </div>
 
 Full source code is included in the download. TractoR is developed according to good software engineering practice, and release numbering follows a [clear and consistent pattern](http://semver.org):
