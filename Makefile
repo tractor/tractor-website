@@ -13,7 +13,7 @@ build:
 
 upload: build upload_timestamp
 
-docs: build docs_paper docs_timestamp
+docs: build docs_timestamp
 
 archives:
 	@wd=`pwd`; cd `cat repo_loc` || exit 1; \
@@ -39,8 +39,5 @@ downloads.html: downloads.md _template.html build.rb latest.txt
 upload_timestamp: [^_]*.html *.png .htaccess tractor.tar.gz tractor.zip latest.txt paper/* assets/*
 	@./upload.rb $? && touch upload_timestamp
 
-docs_paper: paper/index.html
-	@cp -v paper/index.html "`cat docs_target`/paper/"
-
-docs_timestamp: [^_]*.html *.css *.js *.png *.gif
-	@cp -v $? "`cat docs_target`/" && touch docs_timestamp
+docs_timestamp: [^_]*.html *.png paper/* assets/*
+	@./upload.rb -d $? && touch docs_timestamp
