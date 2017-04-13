@@ -84,15 +84,17 @@ div#main {
         width: 100%;
     }
     
+    img#logo {
+        width: 95%;
+        height: auto;
+    }
+}
+
+@media (max-width: 787px) {
     div#main {
         box-sizing: border-box;
         padding-left: 10px;
         padding-right: 10px;
-    }
-    
-    img#logo {
-        width: 95%;
-        height: auto;
     }
 }
 
