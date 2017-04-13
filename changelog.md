@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.0.9 (2017-04-13)
+
+* The `hnt-viz`, `pnt-viz` and `pnt-prune` scripts would previously number their output incorrectly, using the argument index rather than the data file index. When called through `plough`, this could lead to a single output file being repeatedly overwritten. This has been corrected.
+* Spurious errors about non-numeric arguments should no longer arise when reading a DICOM series using an implicit VR transfer syntax.
+* When reading from a .trk/.trkl file pair, the metadata is now checked to ensure that the two files agree on the number of streamlines present. This should avoid potential crashes when a .trk file is updated without its partner.
+* The documentation has been updated to match the new style of the TractoR website.
+
 ## 3.0.8 (2017-02-17)
 
 * Support has been added for containerised builds of TractoR using [Docker](https://hub.docker.com/r/jonclayden/tractor/).
