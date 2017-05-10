@@ -101,7 +101,7 @@ Various pieces of information about the results, including the likelihood log-ra
 
 The mean FA along the selected tract can then be calculated using the `mean` script, as in
 
-    plough -C mean %Session@FA genu.%%
+    plough -C design.yaml mean %Session@FA genu.%%
 
 ## Summary
 
