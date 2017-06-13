@@ -6,6 +6,7 @@ The significant user-visible changes in each release of TractoR are documented b
 
 * A more robust alternative to TractoR's internal DICOM-handling code is now available in the form of `divest`, a new first-party R package wrapped around the popular tool [`dcm2niix`](https://github.com/rordenlab/dcm2niix). Although the internal method remains the default in `dicomread` for backwards compatibility, using `divest` offers several advantages, such as removal of the need to pre-sort DICOM directories, interactive selection of series, and semi-automatic session construction. The internal code is still used by `dicomtags`.
 * Tags, representing general and extensible image metadata, may now be written to auxiliary .tags files in YAML format -- and key metadata from DICOM files is now written out in this way by `dicomread` with `Method:divest`. These will automatically be read back in with the associated image, allowing acquisition parameters and other useful information to be kept with images.
+* A totally new set of [reference tracts](reference-tracts.html) have been added for use with [probabilistic neighbourhood tractography](PNT-tutorial.html), based on manual selection of tracts from 80 healthy adults aged 25–64. In addition, a series of pretrained models for each tract are available, based on the same cohort, to simplify usage in new datasets. Further details may be found in a paper at MIUA 2017. To use these reference tracts, the `TRACTOR_REFTRACT_SET` environment variable should be set to `miua2017`.
 * Tractography may now be performed using the diffusion tensor as the underlying signal model. Although less sophisticated than FSL-BEDPOSTX, the tensor model is much quicker to fit, and may be of interest for comparison. The `track` script gains a "PreferredModel" option, which may be set to `dti` if required.
 * The new `deface` script can be used to mask out the face area of high-resolution structural images to prevent face reconstruction and preserve anonymity.
 * The internal viewer accessed through the `view` script gains a polar plot panel for orientational data, notably diffusion data. This will be used by default for viewing 4D diffusion-weighted images in a session. The viewer now also ignores infinite values when calculating the intensity window.
@@ -15,9 +16,11 @@ The significant user-visible changes in each release of TractoR are documented b
 * The `apply` script will now print out simple vectors as well as scalar results.
 * The performance of `pnt-prune` has been substantially improved.
 * The `platform` script now also lists the R packages installed in TractoR's package library, along with their version numbers.
+* The `loder` package is now used instead of `png` for writing PNG files. As a result, no external `libpng` library is required.
 * The third-party `yaml` package now handles reading and writing YAML files.
-* TractoR may now be installed using [Homebrew](https://brew.sh).
+* TractoR may now be installed using [Homebrew](https://brew.sh). Partly to support this, the TractoR directory structure now more closely follows the [Filesystem Hierarchy Standard](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard).
 * Each test is now run in a separate temporary directory, which allows them to be run in parallel. Tests requiring FSL will now be skipped if it is not installed, rather than failing.
+* [Heuristic neighbourhood tractography](HNT-tutorial.html) is now deprecated in favour of [probabilistic neighbourhood tractography](PNT-tutorial.html).
 * Support for the session directory format used in TractoR 1.x is now deprecated, and will be removed in a future release.
 
 ## 3.0.9 (2017-04-13)
