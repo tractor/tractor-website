@@ -2,17 +2,19 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
-## 3.1.0
+## 3.1.0 (2017-06-14)
 
 * A more robust alternative to TractoR's internal DICOM-handling code is now available in the form of `divest`, a new first-party R package wrapped around the popular tool [`dcm2niix`](https://github.com/rordenlab/dcm2niix). Although the internal method remains the default in `dicomread` for backwards compatibility, using `divest` offers several advantages, such as removal of the need to pre-sort DICOM directories, interactive selection of series, and semi-automatic session construction. The internal code is still used by `dicomtags`.
 * Tags, representing general and extensible image metadata, may now be written to auxiliary .tags files in YAML format -- and key metadata from DICOM files is now written out in this way by `dicomread` with `Method:divest`. These will automatically be read back in with the associated image, allowing acquisition parameters and other useful information to be kept with images.
 * A totally new set of [reference tracts](reference-tracts.html) have been added for use with [probabilistic neighbourhood tractography](PNT-tutorial.html), based on manual selection of tracts from 80 healthy adults aged 25–64. In addition, a series of pretrained models for each tract are available, based on the same cohort, to simplify usage in new datasets. Further details may be found in a paper at MIUA 2017. To use these reference tracts, the `TRACTOR_REFTRACT_SET` environment variable should be set to `miua2017`.
 * Tractography may now be performed using the diffusion tensor as the underlying signal model. Although less sophisticated than FSL-BEDPOSTX, the tensor model is much quicker to fit, and may be of interest for comparison. The `track` script gains a "PreferredModel" option, which may be set to `dti` if required.
+* The `track` script also gains "StepLength" and "MaxLength" options.
 * The new `deface` script can be used to mask out the face area of high-resolution structural images to prevent face reconstruction and preserve anonymity.
 * The internal viewer accessed through the `view` script gains a polar plot panel for orientational data, notably diffusion data. This will be used by default for viewing 4D diffusion-weighted images in a session. The viewer now also ignores infinite values when calculating the intensity window.
 * The `slice` script now allows different colour scales to be used for each overlay, and allows out-of-window voxels to be masked out rather than clipped to the extremes. It is also less affected by nonfinite data values.
 * TractoR is now aware of masked (i.e., brain-extracted) and unmasked reference images in each space, and when performing implicit registration, it will attempt to register masked images to masked images and unmasked images to unmasked images. This should improve registration accuracy.
 * Voxels with zero variance will now be ignored when performing PCA in `graph-build`. There is also tentative support for nuisance regressors when calculating functional connectivity matrices.
+* The `graph-props` script gains an option to normalise graph weights, fixing the maximum at 1 (as the [Brain Connectivity Toolbox](https://sites.google.com/site/bctnet/) does for certain properties). A correction to weighted clustering coefficients has been added, and two weighted generalisations of the mean clustering coefficient are now available.
 * The `apply` script will now print out simple vectors as well as scalar results.
 * The performance of `pnt-prune` has been substantially improved.
 * The `platform` script now also lists the R packages installed in TractoR's package library, along with their version numbers.

@@ -1,5 +1,7 @@
 # HNT tutorial
 
+**Please note that heuristic neighbourhood tractography is now deprecated. For new projects, please use the much more sophisticated and flexible [probabilistic neighbourhood tractography](PNT-tutorial.html).**
+
 ## Overview
 
 This tutorial describes how to use TractoR to perform neighbourhood tractography using the heuristic method described in [Ref. (1)](#reference). Heuristic neighbourhood tractography (HNT) uses a reference tract as a guide to the topology of the white matter structure that needs to be segmented.
