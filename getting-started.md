@@ -30,7 +30,7 @@ Unless you want to interact with TractoR exclusively through R (which is unlikel
 
     export TRACTOR_HOME=/usr/local/tractor
     export PATH=${TRACTOR_HOME}/bin:$PATH
-    export MANPATH=${TRACTOR_HOME}/man:$MANPATH
+    export MANPATH=${TRACTOR_HOME}/share/man:$MANPATH
 
 (If you have unpacked the tarball somewhere than `/usr/local/tractor`, you will need to alter the first line accordingly.) In order to test that the environment is set up correctly, try typing
 

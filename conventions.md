@@ -40,7 +40,7 @@ sse: dti_SSE
 parcellation: parcellation
 ```
 
-This map is stored at `$TRACTOR_HOME/etc/session/diffusion/map.yaml`, and any or all of the default names can be overridden by placing a file called `map.yaml` in the `diffusion` subdirectory of a given session, using the format above. Note that the `%` symbol is used to indicate an index, so the first eigenvalue image will be called `dti_eigval1`, the second `dti_eigval2`, and so on. No image format suffix (e.g. `.nii`) should be given.
+This map is stored at `$TRACTOR_HOME/share/tractor/session/diffusion/map.yaml`, and any or all of the default names can be overridden by placing a file called `map.yaml` in the `diffusion` subdirectory of a given session, using the format above. Note that the `%` symbol is used to indicate an index, so the first eigenvalue image will be called `dti_eigval1`, the second `dti_eigval2`, and so on. No image format suffix (e.g. `.nii`) should be given.
 
 The `path` script (added in TractoR v2.5.0) can be used to obtain the actual full path to the image of a particular type. For example,
 
@@ -53,7 +53,7 @@ Similarly, the names of the subdirectories within the main `tractor` directory c
 diffusion: /data/subject1_2fibres/tractor/diffusion
 ```
 
-It should, however, be borne in mind that this will make the session less portable. The full default map can be found at `$TRACTOR_HOME/etc/session/map.yaml`.
+It should, however, be borne in mind that this will make the session less portable. The full default map can be found at `$TRACTOR_HOME/share/tractor/session/map.yaml`.
 
 ## Implicit operations
 
@@ -66,7 +66,7 @@ A relatively complex example is the `parcellation` image in diffusion space, whi
 3. TractoR checks whether a transformation from structural to diffusion space has been calculated and stored in the `transforms` subdirectory. If not, the reference T1-weighted image is registered to the reference *b*=0 image in diffusion space, and the transform is stored for future use.
 4. The parcellation is transformed from structural to diffusion space, using a non-overlapping binarised trilinear interpolation scheme, whose inclusiveness is determined by `track`'s "ParcellationConfidence" option.
 
-The details of the registrations performed between spaces are controlled by the "transformation strategy", whose defaults can be found at `$TRACTOR_HOME/etc/session/transforms/strategy.yaml`. This may be overridden per-session, by placing a similar `strategy.yaml` file into its `transforms` subdirectory.
+The details of the registrations performed between spaces are controlled by the "transformation strategy", whose defaults can be found at `$TRACTOR_HOME/share/tractor/session/transforms/strategy.yaml`. This may be overridden per-session, by placing a similar `strategy.yaml` file into its `transforms` subdirectory.
 
 ## File types
 

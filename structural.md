@@ -14,7 +14,7 @@ If multiple T1-weighted images are given then by default TractoR will coregister
 
 ## Parcellation
 
-Anatomical parcellation of a structural image is a prerequisite for some kinds of analysis, and must be performed before the parcellation can be propagated to any other space, such as diffusion. The key script for this is `parcellate`. It is passed a parcellated image, of the same dimensions as the averaged reference T1-weighted image but with coherent regions labelled with an integer index. A lookup table is required to convert between numerical indices and region names, and some examples for typical atlases are included in `$TRACTOR_HOME/etc/parcellations`.
+Anatomical parcellation of a structural image is a prerequisite for some kinds of analysis, and must be performed before the parcellation can be propagated to any other space, such as diffusion. The key script for this is `parcellate`. It is passed a parcellated image, of the same dimensions as the averaged reference T1-weighted image but with coherent regions labelled with an integer index. A lookup table is required to convert between numerical indices and region names, and some examples for typical atlases are included in `$TRACTOR_HOME/share/tractor/parcellations`.
 
 For example, to run FSL-FLIRT on the reference T1 image for a session and import the parcellation created by it, you might run
 
