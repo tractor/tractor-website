@@ -44,7 +44,7 @@ This map is stored at `$TRACTOR_HOME/etc/session/diffusion/map.yaml`, and any or
 
 The `path` script (added in TractoR v2.5.0) can be used to obtain the actual full path to the image of a particular type. For example,
 
-    tractor -q path /data/subject1 FA</kbd>
+    tractor -q path /data/subject1 FA
     # /data/subject1/tractor/diffusion/dti_FA
 
 Similarly, the names of the subdirectories within the main `tractor` directory can be specified in a top-level session map. This mechanism can be used to point to data outside the session directory as well, and this can be useful, for example, when processing a single data set in several different ways. For example, say we want to process the data from a single subject using `bedpost`, with both 2 and 3 fibre options. We could process the 2 fibres case, and then create a new session, say `/data/subject1_3fibres`, which points to the same diffusion data. The `/data/subject1_3fibres/tractor/map.yaml` file would then contain

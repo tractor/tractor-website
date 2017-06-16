@@ -83,7 +83,7 @@ Now, the standard `TRACTOR_HOME` variable cannot be set up as usual, because it 
 
 where `/usr/local/tractor2` is the directory containing the TractoR 2.x installation. You can then run `tractor2` instead of `tractor` from the command line when you want to use the new version:
 
-    tractor2 -z platform</kbd>
+    tractor2 -z platform
     # Starting TractoR environment...
     #                Machine : x86_64
     #                OS name : Darwin

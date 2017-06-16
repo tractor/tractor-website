@@ -6,7 +6,7 @@ TractoR provides some facilities for working with DICOM files, but the [DICOM st
 
 The `dicomtags` TractoR script allows you to list all of the DICOM tags in a particular file, along with their values. For example,
 
-    tractor dicomtags $TRACTOR_HOME/tests/data/dicom/01.dcm</kbd>
+    tractor dicomtags $TRACTOR_HOME/tests/data/dicom/01.dcm
     # Starting TractoR environment...
     # DESCRIPTION                   VALUE
     #  Group 0002 Length             188
@@ -39,7 +39,7 @@ The `dicomtags` TractoR script allows you to list all of the DICOM tags in a par
 
 For files from a Siemens scanner which contain an embedded, proprietary ASCII header, this can be extracted by setting the "SiemensAscii" option:
 
-    tractor dicomtags $TRACTOR_HOME/tests/data/dicom/01.dcm SiemensAscii:true</kbd>
+    tractor dicomtags $TRACTOR_HOME/tests/data/dicom/01.dcm SiemensAscii:true
     # Starting TractoR environment...
     # ulVersion                                = 0x1421cf5
     # tSequenceFileName                        = "%SiemensSeq%\gre"
@@ -58,7 +58,7 @@ For files from a Siemens scanner which contain an embedded, proprietary ASCII he
 
 Different scans within a single session are often divided into different image "series", and these can be separated using the `dicomsort` script:
 
-    tractor dicomsort $TRACTOR_HOME/tests/data/dicom</kbd>
+    tractor dicomsort $TRACTOR_HOME/tests/data/dicom
     # Starting TractoR environment...
     # * * INFO: Reading series identifiers from 4 files
     # * * INFO: Found series 8, 9; creating subdirectories
@@ -68,7 +68,7 @@ Different scans within a single session are often divided into different image "
 
 Finally, a directory of DICOM files can be converted to an Analyze/NIfTI/MGH image using the `dicomread` script:
 
-    tractor dicomread $TRACTOR_HOME/tests/data/dicom/9_fl3D_t1_sag</kbd>
+    tractor dicomread $TRACTOR_HOME/tests/data/dicom/9_fl3D_t1_sag
     # Starting TractoR environment...
     # * * INFO: Looking for DICOM files in directory /usr/local/tractor/tests/data/dicom/9_fl3D_t1_sag
     # * * INFO: Reading image information from 2 files
