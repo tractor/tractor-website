@@ -12,7 +12,7 @@ The preprocessing steps required to run neighbourhood tractography or other anal
 
 Whichever method is used to perform them, the requisite steps are as follows.
 
-1. Convert DICOM files from an MR scanner into a 4D data set file in Analyze or NIfTI format. TractoR can perform this conversion for a number of types of DICOM files, but users may prefer to use their own site tools for this step. (Please bear in mind that TractoR's DICOM support has [some limitations](TractoR-and-DICOM.html).) The result is an image called `rawdata` (with appropriate suffix depending on the file type) in the `diffusion` subdirectory of the TractoR session hierarchy. The file `directions.txt`, which describes the diffusion weighting applied to the images, will also be created if possible. **If the relevant information is not available, this latter file must be created manually**—if this is the case then TractoR will produce a warning.
+1. Convert DICOM files from an MR scanner into a 4D data set file in Analyze or NIfTI format. The result is an image called `rawdata` (with appropriate suffix depending on the file type) in the `diffusion` subdirectory of the TractoR session hierarchy. The file `directions.txt`, which describes the diffusion weighting applied to the images, will also be created if possible. **If the relevant information is not available, this latter file must be created manually**—if this is the case then TractoR will produce a warning.
 2. Optionally correct for susceptibility-induced distortions with FSL [`topup`](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/TOPUP), then identify an image volume with little or no diffusion weighting, to be used as an anatomical reference. By default this file will be called `refb0` and stored in the `diffusion` subdirectory.
 3. Create a mask which covers only that part of the `refb0` volume which is within the brain. Skull and other nonbrain tissue is left outside this mask. The image file `mask` is created in the `diffusion` subdirectory, as well as a masked version of the anatomical reference image, called `maskedb0`.
 4. Correct for eddy current-induced distortion effects in the data, using the anatomical reference volume as a registration target. This step currently uses one of the FSL tools `eddy` or `eddy_correct`, or the internal NiftyReg interface, and produces a file called `data` in the `diffusion` subdirectory.
@@ -40,6 +40,10 @@ By default, TractoR will assume that all DICOM files it finds under the main ses
     tractor dpreproc DicomDirectories:dicom/dti
 
 Notice that the DICOM subdirectory given is relative to the session directory. More than one directory can be specified if multiple acquisition series are relevant.
+
+Alternatively, the newer [`divest` back-end](TractoR-and-DICOM.html#the-divest-back-end) can be used to select the relevant series interactively, using
+
+    tractor dpreproc DicomReader:divest
 
 The preprocessing can be completed noninteractively by setting the "Interactive" option to `false`:
 
@@ -83,7 +87,7 @@ Fitting diffusion tensors is a standard processing step for diffusion-weighted d
 
 There are three alternative approaches to fitting the tensors available, but standard least-squares fitting is the default: see `tractor -o tensorfit` for details. The [Camino toolkit](http://www.camino.org.uk) offers many more methods.
 
-The tractography that TractoR and FSL use is probabilistic, however, and does not use the diffusion tensor. Instead, the FSL [BEDPOSTX algorithm](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#BEDPOSTX) is used to fit a "ball-and-sticks" model and generate samples for probabilistic tractography. This typically takes several hours. The command for running this is
+The diffusion tensor is a very limited model, however, particularly for tractography. It is therefore recommended to run FSL [BEDPOSTX algorithm](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#BEDPOSTX) to fit a "ball-and-sticks" model and generate samples for probabilistic tractography. This typically takes several hours. The command for running this is
 
     tractor bedpost
 

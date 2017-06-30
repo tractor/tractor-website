@@ -60,6 +60,8 @@ However additional graph-theoretical metrics can be calculated and displayed usi
 
     tractor graph-props graph.Rdata
 
+By default, the latter script will binarise the graph and report binary versions of the various metrics. It will also ignore any vertices which are not connected to any others, excluding them from all calculations. However, there are a number of options to control whether or not the graph is binarised and at what edge weight threshold, how to handle negative weights and disconnected vertices, and whether to renormalise the edge weights. See `tractor -o graph-props` for details.
+
 ## Graph visualisation
 
 The `graph-viz` script can be used to visualise graphs, either as an association matrix or in traditional topological form.

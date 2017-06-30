@@ -79,8 +79,38 @@ Finally, a directory of DICOM files can be converted to an Analyze/NIfTI/MGH ima
     #  Image dimensions : 2 x 224 x 256 voxels
     #  Voxel dimensions : 1 x 1 x 1 mm
     # Coordinate origin : (19.25,95.05,134.78)
-    #   Additional tags : 0
+    #   Additional tags : (none)
     #        Sparseness : 0.84% (dense storage)
     # Experiment completed with 0 warning(s) and 0 error(s)
 
 As of TractoR version 2.1.0, the `imageinfo` script can be used instead, if only information about the image formed from the DICOM directory is required.
+
+## The divest back-end
+
+In TractoR version 3.1.0 a new DICOM back-end based on [Chris Rorden's `dcm2niix`](https://github.com/rordenlab/dcm2niix) (via the [`divest` R package](https://github.com/jonclayden/divest)) was added. As well as being more robust and more extensively tested, this route handles multiple series at once and interactively, removing the need to pre-sort DICOM directories. It also extracts more metadata from the DICOM files, storing it in auxiliary .tags files. For example,
+
+    tractor dicomread $TRACTOR_HOME/tests/data/dicom Method:divest FileNames:metadata
+    # Starting TractoR environment...
+    # * INFO: Looking for DICOM files in directory /usr/local/tractor/tests/data/dicom...
+    # 
+    # 1: Series 8 "DTIb3000s5", TE 112 ms, TR 4100 ms 
+    # 2: Series 9 "fl3D_t1_sag", TE 4.94 ms, TR 11 ms
+    # 
+    # Type <Enter> for all series, 0 for none, or indices separated by spaces or commas
+    # Selected series: 2
+    # * INFO: Image _0_S009_fl3D_t1_sag appears to be T1-weighted
+    # * INFO: Finalising images and writing them out...
+    # Experiment completed with 0 warning(s) and 0 error(s)
+    
+    tractor imageinfo _0_S009_fl3D_t1_sag
+    # Starting TractoR environment...
+    #      Image source : /tmp/_0_S009_fl3D_t1_sag
+    #  Image dimensions : 2 x 224 x 256 voxels
+    #  Voxel dimensions : 1 x 1 x 1 mm
+    # Coordinate origin : (19.25,95.05,134.78)
+    #   Additional tags : imageType, fieldStrength, flipAngle, echoTime, repetitionTime, phaseEncodingDirection, phaseEncodingSign
+    # Experiment completed with 0 warning(s) and 0 error(s)
+
+Notice that the initial DICOM-to-NIfTI conversion is now interactive, giving you the chance to choose which series to convert. In addition, the converted image retains additional metadata such as the field strength used, the TE, TR and flip angle.
+
+In addition to this, the `CreateSession:true` can be given, in which case a standard TractoR session directory structure is created, and heuristics are used to determine where to place each converted image.
