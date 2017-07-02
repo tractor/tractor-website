@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.1.1 (2017-07-03)
+
+* Tractography results could previously be wrong if a session used a mixture of images stored in different orientations. This has been corrected.
+* The `track` script now reports the time spent tracking.
+* A disparity between TractoR and NiftyReg in the assumed orientation of ANALYZE-format files has been corrected. This should resolve failed registration of these files.
+* Further package tests have been added, to check some recently added features.
+
 ## 3.1.0 (2017-06-14)
 
 * A more robust alternative to TractoR's internal DICOM-handling code is now available in the form of `divest`, a new first-party R package wrapped around the popular tool [`dcm2niix`](https://github.com/rordenlab/dcm2niix). Although the internal method remains the default in `dicomread` for backwards compatibility, using `divest` offers several advantages, such as removal of the need to pre-sort DICOM directories, interactive selection of series, and semi-automatic session construction. The internal code is still used by `dicomtags`.
