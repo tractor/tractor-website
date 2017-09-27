@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.1.3 (2017-09-27)
+
+* The `graph-props` script should now properly respect the "DisconnectedVertices" option for all properties. The number of self-connections present in the graph is also reported separately for clarity.
+* Scripts which perform an operation on a subset of streamlines stored in a .trk file, notably `pnt-prune`, would often include one additional streamline that should not be in the selection. This has been corrected.
+* The slice script now fixes "Alpha" to "binary" for masking images that are themselves binary, to avoid masking out everything and producing an empty layer.
+* The `view` script will no longer produce an error when multiple images from a session's diffusion directory are specified.
+
 ## 3.1.2 (2017-08-15)
 
 * A warning about a namespace clash will no longer be seen when starting the TractoR console. A side effect of this change is that the `RNiftyReg` package's functions are no longer directly visible. The `tractor.reg` interface can be used instead.
