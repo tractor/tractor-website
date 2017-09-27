@@ -112,5 +112,4 @@ To find out information about a particular session directory and the data stored
       Number of shells              : 1
       Diffusion b-values            : 0, 1000 s/mm^2
       Number of gradient directions : 2, 10
-      Diffusion tensors fitted      : TRUE
-      Fibre orientation model       : FSL-BEDPOSTX (1 fibre per voxel)
+      Fibre orientation model(s)    : DTI, FSL-BEDPOSTX (1 fibre per voxel)
