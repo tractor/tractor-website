@@ -2,6 +2,12 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.1.4 (2017-11-09)
+
+* The median streamline used by default in `pnt-prune` when all individual streamlines are rejected could be incorrect. This has been fixed.
+* The `apply` script will no longer fail when used with more than 26 image arguments (although only the first 26 can be referred to in the function).
+* Images with a data size of 2 GiB or more can now be written to file by TractoR.
+
 ## 3.1.3 (2017-09-27)
 
 * The `graph-props` script should now properly respect the "DisconnectedVertices" option for all properties. The number of self-connections present in the graph is also reported separately for clarity.
