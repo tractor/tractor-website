@@ -34,7 +34,7 @@ Of course, if you have unpacked the tarball somewhere other than `/usr/local/tra
 
 ## Installation on macOS
 
-The simplest way to install TractoR on macOS is to use the [Homebrew](https://brew.sh) package manager, support for which was added in TractoR version 3.1.0. Once Homebrew itself is installed, the command
+The simplest way to install TractoR on macOS is to use the [Homebrew](https://brew.sh) package manager, support for which was added in TractoR version 3.1.0. **Note, however, that the CRAN build of R may not be compatible with Homebrew, so if you have already installed R from CRAN, it may be better to follow the instructions in the next paragraph.** Once Homebrew itself is installed, the command
 
     brew install tractor/tractor/tractor
 
@@ -44,7 +44,7 @@ The alternative is to install R from [CRAN](https://cran.r-project.org/bin/macos
 
     xcode-select --install
 
-but at the time of writing this is not sufficient to build TractoR against R from CRAN. Either way, once R is installed, you should [download the TractoR tarball](downloads.html), uncompress it, run `make install` and set up the environment as described above.
+but at the time of writing this is not sufficient to build TractoR against R from CRAN. Either way, once R is installed, you should [download the TractoR tarball](downloads.html), uncompress it, run `make install` and set up the environment as described in the instructions for Linux above.
 
 ## Installation on Windows
 
