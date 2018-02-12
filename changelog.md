@@ -2,6 +2,29 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.2.0
+
+* The new `pnt-sample` script allows one to sample synthetic streamlines from a PNT model. There is [a new paper](http://dx.doi.org/10.3390/jimaging4010008) with the full details.
+* There is now basic support for the [BIDS format](http://bids.neuroimaging.io), a session-like hierarchy structure for multimodal acquisitions.
+* The new top-level command `furrow` can be used to call any third-party program after substituting TractoR's session path shorthand for the canonical image paths. This is useful for compatibility with other software.
+* TractoR's graph-handling code has been substantially refactored, and detailed unit tests have been added.
+* Streamline seed points and end points can now be mapped, using the new `trkmap` script.
+* A new make target, `deeptest`, installs additional packages from CRAN and then runs package unit tests (currently only for `tractor.graph`) before running the main integration tests.
+* The `dicomsort` script can now use the more robust `divest` back-end. Additional metadata is now extracted by `dicomread` with `Method:divest`.
+* A partitioned graph object is now also produced by `graph-decompose`, which contains the original graph and information about the partition. This may also be used as a reference partition for new graphs.
+* The `tensorfit` script now support FSL `dtifit`'s weighted-least squares option, as `Method:fsl-wls`.
+* The `extract` script now accepts named regions, for extraction from parcellations.
+* A file containing *b*-values may now be given as the third argument to the `gradread` script.
+* It is now possible to create a .trk file containing the streamlines selected by `pnt-prune`.
+* Streamlines stored in .trk files may now also be transformed between spaces by the `transform` script, although this is currently very slow for nonlinear transformations.
+* The `list` script now arranges its output into categories.
+* The `dicomtags` script now tries harder to read metadata from files using an unsupported transfer syntax.
+* The `status` script now examines raw data files if processed ones are not yet available.
+* A user-defined mask can now be passed to the `dirviz` script.
+* The `slice` script now offers some control over the interpolation kernel used.
+* The polar plots used by TractoR's internal image viewer for diffusion data now use different colour shades for each *b*-value shell.
+* Session paths stored in PNT data files should now always be interpreted as strings, avoiding potential errors.
+
 ## 3.1.4 (2017-11-09)
 
 * The median streamline used by default in `pnt-prune` when all individual streamlines are rejected could be incorrect. This has been fixed.
