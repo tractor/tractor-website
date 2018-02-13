@@ -9,8 +9,9 @@ The significant user-visible changes in each release of TractoR are documented b
 * The new top-level command `furrow` can be used to call any third-party program after substituting TractoR's session path shorthand for the canonical image paths. This is useful for compatibility with other software.
 * TractoR's graph-handling code has been substantially refactored, and detailed unit tests have been added.
 * Streamline seed points and end points can now be mapped, using the new `trkmap` script.
+* The new `trkinfo` script provides basic information on the streamlines stored in a .trk file.
 * A new make target, `deeptest`, installs additional packages from CRAN and then runs package unit tests (currently only for `tractor.graph`) before running the main integration tests.
-* The `dicomsort` script can now use the more robust `divest` back-end. Additional metadata is now extracted by `dicomread` with `Method:divest`.
+* The `dicomsort` script can now use the more robust `divest` back-end, and gains the ability to clean up empty subdirectories. Additional metadata is now extracted by `dicomread` with `Method:divest`.
 * A partitioned graph object is now also produced by `graph-decompose`, which contains the original graph and information about the partition. This may also be used as a reference partition for new graphs.
 * The `tensorfit` script now support FSL `dtifit`'s weighted-least squares option, as `Method:fsl-wls`.
 * The `extract` script now accepts named regions, for extraction from parcellations.
