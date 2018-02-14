@@ -80,7 +80,7 @@ For many applications you may be interested subnetworks within the overall brain
 
     tractor graph-decompose graph Method:principal-networks EdgeWeightThreshold:0.2
 
-The principal networks approach uses a matrix factoring approach akin to principal component analysis, while modularity maximisation tries to separate the graph into subnetworks whose overall [modularity](https://en.wikipedia.org/wiki/Modularity_(networks)) is maximised. These and other approaches to graph decomposition, their strengths and weaknesses, are discussed in the [principal networks paper](http://dx.doi.org/10.1371/journal.pone.0060997). Either way, the result is a file called "graph_decomposed.Rdata", which contains a series of smaller graphs. This file can be split into its parts using the `split` script, viz.
+The principal networks approach uses a matrix factoring approach akin to principal component analysis, while modularity maximisation tries to separate the graph into subnetworks whose overall [modularity](https://en.wikipedia.org/wiki/Modularity_(networks)) is maximised. These and other approaches to graph decomposition, their strengths and weaknesses, are discussed in the [principal networks paper](http://dx.doi.org/10.1371/journal.pone.0060997). Either way, the results are files called "graph_partitioned.Rdata", which contains a version of the original graph with additional information on the final partition, and "graph_decomposed.Rdata", which contains a series of smaller graphs. This file can be split into its parts using the `split` script, viz.
 
     tractor split graph_decomposed.Rdata
 

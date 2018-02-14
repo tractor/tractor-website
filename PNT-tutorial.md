@@ -80,7 +80,7 @@ Seed: [ "41,38,23", "39,41,22" ]
 DatasetName: training
 ```
 
-This design will involve seeding at voxel location 41,38,23 in the session rooted at /data/trainingsubject1, and at 39,41,22 in /data/trainingsubject2.
+This design will involve seeding at voxel location (41,38,23) in the session rooted at /data/trainingsubject1, and at (39,41,22) in /data/trainingsubject2.
 
 **Note**: We use only two training tracts to keep the example short, but in practice two is too few. The exact number of training tracts required is hard to estimate. Five may be sufficient in some cases, but more is better, and ten or more may well be needed to capture the variability most effectively.
 

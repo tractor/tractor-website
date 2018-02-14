@@ -4,7 +4,7 @@ The TractoR (Tractography with R) project includes R packages for reading, writi
 * Apply image processing operations of many types to medical image data.
 * Perform linear and nonlinear [image registration](registration.html).
 * Preprocess diffusion MR data and calculate tensor metrics including fractional anisotropy (FA), mean diffusivity (MD), and principal directions (see [diffusion processing](diffusion-processing.html)).
-* Run probabilistic tractography using single seed points or one or more masks.
+* Run [probabilistic tractography](tractography.html) using single seed points or one or more masks.
 * Segment specific tracts in groups automatically using neighbourhood tractography (see [PNT tutorial](PNT-tutorial.html) and [HNT tutorial](HNT-tutorial.html)).
 * Remove false positive tracts using a model of tract shape variability.
 * Import and manipulate anatomical parcellations of [structural data](structural.html).
@@ -26,8 +26,8 @@ TractoR is developed primarily by [Jon Clayden](http://www.homepages.ucl.ac.uk/~
 - Useful information about TractoR-specific conventions can be found on the aptly-named [conventions](conventions.html) page.
 - A specific page covers TractoR's [image registration](registration.html) capabilities.
 - The [diffusion processing](diffusion-processing.html) page covers the processing of diffusion-weighted MR images using TractoR, and there is also a specific page on [working with structural data](structural.html).
-- TractoR provides reference implementations of various [neighbourhood tractography](http://www.homepages.ucl.ac.uk/~sejjjd2/research.html#finding-specific-brain-structures) methods, both "heuristic" and "probabilistic", for segmenting specific white matter structures. An [HNT tutorial](HNT-tutorial.html) and a [PNT tutorial](PNT-tutorial.html) using TractoR are available, as well as information on the [reference tracts](reference-tracts.html) used by both methods.
-- Various tools exists for creating and working with [connectivity graphs](connectivity-graphs.html), including a reference implementation of the "principal networks" method. TractoR's facilities for working with functional data are also currently outlined there.
+- As well as [conventional tractography](tractography.html), TractoR provides reference implementations of various [neighbourhood tractography](http://www.homepages.ucl.ac.uk/~sejjjd2/research.html#finding-specific-brain-structures) methods for segmenting specific white matter structures. A [PNT tutorial](PNT-tutorial.html) using TractoR is available, as well as information on the [reference tracts](reference-tracts.html) used by the method.
+- Various tools exist for creating and working with [connectivity graphs](connectivity-graphs.html), including a reference implementation of the "principal networks" method. TractoR's facilities for working with functional data are also currently outlined there.
 - There is a specific page about the [facilities in TractoR for handling DICOM files](TractoR-and-DICOM.html) and, importantly, their limitations.
 - Finally, there is a list of [references](references.html) for the methods available through TractoR.
 
