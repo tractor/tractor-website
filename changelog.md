@@ -25,6 +25,7 @@ The significant user-visible changes in each release of TractoR are documented b
 * A user-defined mask can now be passed to the `dirviz` script.
 * The `slice` script now offers some control over the interpolation kernel used.
 * The polar plots used by TractoR's internal image viewer for diffusion data now use different colour shades for each *b*-value shell.
+* The loop-checking logic in the tractography code has been tweaked to correct the boundaries between logical blocks.
 * Session paths stored in PNT data files should now always be interpreted as strings, avoiding potential errors.
 
 ## 3.1.4 (2017-11-09)
