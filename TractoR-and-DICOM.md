@@ -87,7 +87,7 @@ As of TractoR version 2.1.0, the `imageinfo` script can be used instead, if only
 
 ## The divest back-end
 
-In TractoR version 3.1.0 a new DICOM back-end based on [Chris Rorden's `dcm2niix`](https://github.com/rordenlab/dcm2niix) (via the [`divest` R package](https://github.com/jonclayden/divest)) was added. As well as being more robust and more extensively tested, this route handles multiple series at once and interactively, removing the need to pre-sort DICOM directories. It also extracts more metadata from the DICOM files, storing it in auxiliary .tags files. For example,
+In TractoR version 3.1.0 a new DICOM back-end based on [Chris Rorden's `dcm2niix`](https://github.com/rordenlab/dcm2niix) (via the [`divest` R package](https://github.com/jonclayden/divest)) was added. As well as being more robust and more extensively tested, this route handles multiple series at once and interactively, removing the need to pre-sort DICOM directories. (Sorting files using `divest` is possible as of TractoR 3.2.0, however.) It also extracts more metadata from the DICOM files, storing it in auxiliary .tags files. For example,
 
     tractor dicomread $TRACTOR_HOME/tests/data/dicom Method:divest FileNames:metadata
     # Starting TractoR environment...

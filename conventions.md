@@ -53,7 +53,7 @@ Similarly, the names of the subdirectories within the main `tractor` directory c
 diffusion: /data/subject1_2fibres/tractor/diffusion
 ```
 
-It should, however, be borne in mind that this will make the session less portable. The full default map can be found at `$TRACTOR_HOME/share/tractor/session/map.yaml`.
+It should, however, be borne in mind that this will make the session less portable. The full default map can be found at `$TRACTOR_HOME/share/tractor/session/default/map.yaml`.
 
 ## Implicit operations
 
@@ -74,7 +74,7 @@ TractoR's preferred file format for images is the [NIfTI-1](http://nifti.nimh.ni
 
 Images may be stored on disk in any voxel order supported by their format, but internally, TractoR standardises on "LAS" voxel order, i.e., moving through images first in the right-to-left direction, then posterior-to-anterior, then inferior-to-superior. This is the *radiological* convention. Images are usually reordered in memory when they are read into TractoR, voxel coordinates are based on this reordered system, and TractoR's internal viewer shows images this way.
 
-Tractography streamlines are stored in [TrackVis **.trk** format](http://www.trackvis.org/docs/?subsect=fileformat), which makes it easy to visualise them using the popular TrackVis program. However, TractoR additionally uses an auxiliary file format, with a **.trkl** extension, which stores information about "labels", named regions that individual streamlines pass through. The beginning of this file is formatted as follows.
+Tractography streamlines are stored in [TrackVis **.trk** format](http://www.trackvis.org/docs/?subsect=fileformat), which makes it easy to visualise them using the popular TrackVis program. The `trkinfo` script can be used to obtain basic information about these files, such as how many streamlines they contain. TractoR additionally uses an auxiliary file format, with a **.trkl** extension, which stores information about "labels", named regions that individual streamlines pass through. The beginning of this file is formatted as follows.
 
 ```c
 struct trkl_header {

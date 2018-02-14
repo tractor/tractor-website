@@ -85,7 +85,7 @@ Fitting diffusion tensors is a standard processing step for diffusion-weighted d
 
     tractor tensorfit
 
-There are three alternative approaches to fitting the tensors available, but standard least-squares fitting is the default: see `tractor -o tensorfit` for details. The [Camino toolkit](http://www.camino.org.uk) offers many more methods.
+There are four alternative approaches to fitting the tensors available, but standard least-squares fitting is the default: see `tractor -o tensorfit` for details. The [Camino toolkit](http://www.camino.org.uk) offers many more methods.
 
 The diffusion tensor is a very limited model, however, particularly for tractography. It is therefore recommended to run FSL [BEDPOSTX algorithm](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#BEDPOSTX) to fit a "ball-and-sticks" model and generate samples for probabilistic tractography. This typically takes several hours. The command for running this is
 

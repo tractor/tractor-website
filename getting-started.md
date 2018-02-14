@@ -73,27 +73,46 @@ To test that the environment is set up correctly, try typing
 
 which should produce output similar to the following:
 
-    Starting TractoR environment...
-    Experiment scripts found in /usr/local/tractor/share/experiments:
-     [1] age             apply           bedpost         binarise       
-     [5] chfiletype      clone           components      compress       
-     [9] console         deface          dicomread       dicomsort      
-    [13] dicomtags       dirviz          dpreproc        extract        
-    [17] freesurf        gradcheck       gradread        gradrotate     
-    [21] graph-build     graph-decompose graph-extract   graph-props    
-    [25] graph-reweight  graph-viz       graph2csv       hnt-eval       
-    [29] hnt-interpret   hnt-ref         hnt-viz         imageinfo      
-    [33] imagestats      import          list            mean           
-    [37] mkroi           morph           parcellate      path           
-    [41] peek            platform        plotcorrections pnt-data       
-    [45] pnt-em          pnt-eval        pnt-interpret   pnt-prune      
-    [49] pnt-ref         pnt-train       pnt-viz         reg-apply      
-    [53] reg-check       reg-info        reg-linear      reg-nonlinear  
-    [57] reg-viz         reshape         slice           smooth         
-    [61] split           status          tensorfit       track          
-    [65] transform       trim            update          values         
-    [69] view
-    Experiment completed with 0 warning(s) and 0 error(s)
+    DICOM handling:
+      age, dicomread, dicomsort, dicomtags
+    
+    Image processing:
+      binarise, components, morph, smooth, trim
+    
+    General analysis:
+      apply, extract, imageinfo, imagestats, mean, mkroi, reshape, values
+    
+    Visualisation:
+      slice, view
+    
+    Registration:
+      reg-apply, reg-check, reg-info, reg-linear, reg-nonlinear, reg-viz
+    
+    Working with sessions:
+      clone, import, status, transform
+    
+    Diffusion processing:
+      bedpost, dirviz, dpreproc, gradcheck, gradread, gradrotate, plotcorrections, 
+    tensorfit, track, trkinfo, trkmap
+    
+    Structural processing:
+      deface, freesurf, parcellate
+    
+    Heuristic neighbourhood tractography (deprecated):
+      hnt-eval, hnt-interpret, hnt-ref, hnt-viz
+    
+    Probabilistic neighbourhood tractography:
+      pnt-data, pnt-em, pnt-eval, pnt-interpret, pnt-prune, pnt-ref, pnt-sample, 
+    pnt-train, pnt-viz
+    
+    Graph and network analysis:
+      graph-build, graph-decompose, graph-extract, graph-props, graph-reweight, 
+    graph-viz, graph2csv
+    
+    Other scripts:
+      chfiletype, compress, console, list, path, peek, platform, split, update
+    
+    For information on a particular script, run "tractor -o <script>"
 
 If instead you get an error from the shell saying that it couldn't find the `tractor` executable, or from `tractor` itself reporting the script file not found, the installation has not been completed correctly. Check that you have set up your environment as shown above, and make sure that you have started a new shell or sourced your `.bashrc` file to pick up the changes (`source ~/.bashrc`). Running the command `man tractor` should show the `tractor` man page.
 

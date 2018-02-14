@@ -16,13 +16,13 @@ If multiple T1-weighted images are given then by default TractoR will coregister
 
 Anatomical parcellation of a structural image is a prerequisite for some kinds of analysis, and must be performed before the parcellation can be propagated to any other space, such as diffusion. The key script for this is `parcellate`. It is passed a parcellated image, of the same dimensions as the averaged reference T1-weighted image but with coherent regions labelled with an integer index. A lookup table is required to convert between numerical indices and region names, and some examples for typical atlases are included in `$TRACTOR_HOME/share/tractor/parcellations`.
 
-For example, to run FSL-FLIRT on the reference T1 image for a session and import the parcellation created by it, you might run
+For example, to run FSL-FIRST on the reference T1 image for a session and import the parcellation created by it, you might run
 
     cd /data/subject1
-    run_first_all -i `tractor -q path . refT1` -o first
+    furrow run_first_all -i @refT1 -o first
     tractor parcellate . first_all_fast_firstseg Types:first
 
-Note that TractoR does not provide a wrapper script for FIRST, but the `path` script can be used to get the path to the relevant input file for the FIRST command line tool, `run_first_all`. The TractoR `parcellate` script then needs to be told that the parcellation was performed by FIRST, and since there is a standard parcellation lookup table for this type of parcellation, it will use it automatically.
+Note that TractoR does not provide a wrapper script for FIRST, but TractoR's `furrow` program can be used to create one. It replaces the session syntax `@refT1` with the full path to the relevant input file, and then calls the FIRST command line tool, `run_first_all`. The TractoR `parcellate` script then needs to be told that the parcellation was performed by FIRST, and since there is a standard parcellation lookup table for this type of parcellation, it will use it automatically.
 
 Another alternative is to use Freesurfer, and in this case TractoR does provide a wrapper script, viz.
 

@@ -2,7 +2,7 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
-## 3.2.0
+## 3.2.0 (2018-02-14)
 
 * The new `pnt-sample` script allows one to sample synthetic streamlines from a PNT model. There is [a new paper](http://dx.doi.org/10.3390/jimaging4010008) with the full details.
 * There is now basic support for the [BIDS format](http://bids.neuroimaging.io), a session-like hierarchy structure for multimodal acquisitions.
@@ -13,6 +13,7 @@ The significant user-visible changes in each release of TractoR are documented b
 * A new make target, `deeptest`, installs additional packages from CRAN and then runs package unit tests (currently only for `tractor.graph`) before running the main integration tests.
 * The `dicomsort` script can now use the more robust `divest` back-end, and gains the ability to clean up empty subdirectories. Additional metadata is now extracted by `dicomread` with `Method:divest`.
 * A partitioned graph object is now also produced by `graph-decompose`, which contains the original graph and information about the partition. This may also be used as a reference partition for new graphs.
+* Generation of colour scales is now handled by the `shades` package. The `slice` script now additionally supports the "viridis" colour scale, which is perceptually uniform and interpretable by viewers with a colour vision deficiency (colour blindness).
 * The `tensorfit` script now support FSL `dtifit`'s weighted-least squares option, as `Method:fsl-wls`.
 * The `extract` script now accepts named regions, for extraction from parcellations.
 * A file containing *b*-values may now be given as the third argument to the `gradread` script.
