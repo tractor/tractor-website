@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.2.1 (2018-02-26)
+
+* Running `dpreproc` with `DicomReader:divest` on a session directory containing DICOM files from different series will now also combine metadata from those series (where appropriate), and write it to an auxiliary .tags file.
+* Recent minor updates to supporting packages `RNifti`, `RNiftyReg`, `mmand`, `yaml` and `corpcor` have now been incorporated.
+* Infinite weights could rarely occur in `tensorfit`, when using the IWLS method. These are now detected and ignored.
+* A spurious error in `dpreproc` due to a typo has been corrected.
+
 ## 3.2.0 (2018-02-14)
 
 * The new `pnt-sample` script allows one to sample synthetic streamlines from a PNT model. There is [a new paper](http://dx.doi.org/10.3390/jimaging4010008) with the full details.
