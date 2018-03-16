@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.2.2 (2018-03-16)
+
+* The `reg-apply` script would produce an error if given multiple transforms in .xfmb format. That has been corrected.
+* Due to an oversight, vertex and principal network names disappeared from the output of `graph-decompose` in v3.2.0. They have now been reinstated.
+* The Homebrew distribution of TractoR now declares a dependency on JasPer.
+* An occasional failure in the `tractor.graph` package's unit tests has been addressed.
+
 ## 3.2.1 (2018-02-26)
 
 * Running `dpreproc` with `DicomReader:divest` on a session directory containing DICOM files from different series will now also combine metadata from those series (where appropriate), and write it to an auxiliary .tags file.
