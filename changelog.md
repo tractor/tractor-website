@@ -2,6 +2,14 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.2.3 (2018-04-10)
+
+* Attempting to merge tags from more than two images, notably in `dpreproc`, should no longer produce an error.
+* FSLview has been deprecated in recent FSL builds, and the binary renamed to `fslview_deprecated`. TractoR now checks for this name, and so running the `view` script with `Viewer:fslview` will work again. There is not yet any support for FSL's replacement viewer, `fsleyes`, although it can be invoked through `furrow`.
+* The `gradread` script no longer requires a data image to be present if a *b*-value file is provided as the third argument.
+* Calculation of graph modularity has been improved for the case where a node is in none of the communities.
+* Further tweaks to unit tests have been made.
+
 ## 3.2.2 (2018-03-16)
 
 * The `reg-apply` script would produce an error if given multiple transforms in .xfmb format. That has been corrected.
