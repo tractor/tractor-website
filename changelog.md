@@ -2,6 +2,12 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.2.4 (2018-04-26)
+
+* The `Rcpp` package has been updated for compatibility with the recently released R 3.5.0.
+* Paths are now expanded by `dicomread`, so that filenames beginning with "._" are no longer created when reading from the current working directory. (Such files are generally invisible.)
+* The code behind `plough` is now more careful to avoid spurious errors when non-loop variables have length greater than one.
+
 ## 3.2.3 (2018-04-10)
 
 * Attempting to merge tags from more than two images, notably in `dpreproc`, should no longer produce an error.
