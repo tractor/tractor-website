@@ -210,6 +210,12 @@ The significant user-visible changes in each release of TractoR are documented b
 * The "-r" flag to the main `tractor` program is defunct.
 * Extensive low-level and upstream package improvements have been incorporated.
 
+## 2.6.5 (2018-06-19)
+
+* The `Rcpp` package has been updated for compatibility with R 3.5.0 (in line with TractoR version 3.2.4).
+* An inconsistency between `pnt-data` and `pnt-data-sge` prevented the latter from working as expected for multiple sessions, when seed points were specified for each case. This has been corrected.
+* The `pnt-interpret` script no longer strictly requires a session list, as long as subject and seed information are stored in the dataset.
+
 ## 2.6.4 (2016-11-07)
 
 * The `pnt-data-sge` script will no longer specify the wrong number of array jobs to SGE when the `SessionNumbers` option is used.
