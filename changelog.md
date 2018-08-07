@@ -2,6 +2,15 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.2.5 (2018-08-07)
+
+* Multiple image series read by `dpreproc` stage 1, with `DicomReader:divest`, will now be reoriented to a common orientation before merging.
+* The `deface` script now checks whether the bottom edge of the face mask is within the image before trying to extend it downwards. In addition, slices containing no extended face mask voxels are now skipped over during subsequent processing. This should resolve some spurious errors.
+* Reading a non-axial 2D image could produce an error. This has been corrected.
+* Attempting to calculate clustering coefficients for directed, weighted graphs is now a warning rather than an error.
+* Failure to find a binary called `fslview_deprecated` will no longer produce an error, restoring compatibility with older builds of FSL.
+* The compatibility of `furrow` with external commands has been improved.
+
 ## 3.2.4 (2018-04-26)
 
 * The `Rcpp` package has been updated for compatibility with the recently released R 3.5.0.
