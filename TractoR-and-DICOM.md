@@ -96,7 +96,7 @@ In TractoR version 3.1.0 a new DICOM back-end based on [Chris Rorden's `dcm2niix
     # 1: Series 8 "DTIb3000s5", TE 112 ms, TR 4100 ms 
     # 2: Series 9 "fl3D_t1_sag", TE 4.94 ms, TR 11 ms
     # 
-    # Type <Enter> for all series, 0 for none, or indices separated by spaces or commas
+    # Type &lt;Enter&gt; for all series, 0 for none, or indices separated by spaces or commas
     # Selected series: 2
     # * INFO: Image _0_S009_fl3D_t1_sag appears to be T1-weighted
     # * INFO: Finalising images and writing them out...

@@ -112,7 +112,7 @@ which should produce output similar to the following:
     Other scripts:
       chfiletype, compress, console, list, path, peek, platform, split, update
     
-    For information on a particular script, run "tractor -o <script>"
+    For information on a particular script, run "tractor -o &lt;script&gt;"
 
 If instead you get an error from the shell saying that it couldn't find the `tractor` executable, or from `tractor` itself reporting the script file not found, the installation has not been completed correctly. Check that you have set up your environment as shown above, and make sure that you have started a new shell or sourced your `.bashrc` file to pick up the changes (`source ~/.bashrc`). Running the command `man tractor` should show the `tractor` man page.
 
