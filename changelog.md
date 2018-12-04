@@ -2,6 +2,18 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.3.0
+
+* This release introduces "workflows" as the primary means by which TractoR calls third-party programs. These are small shell scripts, stored in `share/tractor/workflows`, which make significant use of `furrow` to call external software in a way that is consistent with the TractoR session convention.
+* TractoR now uses the `RNifti` package for NIfTI file handling, which is backed by the NIfTI reference C library. This should provide some performance improvements, but more importantly makes NIfTI support much more complete. Image "xforms" and other metadata should now be better preserved.
+* The `clone` script can now be called with `Map:true`, in which case the new session uses a map file to point to existing subdirectories within the old one, rather than copying their contents across. This functionally duplicates a session with almost no extra cost in terms of disk usage. Subdirectories that are subsequently added or replaced will cause the two sessions to diverge.
+* The `extract` script gains an option to exclude regions. This can be used, for example, to extract all grey matter apart from a particular subregion.
+* The reason for terminating each streamline is now stored, as a numeric code, in .trk files produced by the `track` script.
+* It is now possible to perform tractography in only one direction away from the seed point.
+* Coloured output is now suppressed if the standard output or standard error streams appear not to be terminals (e.g. if the script's output is piped). It can also be suppressed by setting the `TRACTOR_NOCOLOUR` environment variable.
+* Logical values such as "yes" and "no" are now accepted by scripts, in addition to "true" and "false".
+* Support for the session format from TractoR 1.x has been removed. This was deprecated in v3.1.0.
+
 ## 3.2.5 (2018-08-07)
 
 * Multiple image series read by `dpreproc` stage 1, with `DicomReader:divest`, will now be reoriented to a common orientation before merging.
