@@ -55,6 +55,12 @@ diffusion: /data/subject1_2fibres/tractor/diffusion
 
 It should, however, be borne in mind that this will make the session less portable. The full default map can be found at `$TRACTOR_HOME/share/tractor/session/default/map.yaml`.
 
+## Experiments and workflows
+
+Experiments, otherwise just called "scripts", are R source files that provide the interface between the `tractor` program and TractoR's internal functionality. They allow common tasks to be performed without interacting directly with R, providing considerable flexibility through arguments and named configuration variables. The list of available scripts can be found by typing `tractor list`, and information about a particular one is available through `tractor -o (script name)`. The standard experiment scripts that come with TractoR can be found within `$TRACTOR_HOME/share/tractor/experiments`, but [additional ones](TractoR-for-R-users.html) can be put in `$HOME/.tractor` or anywhere on the `TRACTOR_PATH`.
+
+Workflows are small shell scripts, through which TractoR interfaces with third-party software such as [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/) and [FreeSurfer](http://www.freesurfer.net/fswiki). They can be run explicitly with the `workflow` script, or implicitly, for example by [the `dpreproc` script](diffusion-processing.html). If you need to provide extra arguments to a third-party program, or otherwise modify how TractoR calls it, you can duplicate a standard workflow from `$TRACTOR_HOME/share/tractor/workflows` to your working directory, or the `$HOME/.tractor` directory, and modify it as needed. New workflow files, with a .sh extension, can also be added to those places or `TRACTOR_PATH`.
+
 ## Implicit operations
 
 Some images within a session hierarchy are created "on demand", and coregistration between spaces is also usually performed implicitly. This means that certain files appear as the side effects of running operations that require them. Sometimes this is quite predictable: the `tensorfit` script, for example, creates diffusion-tensor maps of various kinds, and this is its primary purpose. In other cases, the process is a little less obvious.
@@ -70,7 +76,7 @@ The details of the registrations performed between spaces are controlled by the 
 
 ## File types
 
-TractoR's preferred file format for images is the [NIfTI-1](http://nifti.nimh.nih.gov/nifti-1) format, although NIfTI-2, the legacy Analyze format and Freesurfer's [MGH/MGZ](https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/MghFormat) format are also supported. Compression with gzip is fully supported, and recommended to save disk space, although it does incur a modest computational overhead. Auxiliary **.tags** files may be used to store additional metadata associated with an image, in [YAML format](http://yaml.org). Reading from DICOM files [is supported](TractoR-and-DICOM.html), but TractoR cannot write to DICOM format.
+TractoR's preferred file format for images is the [NIfTI-1](http://nifti.nimh.nih.gov/nifti-1) format, although NIfTI-2, the legacy Analyze format and Freesurfer's [MGH/MGZ](https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/MghFormat) format are also supported. Compression with gzip is fully supported, and recommended to save disk space, although it does incur a modest computational overhead. Auxiliary **.tags** files may be used to store additional metadata associated with an image, in [YAML format](http://yaml.org), and **.dirs** files contain diffusion gradient direction information in matrix format. Reading from DICOM files [is supported](TractoR-and-DICOM.html), but TractoR cannot write to DICOM format.
 
 Images may be stored on disk in any voxel order supported by their format, but internally, TractoR standardises on "LAS" voxel order, i.e., moving through images first in the right-to-left direction, then posterior-to-anterior, then inferior-to-superior. This is the *radiological* convention. Images are usually reordered in memory when they are read into TractoR, voxel coordinates are based on this reordered system, and TractoR's internal viewer shows images this way.
 

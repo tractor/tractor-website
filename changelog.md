@@ -4,13 +4,26 @@ The significant user-visible changes in each release of TractoR are documented b
 
 ## 3.3.0
 
-* This release introduces "workflows" as the primary means by which TractoR calls third-party programs. These are small shell scripts, stored in `share/tractor/workflows`, which make significant use of `furrow` to call external software in a way that is consistent with the TractoR session convention.
-* TractoR now uses the `RNifti` package for NIfTI file handling, which is backed by the NIfTI reference C library. This should provide some performance improvements, but more importantly makes NIfTI support much more complete. Image "xforms" and other metadata should now be better preserved.
+* This release introduces "workflows" as the primary means by which TractoR calls third-party programs. These are small shell scripts, stored in `share/tractor/workflows`, which make heavy use of `furrow` to call external software in a way that is consistent with the TractoR session convention. They may be called implicitly or explicitly, the latter using the new `workflow` script.
+* TractoR now uses the `RNifti` package for NIfTI file handling, which is backed by the NIfTI reference C library. This should provide some performance improvements, but more importantly it makes NIfTI support much more complete. Image "xforms" and other metadata should now be better preserved through read/write cycles.
+* Diffusion gradient directions and b-values may now be included as image tags, and are more consistently written to .dirs auxiliary files.
+* A new script, simply called `image`, allows images to be copied, moved or linked on the file system along with any auxiliary files. This is the first TractoR script to use a subcommand syntax, where the first argument specifies the operation required.
+* The new `bids` script helps with creating [BIDS datasets](http://bids.neuroimaging.io).
 * The `clone` script can now be called with `Map:true`, in which case the new session uses a map file to point to existing subdirectories within the old one, rather than copying their contents across. This functionally duplicates a session with almost no extra cost in terms of disk usage. Subdirectories that are subsequently added or replaced will cause the two sessions to diverge.
+* The `age` script will now work with tagged NIfTI files, if patient birthdate or age information is stored with them.
 * The `extract` script gains an option to exclude regions. This can be used, for example, to extract all grey matter apart from a particular subregion.
+* `fsleyes`, the new viewer in recent FSL releases, is now supported by the `view` script.
+* The `divest` DICOM back-end can now be used by the `import` script.
+* There is now an option to write out the final face mask in the `deface` script.
+* It is now possible to run multiple replications of an experiment, using `plough` with the new "-R" flag. Compatibility between SGE and `plough` has also been improved.
+* Session subdirectories, and files not aliased by TractoR, can now be referenced through `furrow`.
+* The `tractor.base` package now has a set of unit tests.
 * The reason for terminating each streamline is now stored, as a numeric code, in .trk files produced by the `track` script.
 * It is now possible to perform tractography in only one direction away from the seed point.
 * Coloured output is now suppressed if the standard output or standard error streams appear not to be terminals (e.g. if the script's output is piped). It can also be suppressed by setting the `TRACTOR_NOCOLOUR` environment variable.
+* The `TRACTOR_FILETYPE` environment variable is deprecated, as is writing to Analyze format. Output format will always be NIfTI-1, although this can subsequently be changed where needed using the `chfiletype` script.
+* The "Context" option to the `bedpost` script is deprecated.
+* The output from `tractor -o (script)` now reads "(no value)" instead of "NULL" for options with a null default value.
 * Logical values such as "yes" and "no" are now accepted by scripts, in addition to "true" and "false".
 * Support for the session format from TractoR 1.x has been removed. This was deprecated in v3.1.0.
 
