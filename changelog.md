@@ -2,6 +2,14 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.3.1 (2019-04-08)
+
+* The `gradcheck` script will now work with raw diffusion data, if there is no processed data in the specified session directory.
+* The gradient cache now explicitly only stores the unrotated gradient vectors.
+* FSL-compatible `bvals` and `bvecs` files should now always be created before the `dtifit` workflow is run.
+* Workflow run-times are now reported.
+* The self-documentation function called by `tractor -o` now works properly when the absolute path to a script is provided.
+
 ## 3.3.0 (2018-12-12)
 
 * This release introduces "workflows" as the primary means by which TractoR calls third-party programs. These are small shell scripts, stored in `share/tractor/workflows`, which make heavy use of `furrow` to call external software in a way that is consistent with the TractoR session convention. They may be called implicitly or explicitly, the latter using the new `workflow` script.
