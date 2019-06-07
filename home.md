@@ -5,7 +5,7 @@ The TractoR (Tractography with R) project includes R packages for reading, writi
 * Perform linear and nonlinear [image registration](registration.html).
 * Preprocess diffusion MR data and calculate tensor metrics including fractional anisotropy (FA), mean diffusivity (MD), and principal directions (see [diffusion processing](diffusion-processing.html)).
 * Run [probabilistic tractography](tractography.html) using single seed points or one or more masks.
-* Segment specific tracts in groups automatically using neighbourhood tractography (see [PNT tutorial](PNT-tutorial.html) and [HNT tutorial](HNT-tutorial.html)).
+* Segment specific tracts in groups automatically using neighbourhood tractography (see [PNT tutorial](PNT-tutorial.html)).
 * Remove false positive tracts using a model of tract shape variability.
 * Import and manipulate anatomical parcellations of [structural data](structural.html).
 * Create, manipulate, visualise and decompose abstract [graphs representing brain connectivity](connectivity-graphs.html), either structural or functional.

@@ -2,15 +2,15 @@
 
 ## Overview
 
-This tutorial covers the use of TractoR to perform model-based tract segmentation as described in [Ref. (1)](#references) below. Like the simpler [heuristic approach](HNT-tutorial.html), probabilistic neighbourhood tractography (PNT) is based on the idea of using a reference tract as a topological guide to the tract required. The model-based approach is considerably more robust but takes longer to run. If you use this method in your studies please cite [Ref. (1)](#references).
+This tutorial covers the use of TractoR to perform model-based tract segmentation as described in [Ref. (1)](#references) below. Like the simpler (but now deprecated) [heuristic approach](HNT-tutorial.html), probabilistic neighbourhood tractography (PNT) is based on the idea of using a reference tract as a topological guide to the tract required. The model-based approach is considerably more robust but takes longer to run. If you use this method in your studies please cite [Ref. (1)](#references).
 
 TractoR experiment scripts that may be used in a typical PNT-based study generally start with the prefix "pnt-", but there are other, more general purpose scripts which are often used, such as `mean` or `apply`. Details of the relevant scripts are given in each section below.
 
 ## Reference tracts and matching models
 
-As with the heuristic approach to NT, the probabilistic approach requires some [fully preprocessed](diffusion-processing.html) diffusion MR data and a [reference tract](reference-tracts.html) representing the pathway we wish to segment in those data.
+The PNT approach requires some [fully preprocessed](diffusion-processing.html) diffusion MR data and a [reference tract](reference-tracts.html) representing the pathway we wish to segment in those data.
 
-In addition, however, PNT makes use of a *matching model*, which must be "trained" from the data. The model captures information about the typical deviations that acceptable tract segmentations make from the reference tract. The easiest way to get starting with PNT is to use a pretrained model, a set of which are provided with TractoR version 3.1.0 and later. A second option is to use the `pnt-em` script, which uses a single data set and fits the model while simultaneously finding suitable tracts. This approach, which is described in [Ref. (2)](#references) and was introduced in TractoR version 1.0.0, is the recommended one when the pretrained models are unsuitable or a study-specific model is required. It also requires less work from the user than the third alternative, which is to split your data set into a training set and a testing set, and use `pnt-train` and `pnt-eval`, respectively, to first train the model and then use it for tract matching.
+In addition, PNT makes use of a *matching model*, which must be "trained" from the data. The model captures information about the typical deviations that acceptable tract segmentations make from the reference tract. The easiest way to get starting with PNT is to use a pretrained model, a set of which are provided with TractoR version 3.1.0 and later. A second option is to use the `pnt-em` script, which uses a single data set and fits the model while simultaneously finding suitable tracts. This approach, which is described in [Ref. (2)](#references) and was introduced in TractoR version 1.0.0, is the recommended one when the pretrained models are unsuitable or a study-specific model is required. It also requires less work from the user than the third alternative, which is to split your data set into a training set and a testing set, and use `pnt-train` and `pnt-eval`, respectively, to first train the model and then use it for tract matching.
 
 Whether `pnt-train`, `pnt-eval` or `pnt-em` are used to produce results, the results themselves take essentially the same form. All three routes are outlined below.
 
@@ -46,7 +46,7 @@ The process can then be repeated for any other tracts of interest.
 
 ## Training and segmenting in one step
 
-Using a so-called "unsupervised" approach, a study-specific matching model can be trained and applied iteratively using a group of datasets. The `pnt-em` experiment script is available to perform this function. We begin by creating a [design file](HNT-tutorial.html#using-a-design-file), which tells TractoR where to find our data, and sets the tract of interest. For this tutorial we assume the data are in subdirectories of /data. (In this case you will need to provide your own data, since one session is not enough.) The design file, "design.yaml", will therefore look something like this:
+Using a so-called "unsupervised" approach, a study-specific matching model can be trained and applied iteratively using a group of datasets. The `pnt-em` experiment script is available to perform this function. We begin by creating a design file, which collects together parameters common to several scripts and tells TractoR where to find our data and what the tract of interest is. For this tutorial we assume the data are in subdirectories of /data. (In this case you will need to provide your own data, since one session is not enough.) The design file, "design.yaml", will therefore look something like this:
 
 ```yaml
 TractName: genu
@@ -69,7 +69,7 @@ Results can be visualised and interpreted [as described below](#visualising-and-
 
 ## Manual training
 
-To create a matching model manually, it is necessary to select a number of additional tracts which represent suitable segmentations of the tract of interest. These will be used to train the model. The training tracts can be generated using the same combination of the `mkroi` and `track` scripts as a [custom reference tract](reference-tracts.html), or they could even be selected using the HNT method. Either way, the data used for training should be checked by hand, and kept separate from the data that will be used for testing later.
+To create a matching model manually, it is necessary to select a number of additional tracts which represent suitable segmentations of the tract of interest. These will be used to train the model. The training tracts can be generated using the same combination of the `mkroi` and `track` scripts as a [custom reference tract](reference-tracts.html), or by any other suitable method. Either way, the data used for training should be checked by hand, and kept separate from the data that will be used for testing later.
 
 Once a number of training tracts have been identified and the corresponding test sessions and seed points are known, they can be put into a design file for use with the `pnt-train` script. The design file (say "training.yaml") will look something like the following:
 
@@ -115,7 +115,7 @@ will then create the test data set (in "testing.txt"), and the final results fil
 
 ## Visualising and interpreting results
 
-The results can be visualised using the `pnt-viz` script, which is analogous to the `hnt-viz` script used by the [HNT process](HNT-tutorial.html), and can be used in the same way. For example, we can use
+The results can be visualised using the `pnt-viz` script. For example, we can use
 
     plough -C design.yaml pnt-viz
 

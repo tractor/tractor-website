@@ -1,14 +1,14 @@
 # Reference tracts
 
-Reference tracts represent prior information about tract trajectories, which are used by neighbourhood tractography methods to select corresponding pathways in diffusion data sets. It should be noted that [heuristic](HNT-tutorial.html) and [probabilistic](PNT-tutorial.html) neighbourhood tractography use different forms of reference tract, although if you plan to [create a custom reference](#creating-custom-reference-tracts), the process is nearly identical for the two cases.
+Reference tracts represent prior information about tract trajectories, which are used by probabilistic neighbourhood tractography to select corresponding pathways in diffusion data sets.
 
 ## Using standard reference tracts
 
-Since version 1.0.0, TractoR has been supplied with a set of standard reference tracts for both heuristic and probabilistic neighbourhood tractography (NT). These reference tracts are based on a white matter tract atlas kindly made available by Dr Susumu Mori's lab at Johns Hopkins University. Further information about the atlas can be found at <http://cmrm.med.jhmi.edu/> and in [Ref. (1)](#references) below. If you use these reference tracts in your work, please cite [Ref. (2)](#references) below.
+Since version 1.0.0, TractoR has been supplied with a set of standard reference tracts for probabilistic neighbourhood tractography (PNT). These reference tracts are based on a white matter tract atlas kindly made available by Dr Susumu Mori's lab at Johns Hopkins University. Further information about the atlas can be found at <http://cmrm.med.jhmi.edu/> and in [Ref. (1)](#references) below. If you use these reference tracts in your work, please cite [Ref. (2)](#references) below.
 
 In version 3.1.0, a new set of reference tracts was added, based on manual selection of tracts from 80 healthy adults aged 25–64. These will be used if the `TRACTOR_REFTRACT_SET` environment variable is set to `miua2017`, and this is recommended for new studies. If you do use these reference tracts in your work, please cite [Ref. (3)](#references) below.
 
-Using these standard references is by far the easiest way to start using NT. TractoR "knows" where to find them, so you need only to specify the tract name when running the `hnt-eval` or `pnt-data` experiment scripts. Available tract names as of TractoR 2.1.0 are:
+Using these standard references is by far the easiest way to start using PNT. TractoR "knows" where to find them, so you need only to specify the tract name when running the `pnt-data` experiment script. Available tract names as of TractoR 2.1.0 are:
 
 Tract name(s)                     | Structure
 --------------------------------- | ------------------------------------------------
@@ -26,12 +26,12 @@ Tract name(s)                     | Structure
 
 If you wish to segment a tract for which there is not yet a standard reference tract, or if your data set is somehow unusual so that the standard reference tracts are inappropriate, you need to create a custom reference tract from one of your scans. Once created, the reference tract may be reused for later studies.
 
-TractoR scripts which are likely to be useful for creating a custom reference tract include `mkroi` (to create a region of interest), `track` (to generate a series of tract images, from which to choose a reference tract), and `hnt-ref` or `pnt-ref` (to create reference tracts for use with HNT or PNT, respectively).
+TractoR scripts which are likely to be useful for creating a custom reference tract include `mkroi` (to create a region of interest), `track` (to generate a series of tract images, from which to choose a reference tract), and `pnt-ref` (to create reference tracts for use with PNT).
 
 Let's assume that we wish to create a reference tract representing the corpus callosum genu. We begin by creating a directory for this experiment, and changing to this directory. For example,
 
-    mkdir /expts/hnt-genu
-    cd /expts/hnt-genu
+    mkdir /expts/pnt-genu
+    cd /expts/pnt-genu
 
 Next we observe that the point (99,163,78) appears to be within the genu in an MNI standard space brain volume. A suitable location such as this can be chosen using `tractor view` or [FSL's data viewer](http://www.fmrib.ox.ac.uk/fsl/fslview/index.html). We see the location shown below:
 
@@ -59,11 +59,11 @@ The resulting tract image file names contain the seed point that generated them,
 
 This process, or any other, can be used and repeated until a seed point has been found that produces an acceptable segmentation of the genu for use as a reference tract. The important characteristics are shape and length, so particular care should be taken to ensure that these are appropriate in the reference tract.
 
-Given a chosen seed point, the reference tract can be generated in the appropriate form using the `hnt-ref` or `pnt-ref` scripts, depending on whether you are planning to use heuristic or probabilistic NT. For example,
+Given a chosen seed point, the reference tract can be generated in the appropriate form using the `pnt-ref` script. For example,
 
-    tractor hnt-ref /data/refsubject 47,60,32 TractName:genu
+    tractor pnt-ref /data/refsubject 47,60,32 TractName:genu
 
-This will create a file called genu_ref.Rdata, which contains information about the reference tract for use in the testing phase. The syntax for `pnt-ref` is identical; only the script name needs to be changed.
+This will create a file called genu_ref.Rdata, which contains information about the reference tract for use in the testing phase.
 
 ## References
 
