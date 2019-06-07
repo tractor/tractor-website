@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.3.2 (2019-06-07)
+
+* The `slice` script now additionally accepts "peak" as shorthand for the slice containing the peak image intensity. Clearances can now properly be specified per-axis, and trimming should no longer cause problems when slice locations are not specified literally.
+* The internal DICOM reader could previously produce logically transposed diffusion gradient tables, for example in `dpreproc`, which would lead to spurious warnings and downstream errors. This has been corrected.
+* Missing matrix values are now handled more robustly when merging images.
+* The `pnt-interpret` script could give incorrect results when session directories are specified as arguments and Mode:ratio is given, due to a mistake in the indexing logic. This has been corrected.
+
 ## 3.3.1 (2019-04-08)
 
 * The `gradcheck` script will now work with raw diffusion data, if there is no processed data in the specified session directory.
