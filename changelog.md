@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.3.3 (2020-05-14)
+
+* Small corrections have been made for compatibility with R v4.0.0, which was recently released.
+* The interface for selecting a T2-weighted reference volume in the `dpreproc` script mixed up volume indices in the original dataset and the low b-value subset, which could lead to spurious errors. This has been corrected.
+* The `graph-viz` script should no longer ask repeatedly about copying the figure to a PDF file.
+* Empty graphs are now summarised a little more clearly.
+
 ## 3.3.2 (2019-06-07)
 
 * The `slice` script now additionally accepts "peak" as shorthand for the slice containing the peak image intensity. Clearances can now properly be specified per-axis, and trimming should no longer cause problems when slice locations are not specified literally.
