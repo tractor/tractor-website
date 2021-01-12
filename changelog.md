@@ -2,6 +2,12 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.3.4 (2021-01-12)
+
+* Small tweaks have been made for better compatibility with the Apple ARM64 platform (M1 chip). This is also the first release available through Homebrew for ARM64.
+* Paths to images represented using the Windows Universal Naming Convention (e.g. `\\server\dir\image.nii.gz`) are now supported (issue #5).
+* Offline documentation no longer contains Google Analytics code (issue #4).
+
 ## 3.3.3 (2020-05-14)
 
 * Small corrections have been made for compatibility with R v4.0.0, which was recently released.
