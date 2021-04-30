@@ -1,7 +1,7 @@
 ECHO=/bin/echo
 ECHO_N=/bin/echo -n
-GIT=/usr/local/bin/git
-GIT_ARCHIVE=/usr/local/bin/git-archive-all
+GIT=git
+GIT_ARCHIVE=git-archive-all
 
 all: build
 
