@@ -2,6 +2,12 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.3.5 (2021-04-30)
+
+* The [eddy](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/eddy) workflow now adds the argument `--data_is_shelled` when calling the `eddy` executable, since the absence of this flag frequently caused confusion among users. This has no effect on the output from the workflow, except to silence an error from `eddy` which is often spurious.
+* The `dpreproc` script now also checks for the `eddy_openmp` variant executable name before deciding not to run eddy.
+* A mistake in the self-documentation of the `workflow` script has been corrected.
+
 ## 3.3.4 (2021-01-12)
 
 * Small tweaks have been made for better compatibility with the Apple ARM64 platform (M1 chip). This is also the first release available through Homebrew for ARM64.
