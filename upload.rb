@@ -35,7 +35,7 @@ Dir.mktmpdir do |tmpdir|
         elsif filename =~ /\.html$/ and to_docs
             html = File.open(filename) { |file| file.read }
             doc = Nokogiri(html)
-            doc.css("#analytics").remove
+            doc.css(".analytics").remove
             File.open(tmpdir + "/" + basename, "w") { |file| file.write(doc) }
         else
             FileUtils.copy(filename, tmpdir)
