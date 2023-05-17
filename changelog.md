@@ -2,19 +2,23 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
-## 3.4.0 (2023-04)
+## 3.4.0 (2023-05-17)
 
 * Heuristic neighbourhood tractography is defunct. All `hnt-` experiment scripts have been removed, along with the underlying functions. This approach has been deprecated since 2017, and has no remaining advantages compared to [probabilistic neighbourhood tractography](PNT-tutorial.html).
-* There is new interoperability with [MRtrix3](), including read support for the [`mif` image format and `tck` tractography format](). These files can now be used as input to scripts like `image`, `trkinfo` and `graph-build`.
+* There is new interoperability with [MRtrix3](https://www.mrtrix.org), including read support for the [`mif` image format and `tck` tractography format](https://mrtrix.readthedocs.io/en/latest/getting_started/image_data.html). These files can now be used as input to scripts like `image`, `trkinfo` and `graph-build`.
 * TractoR's tractography functions have been substantially refactored for better generality, partly to accommodate MRtrix `tck` files as input. As a result it is no longer necessary for streamlines to be written to file before being further used – they can be generated and processed entirely in memory.
 * MRtrix-format `tck` tractography files can be converted to TrackVis `trk` format using the new `tck2trk` script.
+* The MRtrix viewer, MRView, is now available as an external viewer through the `view` script.
 * The new `compare` script compares image values to check whether two images contain the same data.
 * A history of the TractoR scripts used to generate a given image is now stored in the `commandHistory` tag, and merged with the equivalent from MRtrix where relevant.
 * True RGB NIfTI files are now supported for reading and writing, and internal methods for the `tensorfit` script will now produce an RGB colour fractional anisotropy map. RGB images cannot yet be transformed between spaces, though.
-* Complex-values images are also now supported.
+* A colour fractional anisotropy map is now additionally produced by the internal diffusion tensor fitting code.
+* Complex-valued images are also now supported internally.
 * When interpreting file paths, `furrow` will now leave any that are explicitly given (without requiring an extension to be added) as they are. This is partly because `trk` and `tck` files with the same base name can currently coexist.
 * It is now possible for more object types to be summarised by `peek`.
 * Workflow prerequisites are now checked more carefully.
+* The `apply` script is now much more memory-efficient when combining many images.
+* Functions from `tractor.base` that were deprecated in the 3.0.0 release have now been removed.
 
 ## 3.3.5 (2021-04-30)
 
