@@ -50,10 +50,10 @@ but at the time of writing this is not sufficient to build TractoR against R fro
 
 TractoR was developed for Unix-like systems, but installation and use on Windows is possible. If you are running Windows 10, the best route might be to install the recently introduced Windows Subsystem for Linux, and then install TractoR as if on Linux. Step-by-step instructions [are available for this route](https://www.flakery.org/tractor-on-windows-experience-with-the-subsystem-for-linux/).
 
-The second option is to use the [Docker containerisation system](https://www.docker.com). A Docker container for the TractoR minor version you want can be downloaded and launched using commands like
+The second option is to use the [Docker containerisation system](https://www.docker.com). A Docker container for the TractoR version you want can be downloaded and launched using commands like
 
-    docker pull jonclayden/tractor:3.1
-    docker run -it --rm jonclayden/tractor:3.1
+    docker pull ghcr.io/tractor/tractor:v3.4.0
+    docker run -it --rm ghcr.io/tractor/tractor:v3.4.0
 
 This will drop you into a `bash` shell in a Linux-based container with R and TractoR already installed and set up for you. You can consult [Docker's documentation](https://docs.docker.com/engine/tutorials/dockervolumes/) for more information on giving the container access to your data.
 
