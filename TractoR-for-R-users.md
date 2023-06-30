@@ -24,7 +24,7 @@ The `tractor.reg` package is involved with all aspects of [image registration](r
 
 The `tractor` shell script is a convenience interface for performing common tasks using the TractoR packages. It is based around a set of R script files, one per task, each of which contains a `runExperiment()` function. (The `console` script is a rare exception.) The shell script in turn calls a binary program which uses R's APIs to provide an alternative front-end to the usual `R` program. It loads the `tractor.utils` package and calls the `bootstrapExperiment()` function to set up the required environment and execute the `runExperiment()` function for the requested script. The shell script also facilitates passing information between the command line and R, reporting errors and warnings, and maintaining a command history. 
 
-Further information on the usage and function of the `tractor` shell script can be found in its man page (type `man tractor` from the shell, assuming that [your MANPATH is set correctly](getting-started.html)).
+Further information on the usage and function of the `tractor` shell script can be found in its man page (type `man tractor` from the shell, assuming that [your MANPATH is set correctly](install.html)).
 
 ## Writing your own TractoR scripts
 

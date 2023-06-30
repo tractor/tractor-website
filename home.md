@@ -19,7 +19,7 @@ TractoR is developed primarily by [Jon Clayden](http://www.homepages.ucl.ac.uk/~
 
 ## Site contents
 
-- The [getting started](getting-started.html) page is the place to find out about downloading and installing TractoR. Details of the major user-visible changes in each release can be found in the [changelog](changelog.html).
+- The [installation](install.html) page is the place to find out about downloading and installing TractoR. Details of the major user-visible changes in each release can be found in the [changelog](changelog.html).
 - Users of TractoR 2.x may find the information on [upgrading to TractoR 3](upgrading-to-TractoR-3.html) helpful.
 - An [updated version](paper/index.html) of the original TractoR paper is available for reference.
 - There is specific information on [TractoR for R users](TractoR-for-R-users.html), and additional [detailed information](guidelines-for-contributors.html) for anyone actually contributing to the project.

@@ -26,7 +26,7 @@ archives:
 	$(GIT) checkout -q $$branch; \
 	echo "$$tag" >"$$wd/latest.txt"
 
-downloads.html: downloads.md _template.html build.rb latest.txt
+install.html: install.md _template.html build.rb latest.txt
 	@$(ECHO_N) "Building $@... "
 	@./build.rb $< >$@ || ( rm -f $@; exit 1 )
 	@$(ECHO) "done"
