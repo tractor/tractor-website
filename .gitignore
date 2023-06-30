@@ -9,4 +9,5 @@
 /tractor.tar.gz
 /tractor.zip
 .DS_Store
+.nova
 
