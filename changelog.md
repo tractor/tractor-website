@@ -2,6 +2,15 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.4.1 (2023-06-30)
+
+* Several tweaks have been made to better support paths containing spaces, particularly for session paths in workflows. In support of this, two small new features have been added: the new `TRACTOR_WORKING_DIR` environment variable is now used as a default working directory by `tractor`, `plough` and `furrow`, if it is set, and `furrow` gains a `-r` flag to request relative paths be substituted rather than absolute ones. This is used in certain workflows to work around third-party tools' own difficulties with paths containing spaces.
+* When writing an image to file, any existing "tags" file with the corresponding name is now always overwritten, to avoid the auxiliary file getting out of sync with the image file.
+* Relative paths should now be correct when the reference path is a directory.
+* The working directory should no longer be erroneously prepended to image paths beginning with a tilde (`~`), which indicates a home directory on Unix-like systems.
+* The `bids` would sometimes attempt to copy an image file with no extension, leading to an error. This has been corrected.
+* Decomposition applied to a transformation object containing only one transform now works as expected.
+
 ## 3.4.0 (2023-05-17)
 
 * Heuristic neighbourhood tractography is defunct. All `hnt-` experiment scripts have been removed, along with the underlying functions. This approach has been deprecated since 2017, and has no remaining advantages compared to [probabilistic neighbourhood tractography](PNT-tutorial.html).
