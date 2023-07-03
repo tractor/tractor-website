@@ -8,7 +8,7 @@ The significant user-visible changes in each release of TractoR are documented b
 * When writing an image to file, any existing "tags" file with the corresponding name is now always overwritten, to avoid the auxiliary file getting out of sync with the image file.
 * Relative paths should now be correct when the reference path is a directory.
 * The working directory should no longer be erroneously prepended to image paths beginning with a tilde (`~`), which indicates a home directory on Unix-like systems.
-* The `bids` would sometimes attempt to copy an image file with no extension, leading to an error. This has been corrected.
+* The `bids` script would sometimes attempt to copy an image file with no extension, leading to an error. This has been corrected.
 * Decomposition applied to a transformation object containing only one transform now works as expected.
 
 ## 3.4.0 (2023-05-17)
