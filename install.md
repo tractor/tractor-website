@@ -4,7 +4,7 @@ TractoR can be downloaded directly below, cloned from [GitHub](https://github.co
 
 ## System requirements
 
-In its basic form, TractoR is a set of packages written for the [R language and environment](http://www.r-project.org). R (version 3.0.0 or later) is therefore an absolute prerequisite unless you want to use Docker to run TractoR fully containerised. R is an open-source package that is easy to install. Precompiled binaries are available from a number of [CRAN mirror sites](https://cran.r-project.org/mirrors.html), along with the source code.
+In its basic form, TractoR is a set of packages written for the [R language and environment](http://www.r-project.org). R (version 3.5.0 or later) is therefore an absolute prerequisite unless you want to use Docker to run TractoR fully containerised. R is an open-source package that is easy to install. Precompiled binaries are available from a number of [CRAN mirror sites](https://cran.r-project.org/mirrors.html), along with the source code.
 
 A C/C++ compiler, such as `gcc`/`g++` or `clang`/`clang++`, is also required to install TractoR from source, although R handles all the details of actually compiling code.
 
