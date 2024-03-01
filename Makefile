@@ -36,7 +36,7 @@ install.html: install.md _template.html build.rb latest.txt
 	@./build.rb $< >$@ || ( rm -f $@; exit 1 )
 	@$(ECHO) "done"
 
-upload_timestamp: [^_]*.html *.png .htaccess tractor.tar.gz tractor.zip latest.txt paper/* assets/*
+upload_timestamp: [^_]*.html *.png tractor.tar.gz tractor.zip latest.txt paper/* assets/*
 	@./upload.rb $? && touch upload_timestamp
 
 docs_timestamp: [^_]*.html *.png paper/* assets/*
