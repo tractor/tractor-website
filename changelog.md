@@ -2,6 +2,13 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.4.2 (2024-03-01)
+
+* Package unit tests have been moved from the `testthat` to the `tinytest` framework.
+* Several tweaks have been made to improve compatibility with R 4.3.x and the upcoming R 4.4.0, as well as `divest` 1.0 and `igraph` 2.0.
+* The minimum required version of R has been updated in the documentation to 3.5.0. This was already the case, but the documentation was out of date. TractoR's continuous integration tests now also run on old versions of R to help ensure the minimum version specified is accurate.
+* Two spurious errors that could arise during an interactive run of the `dpreproc` script have been corrected.
+
 ## 3.4.1 (2023-06-30)
 
 * Several tweaks have been made to better support paths containing spaces, particularly for session paths in workflows. In support of this, two small new features have been added: the new `TRACTOR_WORKING_DIR` environment variable is now used as a default working directory by `tractor`, `plough` and `furrow`, if it is set, and `furrow` gains a `-r` flag to request relative paths be substituted rather than absolute ones. This is used in certain workflows to work around third-party tools' own difficulties with paths containing spaces.
