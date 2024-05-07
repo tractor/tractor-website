@@ -2,6 +2,10 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.4.3 (2024-05-07)
+
+* Dependency package `jsonlite` has been updated for compatibility with the now-released R 4.4.0.
+
 ## 3.4.2 (2024-03-01)
 
 * Package unit tests have been moved from the `testthat` to the `tinytest` framework.
