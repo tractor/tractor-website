@@ -2,6 +2,10 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.4.4 (2024-05-21)
+
+* Auxiliary binaries from the `bin/exec` and `bin/extra` subdirectories have been moved to `libexec` to help with packaging TractoR for Homebrew according to its expectations.
+
 ## 3.4.3 (2024-05-08)
 
 * Dependency packages `jsonlite`, `yaml`, `Rcpp` and `RNifti` have been updated for compatibility with the now-released R 4.4.0.
