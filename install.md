@@ -13,10 +13,10 @@ A C/C++ compiler, such as `gcc`/`g++` or `clang`/`clang++`, is also required to 
 <div id="download-box">
   <p>The latest version of TractoR is <span id="version"><!--LATEST--></span>.</p>
   <img src="download.png" alt="Download icon" />
-  <p>Download <a href="#" onClick="gtag('event','download_tarball'); window.location.href='http://www.tractor-mri.org.uk/tractor.tar.gz'">tractor.tar.gz</a> or <a href="#" onClick="gtag('event','download_zipball'); window.location.href='http://www.tractor-mri.org.uk/tractor.zip'">tractor.zip</a>.</p>
+  <p>Download <a href="https://www.tractor-mri.org.uk/tractor.tar.gz">tractor.tar.gz</a> or <a href="https://www.tractor-mri.org.uk/tractor.zip">tractor.zip</a>.</p>
 </div>
 
-Full source code is included in the download. TractoR is developed according to good software engineering practice, and release numbering follows a [clear and consistent pattern](http://semver.org):
+Full source code is included in the download. TractoR's release numbering follows a [clear and consistent pattern](http://semver.org):
   
 - Point releases, e.g. from version 1.0.0 to 1.0.1, are for bug fixes and minor tweaks to existing functionality. They should be fully backwards-compatible, and are released as needed.
 - Minor releases, e.g. from version 1.0.x to 1.1.0, add new features without fundamentally changing the behaviour of the package's user-visible functions. Substantial effort is made to keep them backwards-compatible, including keeping default behaviour the same, and any deviation from this is explicitly documented in the [changelog](changelog.html). Such releases are typically made every few months.
