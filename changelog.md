@@ -2,6 +2,10 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.4.5 (2025-04-03)
+
+* The required `RNiftyReg` could fail to install on some platforms. This has now been corrected, and other bug-fixes to the package back-ported.
+
 ## 3.4.4 (2024-05-21)
 
 * Auxiliary binaries from the `bin/exec` and `bin/extra` subdirectories have been moved to `libexec` to help with packaging TractoR for Homebrew according to its expectations.
