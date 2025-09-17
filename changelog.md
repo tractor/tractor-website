@@ -9,11 +9,18 @@ The significant user-visible changes in each release of TractoR are documented b
 * There is a new `csd` script for running MRtrix CSD through TractoR, and workflows for key commands `dwi2response` and `dwi2fod`.
 * Registration transformations are now preferentially stored in flat .Rdata files again. These are easier to handle and can now encapsulate all necessary metadata, including for nonlinear warps. The .xfmb folder format can still be read.
 * A new `reg-reverse` script creates a transformation that is the logical inverse of an existing one.
+* The new `gradsample` script can be used to subsample diffusion MRI acquisitions.
+* The `import` script can now import multiple diffusion or functional data volumes, which will be merged together in order.
+* The `gradread` script is now more flexible with its output, and can create standalone gradient files in addition to working with sessions.
 * Handling of groups of related files on disk is now more consistent and unified. Mapping is now supported for images outside of session hierarchies, and favoured over symbolic linking for better portability across operating systems and on cloud-backed and remote filesystems.
 * The `furrow` command is now written in pure R, rather than being a shell script, and is run through the [littler](https://github.com/eddelbuettel/littler) frontend. This should make the command less fragile in its interface to R, notably when handling paths containing spaces, and similar treatment is planned for `tractor` and `plough` in a future release. The small first-party package `arrg` is now bundled to support this interface.
 * Experiment scripts can now be bundled with arbitrary R packages and found by TractoR via the `TRACTOR_PACKAGES` environment variable.
 * The `plough` command gains a `-I` flag to allow values to be passed into the command through a pipe.
 * TractoR now provides a simple `Rprofile` that can be sourced from the user's equivalent startup file to provide ready access to TractoR's packages and environment in R sessions.
+* The `graph-decompose` script now has a mode to decompose a graph into connected components.
+* The `slice` script gains a `Volume` option to specify a required volume if the input is 4D.
+* Output from the `list` script has been improved, and a new `Descriptions:true` option incorporates the start of the script's self-description into the summary. Groupings are no longer hard-coded in this script, but determined by a comment in each script.
+* Unnamed arguments may now be passed to a workflow via the `workflow` script.
 * The global `Arguments` vector seen by TractoR scripts is now named, using arguments to `requireArguments()`, for ease of later reference.
 * The internals of the tractography code have been tweaked to try to avoid sporadic segmentation faults on some platforms.
 
