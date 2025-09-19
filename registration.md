@@ -12,7 +12,7 @@ The transformation may either be linear or nonlinear. Linear transformations are
 
 Here, a global rotation can be observed from the oblique grid, but additionally, some areas are expanded by the transformation (red) while others are contracted (blue).
 
-In TractoR, images are stored in Analyze/NIfTI/MGH files, while transformations are stored within a [special directory with an ".xfmb" suffix](conventions.html#file-types). Information about the latter can be obtained using the `reg-info` script. Transformation directories contain metadata about the source and target files, as well as the actual linear and/or nonlinear transformation information. TractoR's image registration scripts create, modify and use the contents of these directories as a matter of course.
+In TractoR, images are stored in Analyze/NIfTI/MGH files, while transformations are stored within [".Rdata" files](conventions.html#file-types). Information about the latter can be obtained using the `reg-info` script. Transformation directories contain metadata about the source and target files, as well as the actual linear and/or nonlinear transformation information. TractoR's image registration scripts create, modify and use the contents of these directories as a matter of course.
 
 ## Linear registration
 
@@ -30,7 +30,7 @@ If you want only to estimate the transformation, but not actually resample the i
 
     tractor reg-linear source target Method:niftyreg EstimateOnly:true TransformName:source2target
 
-This will create the transformation directory "source2target.xfmb".
+This will create the transformation "source2target.Rdata".
 
 ## Nonlinear registration
 
@@ -57,4 +57,4 @@ Transformations can be visualised (as shown above) using the `reg-viz` script. P
 
 A number of operations which can be performed with TractoR, including [neighbourhood tractography](PNT-tutorial.html), require images or points to be transformed between different spaces. Registration must therefore take place to estimate the relevant transformation in these cases.
 
-TractoR estimates these transformations on demand, at the point that the code first requires them, and then stores them within the `tractor/transforms` subdirectory of the relevant [session](conventions.html) for future reference. Files stored in that location have a naming convention giving the source and target space names, separated by the digit "2": for example, the transformation from diffusion to MNI standard space is called "diffusion2mni.xfmb". The strategy for transforming between each pair of image spaces—specifying, for example, whether linear or nonlinear registration should be used—is determined by the `etc/session/transforms/strategy.yaml` file in the TractoR installation directory, which can be overridden by a file of the same name in a particular session. Implicit linear registration is currently performed using NiftyReg by default (as of TractoR v3.0.0), but FSL-FLIRT can be used instead by setting the `TRACTOR_REG_METHOD` environment variable to `fsl`. The actual source and target images are chosen to be representative of the space in question: for example, the "maskedb0" image for diffusion space, and the "brain" template for MNI standard space.
+TractoR estimates these transformations on demand, at the point that the code first requires them, and then stores them within the `tractor/transforms` subdirectory of the relevant [session](conventions.html) for future reference. Files stored in that location have a naming convention giving the source and target space names, separated by the digit "2": for example, the transformation from diffusion to MNI standard space is called "diffusion2mni.Rdata". The strategy for transforming between each pair of image spaces—specifying, for example, whether linear or nonlinear registration should be used—is determined by the `etc/session/transforms/strategy.yaml` file in the TractoR installation directory, which can be overridden by a file of the same name in a particular session. Implicit linear registration is currently performed using NiftyReg by default (as of TractoR v3.0.0), but FSL-FLIRT can be used instead by setting the `TRACTOR_REG_METHOD` environment variable to `fsl`. The actual source and target images are chosen to be representative of the space in question: for example, the "maskedb0" image for diffusion space, and the "brain" template for MNI standard space.

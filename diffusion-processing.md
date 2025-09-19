@@ -85,7 +85,7 @@ Fitting diffusion tensors is a standard processing step for diffusion-weighted d
 
     tractor tensorfit
 
-There are four alternative approaches to fitting the tensors available, but standard least-squares fitting is the default: see `tractor -o tensorfit` for details. The [Camino toolkit](http://www.camino.org.uk) offers many more methods.
+There are four alternative approaches to fitting the tensors available, but standard least-squares fitting is the default: see `tractor -o tensorfit` for details.
 
 The diffusion tensor is a very limited model, however, particularly for tractography. It is therefore recommended to run FSL [BEDPOSTX algorithm](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide#BEDPOSTX) to fit a "ball-and-sticks" model and generate samples for probabilistic tractography. This typically takes several hours. The command for running this is
 
@@ -96,6 +96,12 @@ The underlying FSL `bedpostx` program takes a parameter which determines the max
     tractor bedpost NumberOfFibres:2
 
 It is important to note that the number of fibres fitted is *a property of the session*, and so once set it cannot be changed without processing the data again. If you wish to try different values of this option on a single data set, you will need to duplicate the session hierarchy, since these would be considered two distinct preprocessing pipelines, producing two different data sets.
+
+TractoR v3.5.0 added support for [constrained spherical deconvolution](https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/constrained_spherical_deconvolution.html) via [MRtrix](https://www.mrtrix.org), which can be run as
+
+    tractor csd
+
+There is not yet support for using the output in tractography, but it can be used with MRtrix's own `tckgen` function.
 
 ## The status script
 
