@@ -2,6 +2,14 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.5.1 (2026-04-28)
+
+* A crash caused by inappropriately assuming that a streamline file provides image space information, notably when using the `tck2trk` script, has been fixed.
+* Prompts referencing showing images in `fslview` specifically, within the `dpreproc` and `gradcheck` experiment scripts, have now been updated to reference (and use) a viewer appropriate to the host system. This takes into account both the `TRACTOR_VIEWER` environment variable and what viewers are available.
+* The `IgnoreZeroes` option to the `compare` script now ignores areas that are zero in *either* image if it is set to `true`, rather than both. (The latter is essentially a no-op, since areas that are zero in both images necessary match.) It now defaults to `false`, which is consistent with the default in v3.5.0 because there was previously no effect. There is now also a description associated with this script.
+* Testing for source-space equivalence now has a bigger tolerance, for example when using `reg-apply`.
+* TractoR packages and dependencies have been updated for compatibility with the newly released R 4.6.0.
+
 ## 3.5.0 (2025-10-13)
 
 * TractoR now requires R v3.6.2 (from 2019) or later.
