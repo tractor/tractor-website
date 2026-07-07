@@ -2,6 +2,22 @@
 
 The significant user-visible changes in each release of TractoR are documented below.
 
+## 3.5.2 (2026-07-07)
+
+* The `track` script could produce incomplete results when more than one seed region was specified – for example a named region matching several parcellation labels – with the default `Strategy:global`. Only one of the requested regions ended up contributing to the output. This has been corrected, and the whole seed area is now always combined into a single result, as documented. Profile outputs now have named columns where region names are available, as intended.
+* The `reg-nonlinear` script will no longer produce an error when the named transform does not already exist (although performing linear registration first is still recommended).
+* The `values` script will no longer fail if a mask image is not specified.
+* Using the `apply` script's "Combine" mode with a function that reduces each image to a short vector, rather than operating pointwise, could cause an error. This has been fixed.
+* The `smooth` script with the `WidthType:fwhm` option previously produced a Gaussian kernel of the wrong width, due to an operator-precedence bug in the underlying calculation. This has been corrected.
+* Reading a corrupted or truncated MRtrix .tck file with an incomplete header could cause TractoR to hang indefinitely rather than reporting an error. This has been fixed.
+* Reading and mapping .trk files, for example with `trkmap`, has been made more robust. An invalid seed-point index, or streamline coordinates lying outside the image bounds could previously cause a crash, and a separate, rare defect could cause streamline "seed" properties to go unrecognised.
+* When processing a batch of sessions, the `pnt-viz` script could use fewer seed points than requested for sessions handled after one with relatively few valid matches. This has been corrected.
+* An unusual case in which trimming a streamline left only its seed point, which can arise when building tract models for probabilistic neighbourhood tractography, is now handled correctly.
+* The `compare` script produced an obscure error, rather than simply reporting no match, when comparing two images with `IgnoreZeroes:true` that share no nonzero voxels. This has been corrected.
+* The `transform` script now produces a more informative error if asked to transform a point without a source space specified.
+* The supplied `Rprofile` now checks whether the target of `TRACTOR_HOME` exists, and only prioritises packages installed in TractoR's library for calls to its scripts.
+* The `tractor` binary is now more defensive when parsing its arguments, and avoids potentially dereferencing an uninitialised pointer.
+
 ## 3.5.1 (2026-04-28)
 
 * A crash caused by inappropriately assuming that a streamline file provides image space information, notably when using the `tck2trk` script, has been fixed.
