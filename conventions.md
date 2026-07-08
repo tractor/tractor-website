@@ -12,6 +12,7 @@ TractoR is designed to work with MRI data sets, each consisting of a series of m
         /diffusion...............diffusion-weighted images and their derivatives (e.g. diffusion tensor components)
         /fdt.....................images and other files used by FSL's diffusion toolbox
         /fdt.bedpostX............images and other files produced by FSL BEDPOSTX
+        /mrtrix..................images and other files created by and for MRtrix3
         /structural..............structural (e.g. T1-weighted) images
         /freesurfer..............output from the Freesurfer pipeline
         /functional..............functional (generally T2*-weighted BOLD) images
